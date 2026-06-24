@@ -47,22 +47,31 @@ const stateCopy: Record<HostedActionState, { title: string; body: string }> = {
 
 export function RouteSelectionClient({ action, submitUrl }: RouteSelectionClientProps) {
   const [state, setState] = useState<HostedActionState>(action.state);
-  const [selectedId, setSelectedId] = useState(action.currentDefaultId);
+  const [selectedId, setSelectedId] = useState(() =>
+    action.options.some((option) => option.id === action.currentDefaultId)
+      ? action.currentDefaultId
+      : action.options[0]?.id ?? ""
+  );
   const [pending, setPending] = useState(false);
   const copy = stateCopy[state];
   const isReady = state === "ready";
   const selectedOption = action.options.find((option) => option.id === selectedId);
-  // REVIEW: `selectedId` starts from `currentDefaultId`, but the Save button only checks that it is
-  // truthy. If the backend returns a default that is absent from `options`, the client can submit a
-  // hidden route id; require `selectedOption` for submission and initialize to a visible option.
 
   async function submit(decision: "select_route" | "leave_unchanged") {
+    if (decision === "select_route" && !selectedOption) {
+      setState("restart_required");
+      return;
+    }
+
     setPending(true);
     try {
       const response = await fetch(submitUrl, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ decision, selectedRouteId: selectedId }),
+        body: JSON.stringify({
+          decision,
+          selectedRouteId: decision === "select_route" ? selectedOption?.id : undefined,
+        }),
       });
       const result = await response.json() as {
         state?: HostedActionState;
@@ -153,7 +162,7 @@ export function RouteSelectionClient({ action, submitUrl }: RouteSelectionClient
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             <button
               className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#176b46] px-5 text-sm font-semibold text-white transition hover:bg-[#12583a] disabled:bg-[#aeb8a6]"
-              disabled={!isReady || !selectedId || pending}
+              disabled={!isReady || !selectedOption || pending}
               onClick={() => void submit("select_route")}
               type="button"
             >

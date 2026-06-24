@@ -1,3 +1,8 @@
+import {
+  invalidActionResponse,
+  isSameOriginActionPost,
+  isValidHostedActionId,
+} from "@/lib/action-request-security";
 import { submitHostedAction } from "@/lib/hosted-actions";
 
 export async function POST(
@@ -5,9 +10,10 @@ export async function POST(
   { params }: { params: Promise<{ actionId: string }> },
 ) {
   const { actionId } = await params;
-  // REVIEW: Add the same action-token and same-origin validation as setup before route selection
-  // becomes session-backed. A forged POST could otherwise try arbitrary `selectedRouteId` values
-  // and rely on downstream checks to catch them.
+  if (!isValidHostedActionId(actionId, "route_selection") || !isSameOriginActionPost(request)) {
+    return invalidActionResponse();
+  }
+
   const body = await request.json() as {
     decision?: "select_route" | "leave_unchanged";
     selectedRouteId?: string;

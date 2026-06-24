@@ -32,9 +32,15 @@ export async function submitHostedAction(input: {
   selectedRouteId?: string;
 }): Promise<HostedActionCompletion> {
   if (!resolverBaseUrl) {
-    // REVIEW: In no-backend mode every action id can transition to an approved/selected state,
-    // including expired or invalid ids. Keep this fallback limited to explicit fixture ids and
-    // ready actions so demos cannot accidentally teach the client to trust local-only state.
+    const action = input.kind === "setup" ? getSetupAction(input.actionId) : getRouteSelectionAction(input.actionId);
+    if (action.state !== "ready") return { state: "restart_required" };
+    if (input.kind === "route_selection" && input.decision === "select_route") {
+      const routeAction = action as RouteSelectionAction;
+      if (!routeAction.options.some((option) => option.id === input.selectedRouteId)) {
+        return { state: "restart_required" };
+      }
+    }
+
     return {
       state: input.kind === "setup"
         ? input.decision === "approve" ? "approved" : "denied"
@@ -83,12 +89,13 @@ function backendHeaders(): HeadersInit {
     "content-type": "application/json",
   };
 
-  if (devCubidUserId) {
-    // REVIEW: The dev user override should fail closed outside local/test environments. Otherwise
-    // a staging or production deployment with this env accidentally set would send an impersonation
-    // header on every hosted-action backend request.
+  if (devCubidUserId && isLocalOrTestRuntime()) {
     headers["x-globalpayto-dev-cubid-user-id"] = devCubidUserId;
   }
 
   return headers;
+}
+
+function isLocalOrTestRuntime(): boolean {
+  return process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test";
 }
