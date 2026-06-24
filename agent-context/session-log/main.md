@@ -159,3 +159,12 @@ head: a6bd97c
 summary: Completed GPTW-S5-T3 by publishing "From Wallet Addresses to Payment Intents" as the resolver-output abstraction post.
 validation: Confirmed the post contrasts static addresses with scoped expiring intents, covers references, expiry, one-time behavior, provider-specific instructions, and frames the GlobalPayTo response as a normalized resolver envelope.
 follow-ups: Continue Sprint 5 with the five-roles developer education post.
+
+---
+
+agent: Codex
+branch: main
+head: 4427389
+summary: Completed GPTW-S5-T4 by publishing "How GlobalPayToResolver Works: The Five Roles."
+validation: Confirmed the post separates User, Cubid, GlobalPayToResolver, PayToDapp, and PayingDapp responsibilities while emphasizing user consent and receive-route preferences.
+follow-ups: Continue Sprint 5 with the PayToDapp versus PayingDapp practical integration post.

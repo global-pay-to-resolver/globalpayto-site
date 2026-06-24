@@ -315,9 +315,9 @@ Acceptance notes:
 
 ### GPTW-S5-T4 Write And Publish How GlobalPayToResolver Works: The Five Roles
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t4  
 Depends on: globalpayto-site:GPTW-S5-T1
 
 Write and publish a developer education post explaining the five MVP roles: User, GlobalPayToResolver, Cubid, PayToDapp, and PayingDapp.

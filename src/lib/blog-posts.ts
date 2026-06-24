@@ -229,6 +229,77 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "how-globalpaytoresolver-works-the-five-roles",
+    title: "How GlobalPayToResolver Works: The Five Roles",
+    description:
+      "A clear mental model for the user, Cubid, the resolver, PayToDapps, and PayingDapps in the MVP flow.",
+    category: "Developer Education",
+    publishedAt: "2026-06-24",
+    readingMinutes: 6,
+    body: [
+      {
+        type: "paragraph",
+        text: "GlobalPayToResolver is easiest to understand when the roles stay separate. The system is not one giant wallet, identity provider, or payment processor. It is a resolution layer with five participants.",
+      },
+      {
+        type: "heading",
+        text: "1. User",
+      },
+      {
+        type: "paragraph",
+        text: "The user controls which identifiers can be used to pay them, which apps can request resolution, and which receive route should be preferred for a specific context. The user is not expected to expose every wallet or provider relationship to every payer.",
+      },
+      {
+        type: "heading",
+        text: "2. Cubid",
+      },
+      {
+        type: "paragraph",
+        text: "Cubid handles identity and consent primitives: verified stamps, app-scoped user identity, and user-facing approval surfaces. Cubid is not treated as a universal public payment id. Its job is to help prove and mediate identity context.",
+      },
+      {
+        type: "heading",
+        text: "3. GlobalPayToResolver",
+      },
+      {
+        type: "paragraph",
+        text: "The resolver connects a PayingDapp request to an authorized receive path. It checks the request, asks for user action when setup or route selection is required, and returns a payment intent when the current context is ready.",
+      },
+      {
+        type: "heading",
+        text: "4. PayToDapp",
+      },
+      {
+        type: "paragraph",
+        text: "A PayToDapp helps the user receive funds. It may be a wallet, embedded wallet provider, custodial receive account, or another app that can produce a payment instruction for a supported chain, network, and asset.",
+      },
+      {
+        type: "paragraph",
+        text: "In the MVP, PayToDapps use Modality B: they register supported routes, and when selected, they produce the provider-specific payment intent. That keeps private receive details closer to the provider that already manages them.",
+      },
+      {
+        type: "heading",
+        text: "5. PayingDapp",
+      },
+      {
+        type: "paragraph",
+        text: "A PayingDapp is an app that needs to pay a user. It might be a payout product, marketplace, escrow release system, grant tool, payroll flow, or any app where the product already knows who should receive funds.",
+      },
+      {
+        type: "paragraph",
+        text: "The PayingDapp submits the recipient identifier, supported payment paths, amount, intent mode, and reference. It receives either a resolved payment intent or a safe action status such as no route or user action required.",
+      },
+      {
+        type: "heading",
+        text: "Why the separation matters",
+      },
+      {
+        type: "paragraph",
+        text: "The role split prevents accidental overreach. Cubid does identity, PayToDapps provide receive paths, PayingDapps request intents, and the resolver coordinates payment resolution without turning itself into a public wallet graph.",
+      },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string) {
