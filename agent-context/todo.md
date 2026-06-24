@@ -252,9 +252,9 @@ Acceptance notes:
 
 ### GPTW-S4-T4 Validate Public Docs Do Not Link Into The Private Repo
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t1  
 Depends on: globalpayto-site:GPTW-S4-T3
 
 Review public site docs for private-repo links and private implementation leakage.

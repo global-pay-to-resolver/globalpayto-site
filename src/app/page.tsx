@@ -68,6 +68,12 @@ export default function Home() {
               >
                 Open route selection
               </Link>
+              <Link
+                className="inline-flex h-11 items-center justify-center rounded-md border border-[#cbd4c3] bg-white px-5 text-sm font-semibold text-[#2c3429] transition hover:bg-[#f1f4ec]"
+                href="/blog"
+              >
+                Read the blog
+              </Link>
             </div>
           </div>
 

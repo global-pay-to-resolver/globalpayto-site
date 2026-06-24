@@ -132,3 +132,12 @@ head: 5e6abab
 summary: Completed GPTW-S3-T4 by adding a route-selection privacy check for wallet addresses, route counts, provider internals, private diagnostics, wallet-graph language, and profile-directory claims, then cleaning fixture copy that mentioned wallet graph details.
 validation: Ran pnpm privacy:route-selection, pnpm typecheck, pnpm lint, pnpm build, and pnpm scan:browser-secrets.
 follow-ups: Site Sprint 3 is complete; keep using privacy and browser-secret scans before public hosted-action releases.
+
+---
+
+agent: Codex
+branch: main
+head: 7e63f74
+summary: Completed GPTW-S5-T1 by adding the public blog publishing surface and publishing the launch post, "Introducing GlobalPayToResolver: Pay Users, Not Wallet Addresses."
+validation: Added typed blog content, index/detail routes, homepage blog navigation, and confirmed the post explains address-centric UX, approved pay-to identifiers, Cubid separation, consented payment intents, and early integration CTAs.
+follow-ups: Continue Sprint 5 with the pay-to layer ecosystem thesis post.
