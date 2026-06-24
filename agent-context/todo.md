@@ -6,9 +6,9 @@ This document tracks MVP implementation work for the public user-facing site and
 
 ### GPTW-S1-T1 Finalize Hosted Action Page Contract
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md  
 Depends on: globalpayto-sdk:GPTS-S1-T1, globalpayto-sdk:GPTS-S1-T2, globalpayto-sdk:GPTS-S1-T3, globalpayto-sdk:GPTS-S1-T7
 
 Define the browser-facing contract for hosted authorization, setup, and route-selection actions.

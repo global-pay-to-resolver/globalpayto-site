@@ -101,6 +101,8 @@ Keep deprecated wallet-heavy Cubid starter patterns out of this app.
 
 The hosted action pages should receive opaque action identifiers or tokens, not private backend state.
 
+Sprint 1 hosted action contract details live in [`hosted-action-contract.md`](./hosted-action-contract.md).
+
 Expected page inputs:
 
 - action id,
