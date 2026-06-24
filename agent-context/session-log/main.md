@@ -141,3 +141,12 @@ head: 7e63f74
 summary: Completed GPTW-S5-T1 by adding the public blog publishing surface and publishing the launch post, "Introducing GlobalPayToResolver: Pay Users, Not Wallet Addresses."
 validation: Added typed blog content, index/detail routes, homepage blog navigation, and confirmed the post explains address-centric UX, approved pay-to identifiers, Cubid separation, consented payment intents, and early integration CTAs.
 follow-ups: Continue Sprint 5 with the pay-to layer ecosystem thesis post.
+
+---
+
+agent: Codex
+branch: main
+head: aa1dfd5
+summary: Completed GPTW-S5-T2 by publishing "Why Crypto Needs a Pay-To Layer" as the ecosystem thesis post for identity, wallet, chain, and app fragmentation.
+validation: Confirmed the post contrasts names, address books, and payment links with consent, route preference, privacy, and user-controlled payment resolution.
+follow-ups: Continue Sprint 5 with the payment-intents abstraction post.

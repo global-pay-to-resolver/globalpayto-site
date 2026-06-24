@@ -285,9 +285,9 @@ Acceptance notes:
 
 ### GPTW-S5-T2 Write And Publish Why Crypto Needs A Pay-To Layer
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t2  
 Depends on: globalpayto-site:GPTW-S5-T1
 
 Write and publish the ecosystem thesis post explaining why payment resolution is the missing layer between identity, wallets, chains, and apps.

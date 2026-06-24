@@ -94,6 +94,65 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "why-crypto-needs-a-pay-to-layer",
+    title: "Why Crypto Needs a Pay-To Layer",
+    description:
+      "Identity, wallets, chains, and apps are fragmented. A pay-to layer connects who should be paid with where funds should safely go.",
+    category: "Product / Vision",
+    publishedAt: "2026-06-24",
+    readingMinutes: 5,
+    body: [
+      {
+        type: "paragraph",
+        text: "Crypto has strong primitives for signing, custody, and settlement, but the everyday act of paying a person is still awkward. Apps often know who should receive funds, while payment rails ask where to send funds. That gap is where mistakes, privacy leaks, and abandoned flows appear.",
+      },
+      {
+        type: "paragraph",
+        text: "A pay-to layer is the missing connective tissue between identity, wallets, chains, and apps. It lets a user present an approved payment identity while retaining control over the actual receive path.",
+      },
+      {
+        type: "heading",
+        text: "Names and links are not enough",
+      },
+      {
+        type: "list",
+        items: [
+          "ENS-style names are useful, but they usually resolve to durable public destinations or public profile records.",
+          "Wallet address books help repeat senders, but they do not express user consent, route preference, or app-specific authorization.",
+          "Payment links can start a payment flow, but they are usually created by the receiver or provider, not resolved from the payer's user context.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Each tool solves part of the problem. None of them fully answers how an app should pay a user when that user may have several wallets, several verified identifiers, and different preferences depending on chain, asset, app, and purpose.",
+      },
+      {
+        type: "heading",
+        text: "Payment resolution is a product layer",
+      },
+      {
+        type: "paragraph",
+        text: "The hard part is not looking up a string. The hard part is combining consent, preference, route selection, privacy, expiry, and provider behavior into a result the paying app can actually use.",
+      },
+      {
+        type: "paragraph",
+        text: "GlobalPayToResolver treats those concerns as the product, not as edge cases. A user can authorize a PayingDapp, choose or confirm a PayToDapp route, and receive a scoped payment intent without exposing every eligible wallet or receive provider to the payer.",
+      },
+      {
+        type: "heading",
+        text: "User control is the center",
+      },
+      {
+        type: "paragraph",
+        text: "The pay-to layer should not become a universal directory of people and wallets. It should help the user decide how they are payable in a specific context. That means route defaults are scoped, action links are opaque, and negative outcomes avoid telling a payer whether an identifier exists, lacks a route, or needs setup.",
+      },
+      {
+        type: "paragraph",
+        text: "Crypto needs a pay-to layer because payment destinations are no longer simple. The safer default is to pay an approved user identifier and let the user's authorized receive path produce the payment intent.",
+      },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string) {
