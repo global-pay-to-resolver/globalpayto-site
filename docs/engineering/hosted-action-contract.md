@@ -20,6 +20,8 @@ Common page inputs:
 - masked pay-to identifier display when safe,
 - route options only for the current action.
 
+Public URLs must carry only opaque action identifiers or short-lived tokens. Display metadata, masked identifiers, and route options must be hydrated after action-token validation so they do not leak through referrers, browser history, CDN logs, or analytics.
+
 Notification-triggered visits from Cubid comms use the same action identifier model.
 
 ## Hosted Action Outcomes
@@ -61,9 +63,9 @@ Copy must cover:
 - authorization required,
 - provider temporarily unavailable,
 - expired or invalid action links,
-- payment intent created,
-- payment received,
-- user action required from Cubid comms.
+- payment intent created.
+
+Copy for provider-reported receipt events or Cubid-comms-driven user-action notifications is outside MVP until those events have explicit trust, disclosure, and callback contracts.
 
 Copy must not imply that GlobalPayTo exposes a wallet graph, profile directory, dashboard, inbox, or activity feed.
 

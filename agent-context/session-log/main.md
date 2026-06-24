@@ -33,3 +33,12 @@ head: c414106
 summary: Completed GPTW-S1-T3 by defining public copy requirements for resolver statuses and Cubid comms notifications.
 validation: Confirmed copy coverage for setup, route selection, authorization, provider unavailable, expired/invalid links, payment intent created, payment received, and user action required without private diagnostics or wallet graph claims.
 follow-ups: Site Sprint 2 can begin hosted action app design after SDK contract dependencies remain complete.
+
+---
+
+agent: Codex
+branch: main
+head: 1e6857f
+summary: Tightened site architecture, TODO requirements, and blog roadmap notes to match the MVP PRD trust-boundary updates, including opaque action URLs, post-validation hydration, intent-created-only notification copy, and broader browser leak checks.
+validation: Confirmed site architecture, TODO, and blog authoring docs no longer contain raw REVIEW notes or payment_received/payment received MVP requirements, and removed the local sibling-checkout architecture link from public docs.
+follow-ups: Align SDK public docs/TODOs with the tightened MVP notification and action-token boundaries before implementation continues.

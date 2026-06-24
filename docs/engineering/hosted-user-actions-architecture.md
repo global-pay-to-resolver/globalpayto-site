@@ -12,11 +12,11 @@ The MVP site surfaces are:
 
 - authorization/setup links for enabling a verified Cubid stamp as pay-to or authorizing a dapp,
 - route-selection links for choosing a default when multiple PayToDapps support the same route.
-- optional landing targets from Cubid comms notifications when the notification requires user action.
+- landing targets for Cubid comms `payment_intent_created` notifications when the notification links back to the current intent context.
 
 The site does not own production Supabase schema, Edge Functions, provider callbacks, audit logging, private admin tools, or operational resolver logic.
 
-For public protocol contracts and integration examples, see the public SDK architecture doc in [`../../../globalpayto-sdk/docs/engineering/protocol-and-sdk-architecture.md`](../../../globalpayto-sdk/docs/engineering/protocol-and-sdk-architecture.md) when working from the parent workspace checkout.
+For public protocol contracts and integration examples, see the GlobalPayTo SDK repository docs, especially `docs/engineering/protocol-and-sdk-architecture.md` and `docs/engineering/mvp-api-contracts.md`.
 
 ## Product Boundary
 
@@ -34,7 +34,7 @@ The site is not a full dashboard in the MVP. It should not include:
 
 The site exists to help a user safely complete an authorization or selection that an API flow could not finish without user involvement.
 
-Payment notifications, such as payment received, should be delivered through Cubid comms. The site may render a linked action target when a notification requires setup or route selection, but it should not become the notification delivery system.
+MVP notifications are limited to `payment_intent_created` through Cubid comms. Payment-received landing behavior belongs to a future provider-reported receipt phase with its own trust and disclosure rules. The site may render a linked intent-created landing target, but it should not become the notification delivery system.
 
 ## User Actions
 
@@ -71,6 +71,8 @@ The page should show:
 - the eligible PayToDapps,
 - the current default when one exists,
 - the effect of choosing a default.
+
+The hosted action must validate the action token and authenticate the user before route options, eligible PayToDapps, or current defaults are rendered. Route details should be fetched for that action after validation rather than embedded in an unauthenticated URL.
 
 It should not reveal unrelated routes, wallet addresses, provider internals, or a user's broader payment graph.
 
@@ -111,6 +113,8 @@ Expected page inputs:
 - masked pay-to identifier display when safe,
 - route options for route selection.
 
+Public URLs carry only opaque action identifiers or short-lived tokens. Dapp metadata, masked identifiers, and route options are hydrated from backend action endpoints after validation.
+
 Expected page outputs:
 
 - user approved,
@@ -144,5 +148,5 @@ The site architecture is MVP-complete when:
 - expired or invalid links fail safely,
 - the browser bundle contains no resolver secrets,
 - the site calls backend APIs rather than writing directly to production data stores,
-- Cubid comms notification links land on safe hosted action states when user action is required,
+- Cubid comms `payment_intent_created` notification links land on safe hosted action states,
 - public copy avoids wallet graph disclosure.

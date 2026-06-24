@@ -47,9 +47,10 @@ Define user-facing copy for resolver statuses and Cubid comms notifications that
 Acceptance notes:
 
 - Copy explains setup, route selection, expired/invalid links, authorization-required, and provider-unavailable states.
-- Copy covers notification examples such as payment intent created, payment received, and user action required.
+- Copy covers the MVP `payment_intent_created` notification event.
 - Copy avoids exposing private diagnostic details.
 - Copy avoids implying a wallet graph or public profile exists.
+- Provider-reported receipt copy and Cubid-comms-driven user-action notification copy are deferred until those events have explicit trust and disclosure contracts.
 
 ## Sprint 2: App Design And Implementation
 
@@ -97,6 +98,8 @@ Acceptance notes:
 - Flow shows the route, eligible PayToDapps, current default when one exists, and effect of choosing a default.
 - Flow avoids showing unrelated routes, wallet addresses, provider internals, or broader payment graph details.
 - Flow has clear handling for expired and invalid action links.
+- Route options and defaults are fetched only after action-token validation and user authentication.
+- Route/provider details are never embedded in the unauthenticated URL.
 
 ### GPTW-S2-T4 Implement Route Selection Pages
 
@@ -144,7 +147,8 @@ Acceptance notes:
 
 - Site submits user decisions through backend APIs rather than direct database writes.
 - API responses are mapped to public status copy.
-- Cubid comms notification links land on safe hosted action states when user action is required.
+- Setup, authorization, and route-selection actions are initiated from resolver responses.
+- Cubid-comms-driven user-action links are deferred until that event contract is explicitly added.
 - Integration preserves browser-safe configuration boundaries.
 
 ### GPTW-S3-T2 Handle Expired Or Invalid Action Links Safely
@@ -161,6 +165,8 @@ Acceptance notes:
 - Expired or invalid states do not reveal whether a recipient exists.
 - Restart/setup-needed paths use public backend-provided guidance.
 - Pages avoid leaking private diagnostics.
+- Action-token pages set a restrictive `Referrer-Policy`.
+- Action-token URLs avoid third-party analytics, redact tokens from logs, and exchange valid tokens into clean URLs after validation.
 
 ### GPTW-S3-T3 Verify Browser Bundle Contains No Resolver Secrets
 
@@ -175,6 +181,7 @@ Acceptance notes:
 
 - Checks cover resolver secrets, Cubid dapp API keys, service-role keys, provider callback credentials, and database credentials.
 - Server-only values are never renamed to `NEXT_PUBLIC_*`.
+- Checks include built assets, source maps, rendered HTML, route handlers, public runtime config, server-only environment names, and known secret prefixes.
 - Build or test output makes failures actionable.
 
 ### GPTW-S3-T4 Confirm Route Selection Does Not Leak Wallet Graph Details

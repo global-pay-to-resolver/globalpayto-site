@@ -116,6 +116,8 @@ Some apps can be both.
 
 Important technical/product post.
 
+Launch framing: explain both terms, but make clear that the MVP supports Modality B only. Modality A is roadmap context, not a launch integration path.
+
 **Modality A:** Resolver receives accounts and builds payment intents.
 
 Best for:
@@ -139,7 +141,7 @@ custodial/semi-custodial receive accounts
 privacy-sensitive wallets
 ```
 
-**Message:** Modality B is more private and more powerful. Modality A is simpler.
+**Message:** Modality B is the MVP path because it is more private and better for dynamic wallets. Modality A is simpler, but later.
 
 ---
 
@@ -149,20 +151,7 @@ Developer-facing post showing example requests.
 
 **Include examples:**
 
-```json
-{
-  "recipient": {
-    "identifierType": "verified_stamp",
-    "identifier": "github:noak"
-  },
-  "supportedPaths": [
-    { "chain": "base", "asset": "USDC" },
-    { "chain": "ethereum", "asset": "USDC" }
-  ],
-  "amount": "25.00",
-  "intentMode": "one_time"
-}
-```
+Use contract-sourced snippets from the SDK docs or generated fixtures before publishing. Examples must include the structured amount object and required purpose/reference fields from the MVP API contract.
 
 **CTA:** Try the SDK.
 
@@ -176,9 +165,8 @@ Walkthrough for wallets.
 
 * Register app.
 * Request user consent.
-* Register receive capabilities.
-* Support Modality A or B.
-* Handle payment-intent requests.
+* Register supported routes.
+* Handle Modality B intent callbacks.
 * Revoke paths.
 * Test with mock resolver.
 
@@ -285,7 +273,7 @@ provider-built wallet intents
 GlobalPayTo normalized intents
 ```
 
-**Conclusion:** GlobalPayToResolver wraps multiple formats into one normalized intent object.
+**Conclusion:** These formats are useful industry context. The MVP returns a GlobalPayTo-owned resolver envelope with provider JSON; it does not wrap Stripe, Solana Pay, ERC-681, hosted payment links, or payment processors.
 
 ---
 
@@ -293,18 +281,17 @@ GlobalPayTo normalized intents
 
 Technical architecture post.
 
-**Key point:** The resolver should not pick one winner among payment standards.
+**Key point:** The resolver should start with one internal JSON envelope before adapters.
 
-It should normalize:
+MVP normalizes:
 
 ```text
-EVM transfer instructions
-ERC-681 URIs
-Solana Pay links
-hosted payment links
 provider-opaque intents
-WalletConnect Pay later
+GlobalPayTo resolver envelope
+contracted amount, path, purpose, and reference fields
 ```
+
+External protocol adapters, hosted payment links, and processor-specific renderers are Phase 2+ topics.
 
 ---
 
@@ -509,10 +496,10 @@ Phased roadmap post.
 
 ```text
 Phase 1: API-first resolver
-Phase 2: user dashboard
-Phase 3: direct wallet connection
-Phase 4: payment status callbacks
-Phase 5: broader payment intent adapters
+Phase 2: Cubid-owned grant discovery and revocation paths
+Phase 3: provider-reported payment status callbacks
+Phase 4: broader payment intent adapters
+Phase 5: GlobalPayTo-owned dashboard, if user demand justifies it
 ```
 
 ---
