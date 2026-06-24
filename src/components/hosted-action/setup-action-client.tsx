@@ -7,6 +7,7 @@ import type { HostedActionState, SetupAction } from "@/lib/mock-actions";
 
 interface SetupActionClientProps {
   action: SetupAction;
+  submitUrl: string;
 }
 
 const stateCopy: Record<HostedActionState, { title: string; body: string }> = {
@@ -44,10 +45,28 @@ const stateCopy: Record<HostedActionState, { title: string; body: string }> = {
   },
 };
 
-export function SetupActionClient({ action }: SetupActionClientProps) {
+export function SetupActionClient({ action, submitUrl }: SetupActionClientProps) {
   const [state, setState] = useState<HostedActionState>(action.state);
+  const [pending, setPending] = useState(false);
   const copy = stateCopy[state];
   const isReady = state === "ready";
+
+  async function submit(decision: "approve" | "deny") {
+    setPending(true);
+    try {
+      const response = await fetch(submitUrl, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ decision }),
+      });
+      const result = await response.json() as { state?: HostedActionState };
+      setState(result.state ?? "restart_required");
+    } catch {
+      setState("restart_required");
+    } finally {
+      setPending(false);
+    }
+  }
 
   return (
     <main className="min-h-screen bg-[#f7f8f4] px-5 py-8 text-[#151713] sm:px-8">
@@ -96,12 +115,11 @@ export function SetupActionClient({ action }: SetupActionClientProps) {
             </p>
           </div>
 
-          {/* Sprint 2 mock actions complete locally; Sprint 3 submits decisions before showing success. */}
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             <button
               className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#176b46] px-5 text-sm font-semibold text-white transition hover:bg-[#12583a] disabled:bg-[#aeb8a6]"
-              disabled={!isReady}
-              onClick={() => setState("approved")}
+              disabled={!isReady || pending}
+              onClick={() => void submit("approve")}
               type="button"
             >
               <CheckCircle2 size={18} aria-hidden="true" />
@@ -109,8 +127,8 @@ export function SetupActionClient({ action }: SetupActionClientProps) {
             </button>
             <button
               className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-[#cbd4c3] bg-white px-5 text-sm font-semibold text-[#2c3429] transition hover:bg-[#f1f4ec] disabled:text-[#9aa493]"
-              disabled={!isReady}
-              onClick={() => setState("denied")}
+              disabled={!isReady || pending}
+              onClick={() => void submit("deny")}
               type="button"
             >
               <XCircle size={18} aria-hidden="true" />

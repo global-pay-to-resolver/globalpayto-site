@@ -7,6 +7,7 @@ import type { HostedActionState, RouteSelectionAction } from "@/lib/mock-actions
 
 interface RouteSelectionClientProps {
   action: RouteSelectionAction;
+  submitUrl: string;
 }
 
 const stateCopy: Record<HostedActionState, { title: string; body: string }> = {
@@ -44,12 +45,34 @@ const stateCopy: Record<HostedActionState, { title: string; body: string }> = {
   },
 };
 
-export function RouteSelectionClient({ action }: RouteSelectionClientProps) {
+export function RouteSelectionClient({ action, submitUrl }: RouteSelectionClientProps) {
   const [state, setState] = useState<HostedActionState>(action.state);
   const [selectedId, setSelectedId] = useState(action.currentDefaultId);
+  const [pending, setPending] = useState(false);
   const copy = stateCopy[state];
   const isReady = state === "ready";
   const selectedOption = action.options.find((option) => option.id === selectedId);
+
+  async function submit(decision: "select_route" | "leave_unchanged") {
+    setPending(true);
+    try {
+      const response = await fetch(submitUrl, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ decision, selectedRouteId: selectedId }),
+      });
+      const result = await response.json() as {
+        state?: HostedActionState;
+        selectedRouteId?: string;
+      };
+      if (result.selectedRouteId) setSelectedId(result.selectedRouteId);
+      setState(result.state ?? "restart_required");
+    } catch {
+      setState("restart_required");
+    } finally {
+      setPending(false);
+    }
+  }
 
   return (
     <main className="min-h-screen bg-[#f7f8f4] px-5 py-8 text-[#151713] sm:px-8">
@@ -124,12 +147,11 @@ export function RouteSelectionClient({ action }: RouteSelectionClientProps) {
               : "No route details are available for this action state."}
           </div>
 
-          {/* Sprint 2 mock saves locally; Sprint 3 revalidates the selected route server-side. */}
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             <button
               className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#176b46] px-5 text-sm font-semibold text-white transition hover:bg-[#12583a] disabled:bg-[#aeb8a6]"
-              disabled={!isReady || !selectedId}
-              onClick={() => setState("selected_route")}
+              disabled={!isReady || !selectedId || pending}
+              onClick={() => void submit("select_route")}
               type="button"
             >
               <CheckCircle2 size={18} aria-hidden="true" />
@@ -137,8 +159,8 @@ export function RouteSelectionClient({ action }: RouteSelectionClientProps) {
             </button>
             <button
               className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-[#cbd4c3] bg-white px-5 text-sm font-semibold text-[#2c3429] transition hover:bg-[#f1f4ec] disabled:text-[#9aa493]"
-              disabled={!isReady}
-              onClick={() => setState("denied")}
+              disabled={!isReady || pending}
+              onClick={() => void submit("leave_unchanged")}
               type="button"
             >
               <XCircle size={18} aria-hidden="true" />

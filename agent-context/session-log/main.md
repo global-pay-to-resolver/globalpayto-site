@@ -96,3 +96,12 @@ head: 6312d66
 summary: Addressed site inline review comments by clarifying hosted-action backend exchange boundaries, mock-only completion states, crawler/referrer controls, and Sprint 3 server-confirmation requirements.
 validation: Ran git diff --check, scanned the touched site docs and hosted-action code for inline-review markers, and ran pnpm typecheck, pnpm lint, and pnpm build.
 follow-ups: In Sprint 3, replace mock action hydration and local completion with backend action-token exchange, Cubid-authenticated validation, audit-event creation, token invalidation, and server-side route revalidation.
+
+---
+
+agent: Codex
+branch: main
+head: a2fc502
+summary: Completed GPTW-S3-T1 by wiring hosted setup and route-selection pages through server-side resolver action helpers and API submit routes, with local mock fallback only when no resolver backend URL is configured.
+validation: Ran pnpm typecheck, pnpm lint, and pnpm build; Next built the hosted action pages plus new /api/actions setup and route-selection routes.
+follow-ups: Continue site Sprint 3 with safe expired/invalid action-link handling, noindex/noarchive metadata, strict referrer policy, and token-leak controls.

@@ -139,9 +139,9 @@ Acceptance notes:
 
 ### GPTW-S3-T1 Wire Hosted Actions To Backend Action Endpoints
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete
+Feature branch: main
+Session log: agent-context/session-log/main.md
 Depends on: globalpayto:GPTR-S3-T1, globalpayto:GPTR-S3-T4, globalpayto:GPTR-S3-T7
 
 Wire hosted action pages to backend action endpoints for authorization/setup and route selection.

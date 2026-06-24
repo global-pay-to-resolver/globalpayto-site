@@ -1,5 +1,5 @@
 import { RouteSelectionClient } from "@/components/hosted-action/route-selection-client";
-import { getRouteSelectionAction } from "@/lib/mock-actions";
+import { getHostedRouteSelectionAction } from "@/lib/hosted-actions";
 
 interface RouteSelectionPageProps {
   params: Promise<{
@@ -9,9 +9,7 @@ interface RouteSelectionPageProps {
 
 export default async function RouteSelectionPage({ params }: RouteSelectionPageProps) {
   const { actionId } = await params;
-  const action = getRouteSelectionAction(actionId);
+  const action = await getHostedRouteSelectionAction(actionId);
 
-  // Sprint 2 fixture hydration; Sprint 3 fetches options only after backend action exchange.
-
-  return <RouteSelectionClient action={action} />;
+  return <RouteSelectionClient action={action} submitUrl={`/api/actions/route-selection/${actionId}`} />;
 }
