@@ -406,9 +406,9 @@ Acceptance notes:
 
 ### GPTW-S5-T10 Write And Publish Why We Don't Use A Universal CubidID
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t10  
 Depends on: globalpayto-site:GPTW-S5-T4
 
 Write and publish the identity and privacy post explaining why GlobalPayToResolver does not rely on a universal CubidID.

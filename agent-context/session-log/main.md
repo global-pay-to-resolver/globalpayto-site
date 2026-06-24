@@ -213,3 +213,12 @@ head: 9215a8e
 summary: Completed GPTW-S5-T9 by publishing "Building a PayingDapp Integration."
 validation: Confirmed the post covers collecting an approved pay-to identifier, resolver authorization, supported paths, resolved/no_route/user_action_required/authorization_required handling, and payment intent presentation.
 follow-ups: Continue Sprint 5 with the universal CubidID privacy post.
+
+---
+
+agent: Codex
+branch: main
+head: d2b5ab2
+summary: Completed GPTW-S5-T10 by publishing "Why We Don't Use a Universal CubidID."
+validation: Confirmed the post explains app-scoped DappUserId behavior, user-approved pay-to identifiers, cross-dapp tracking prevention, and enumeration-aware privacy boundaries.
+follow-ups: Continue Sprint 5 with the four identity options post.

@@ -654,6 +654,57 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "why-we-dont-use-a-universal-cubidid",
+    title: "Why We Don't Use a Universal CubidID",
+    description:
+      "Universal identifiers are convenient, but GlobalPayToResolver avoids making Cubid identity a cross-app tracking handle.",
+    category: "Identity + Privacy",
+    publishedAt: "2026-06-24",
+    readingMinutes: 5,
+    body: [
+      {
+        type: "paragraph",
+        text: "A universal CubidID would be convenient. One identifier, everywhere, easy to recognize and easy to pay. It would also be a privacy trap.",
+      },
+      {
+        type: "paragraph",
+        text: "If every app saw the same global user id, payment resolution could become a cross-app tracking layer. The fact that an identifier is useful for identity does not mean it should become a public payment endpoint.",
+      },
+      {
+        type: "heading",
+        text: "App-scoped identity is intentional",
+      },
+      {
+        type: "paragraph",
+        text: "Cubid can give each app its own DappUserId. That means two apps do not automatically receive the same global user handle just because the user is verified through Cubid. This is a feature, not a limitation.",
+      },
+      {
+        type: "paragraph",
+        text: "GlobalPayToResolver builds on that idea. Paying a user should happen through approved pay-to identifiers and consented resolver flows, not by exposing a universal Cubid identity to every integration.",
+      },
+      {
+        type: "heading",
+        text: "Pay-to identifiers are user-approved",
+      },
+      {
+        type: "paragraph",
+        text: "A verified stamp, public pay-to id, or brokered identifier can be enabled for payment resolution when the user chooses it. The resolver should also avoid making email-like or domain-like identifiers probeable, because recognizability can become an enumeration risk.",
+      },
+      {
+        type: "heading",
+        text: "Less automatic linking, better defaults",
+      },
+      {
+        type: "paragraph",
+        text: "The goal is not to make payment identity hard. The goal is to make the easy path safer: scoped authorizations, opaque action links, masked displays, delayed setup disclosure, and status responses that do not reveal more than the payer needs.",
+      },
+      {
+        type: "paragraph",
+        text: "GlobalPayToResolver does not use a universal CubidID because the mature version of identity-based payments is not one id everywhere. It is user-approved payment resolution with privacy boundaries that hold up across apps.",
+      },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string) {
