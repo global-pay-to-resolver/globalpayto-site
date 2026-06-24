@@ -12,6 +12,7 @@ The MVP site surfaces are:
 
 - authorization/setup links for enabling a verified Cubid stamp as pay-to or authorizing a dapp,
 - route-selection links for choosing a default when multiple PayToDapps support the same route.
+- optional landing targets from Cubid comms notifications when the notification requires user action.
 
 The site does not own production Supabase schema, Edge Functions, provider callbacks, audit logging, private admin tools, or operational resolver logic.
 
@@ -26,11 +27,14 @@ The site is not a full dashboard in the MVP. It should not include:
 - public searchable profiles,
 - directory pages,
 - payment status tracking beyond the action being completed,
+- notification inboxes or activity feeds,
 - direct wallet graph display,
 - arbitrary wallet connection,
 - private admin or provider operation views.
 
 The site exists to help a user safely complete an authorization or selection that an API flow could not finish without user involvement.
+
+Payment notifications, such as payment received, should be delivered through Cubid comms. The site may render a linked action target when a notification requires setup or route selection, but it should not become the notification delivery system.
 
 ## User Actions
 
@@ -89,6 +93,7 @@ This repo is forked from `Cubid-Me/cubid-starter-v3` and currently demonstrates 
 - Login with Cubid / OIDC PKCE for user identity.
 - Hosted Cubid verification or consent launchers where needed.
 - Server-only Cubid calls only when secrets remain server-side.
+- Cubid comms links or preferences where needed for notification-driven user actions.
 
 Keep deprecated wallet-heavy Cubid starter patterns out of this app.
 
@@ -114,6 +119,8 @@ Expected page outputs:
 
 The public SDK docs should define any response status names that integrators need to handle. The site should present user-friendly copy for those statuses without exposing private diagnostic details.
 
+Notification-triggered visits should use the same opaque action identifiers or short-lived tokens as other hosted action pages.
+
 ## Privacy Requirements
 
 The site must:
@@ -123,6 +130,7 @@ The site must:
 - avoid displaying raw wallet addresses in MVP route registration flows,
 - avoid storing secrets in local storage,
 - handle expired links without leaking whether a recipient exists,
+- avoid displaying notification content that exposes wallet graphs, unrelated PayToDapps, route preferences, provider internals, or raw identifiers,
 - use masked identifier displays when a stamp value is shown.
 
 ## Acceptance Targets
@@ -134,4 +142,5 @@ The site architecture is MVP-complete when:
 - expired or invalid links fail safely,
 - the browser bundle contains no resolver secrets,
 - the site calls backend APIs rather than writing directly to production data stores,
+- Cubid comms notification links land on safe hosted action states when user action is required,
 - public copy avoids wallet graph disclosure.
