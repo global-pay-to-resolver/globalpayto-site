@@ -123,3 +123,12 @@ head: 0b7ada4
 summary: Completed GPTW-S3-T3 by adding a browser secret scanner covering built browser assets, public files, server route output, and source for resolver/Cubid/database/provider secret exposure and NEXT_PUBLIC secret misuse.
 validation: Ran pnpm build, pnpm scan:browser-secrets, pnpm typecheck, and pnpm lint. The scanner initially caught server-only Cubid env names in server chunks, then was refined to fail browser assets on server-only env names while checking source/server output for public secret misuse and literal secret values.
 follow-ups: Finish site Sprint 3 with route-selection privacy checks for wallet graph and provider-detail leakage.
+
+---
+
+agent: Codex
+branch: main
+head: 5e6abab
+summary: Completed GPTW-S3-T4 by adding a route-selection privacy check for wallet addresses, route counts, provider internals, private diagnostics, wallet-graph language, and profile-directory claims, then cleaning fixture copy that mentioned wallet graph details.
+validation: Ran pnpm privacy:route-selection, pnpm typecheck, pnpm lint, pnpm build, and pnpm scan:browser-secrets.
+follow-ups: Site Sprint 3 is complete; keep using privacy and browser-secret scans before public hosted-action releases.

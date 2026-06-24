@@ -44,7 +44,7 @@ const setupActions: Record<string, SetupAction> = {
     dappRole: "PayingDapp",
     maskedIdentifier: "u***@example.test",
     requestedScope: "Create one-time payment intents for this verified pay-to identifier.",
-    summary: "Approve this request to let ChainCrew resolve payments without seeing wallet graph details.",
+    summary: "Approve this request to let ChainCrew resolve payments with only the scoped details shown here.",
     expiresAt: "2026-06-24T20:00:00Z",
   },
   "gptr_act_setup_expired": {

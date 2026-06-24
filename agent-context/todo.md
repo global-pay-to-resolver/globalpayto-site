@@ -189,9 +189,9 @@ Acceptance notes:
 
 ### GPTW-S3-T4 Confirm Route Selection Does Not Leak Wallet Graph Details
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete
+Feature branch: main
+Session log: agent-context/session-log/main.md
 Depends on: globalpayto-site:GPTW-S2-T4
 
 Review and test the route-selection UX for wallet graph and preference leakage.
