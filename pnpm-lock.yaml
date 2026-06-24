@@ -10,28 +10,28 @@ importers:
     dependencies:
       '@cubid/auth':
         specifier: workspace:*
-        version: link:../cubid-sdk-v2/packages/auth
+        version: link:../../cubid/cubid-sdk-v2/packages/auth
       '@cubid/auth-react':
         specifier: workspace:*
-        version: link:../cubid-sdk-v2/packages/auth-react
+        version: link:../../cubid/cubid-sdk-v2/packages/auth-react
       '@cubid/browser':
         specifier: workspace:*
-        version: link:../cubid-sdk-v2/packages/browser
+        version: link:../../cubid/cubid-sdk-v2/packages/browser
       '@cubid/comms':
         specifier: workspace:*
-        version: link:../cubid-sdk-v2/packages/comms
+        version: link:../../cubid/cubid-sdk-v2/packages/comms
       '@cubid/core':
         specifier: workspace:*
-        version: link:../cubid-sdk-v2/packages/core
+        version: link:../../cubid/cubid-sdk-v2/packages/core
       '@cubid/react':
         specifier: workspace:*
-        version: link:../cubid-sdk-v2/packages/react
+        version: link:../../cubid/cubid-sdk-v2/packages/react
       '@cubid/wallet-recovery':
         specifier: workspace:*
-        version: link:../cubid-sdk-v2/packages/wallet-recovery
+        version: link:../../cubid/cubid-sdk-v2/packages/wallet-recovery
       '@cubid/wallet-recovery-react':
         specifier: workspace:*
-        version: link:../cubid-sdk-v2/packages/wallet-recovery-react
+        version: link:../../cubid/cubid-sdk-v2/packages/wallet-recovery-react
       lucide-react:
         specifier: ^0.556.0
         version: 0.556.0(react@19.2.4)
@@ -70,9 +70,9 @@ importers:
         specifier: ^5
         version: 5.9.3
 
-  ../cubid-sdk-v2/packages/auth: {}
+  ../../cubid/cubid-sdk-v2/packages/auth: {}
 
-  ../cubid-sdk-v2/packages/auth-react:
+  ../../cubid/cubid-sdk-v2/packages/auth-react:
     dependencies:
       '@cubid/auth':
         specifier: workspace:*
@@ -84,15 +84,15 @@ importers:
         specifier: '>=18.2.0'
         version: 19.2.4(react@19.2.4)
 
-  ../cubid-sdk-v2/packages/browser:
+  ../../cubid/cubid-sdk-v2/packages/browser:
     dependencies:
       '@cubid/core':
         specifier: workspace:*
         version: link:../core
 
-  ../cubid-sdk-v2/packages/comms: {}
+  ../../cubid/cubid-sdk-v2/packages/comms: {}
 
-  ../cubid-sdk-v2/packages/core:
+  ../../cubid/cubid-sdk-v2/packages/core:
     devDependencies:
       '@types/node':
         specifier: ^24.0.0
@@ -101,7 +101,7 @@ importers:
         specifier: 5.2.2
         version: 5.2.2
 
-  ../cubid-sdk-v2/packages/react:
+  ../../cubid/cubid-sdk-v2/packages/react:
     dependencies:
       '@cubid/browser':
         specifier: workspace:*
@@ -113,13 +113,13 @@ importers:
         specifier: '>=18.2.0'
         version: 19.2.4(react@19.2.4)
 
-  ../cubid-sdk-v2/packages/wallet-recovery:
+  ../../cubid/cubid-sdk-v2/packages/wallet-recovery:
     dependencies:
       '@cubid/core':
         specifier: workspace:*
         version: link:../core
 
-  ../cubid-sdk-v2/packages/wallet-recovery-react:
+  ../../cubid/cubid-sdk-v2/packages/wallet-recovery-react:
     dependencies:
       '@cubid/wallet-recovery':
         specifier: workspace:*

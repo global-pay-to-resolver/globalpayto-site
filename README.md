@@ -1,7 +1,12 @@
-# Cubid Starter v3
+# GlobalPayTo Site
 
-Canonical full-stack Next.js starter for the modern Cubid public SDK package
-family from [`Cubid-Me/cubid-sdk`](https://github.com/Cubid-Me/cubid-sdk).
+Public user-facing app/site for GlobalPayTo.
+
+This repo is forked from [`Cubid-Me/cubid-starter-v3`](https://github.com/Cubid-Me/cubid-starter-v3) so it can continue to receive useful upstream starter updates while the GlobalPayTo experience is built out.
+
+The current codebase is still the canonical full-stack Next.js starter for the
+modern Cubid public SDK package family from
+[`Cubid-Me/cubid-sdk`](https://github.com/Cubid-Me/cubid-sdk).
 
 This app demonstrates Cubid as an identity stack first: identity aggregation,
 proof of personhood and sybil-defense signals, Login with Cubid, ClearPass
@@ -31,7 +36,7 @@ out of browser env vars and client bundles.
 ## Copy-Paste Local Setup
 
 ```sh
-cd /Users/botmaster/src/cubid/cubid-starter-v3
+cd /Users/botmaster/src/global-pay-to-resolver/globalpayto-site
 cp .env.example .env.local
 pnpm install
 pnpm dev
