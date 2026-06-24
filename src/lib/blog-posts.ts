@@ -590,6 +590,70 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "building-a-payingdapp-integration",
+    title: "Building a PayingDapp Integration",
+    description:
+      "How apps that need to pay users can request a GlobalPayTo intent and handle resolver statuses safely.",
+    category: "Developer Education",
+    publishedAt: "2026-06-24",
+    readingMinutes: 7,
+    body: [
+      {
+        type: "paragraph",
+        text: "A PayingDapp is any app that needs to pay a user. The app may know the recipient through its product context, but it should not need to collect, store, or maintain the user's current wallet destination.",
+      },
+      {
+        type: "heading",
+        text: "1. Collect a pay-to identifier",
+      },
+      {
+        type: "paragraph",
+        text: "The recipient should provide or approve a pay-to identifier that Cubid can validate. For the MVP, verified stamps are the likely default. Avoid treating public email, phone, or domain-like values as probeable payment endpoints; the resolver should keep setup and no-route outcomes safe.",
+      },
+      {
+        type: "heading",
+        text: "2. Request resolver authorization",
+      },
+      {
+        type: "paragraph",
+        text: "A PayingDapp needs authorization to resolve payments for a user and purpose. If authorization is missing or expired, the resolver returns a safe action response rather than exposing whether the recipient exists or has a route.",
+      },
+      {
+        type: "heading",
+        text: "3. Submit supported paths",
+      },
+      {
+        type: "paragraph",
+        text: "Tell the resolver what your app can pay: chain, network, asset, amount, purpose, intent mode, and a PayingDapp reference. This lets the resolver choose only receive routes that match what your app can actually execute.",
+      },
+      {
+        type: "heading",
+        text: "4. Handle public statuses",
+      },
+      {
+        type: "list",
+        items: [
+          "resolved means the response contains a ready GlobalPayTo intent with a selected provider instruction.",
+          "no_route means the user needs setup or no eligible route exists; present the action if one is returned.",
+          "user_action_required means the user must complete a hosted action such as route selection.",
+          "authorization_required means setup or consent is needed before the resolver can return an intent.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "5. Present the payment intent",
+      },
+      {
+        type: "paragraph",
+        text: "Once resolved, hand the payment instruction to the part of your product that executes or presents the payment. Keep the resolver reference and your PayingDapp reference for reconciliation, and respect expiry and single-use behavior.",
+      },
+      {
+        type: "paragraph",
+        text: "The PayingDapp integration should feel like asking for a payment intent, not maintaining a wallet database. That is the point: your product pays the right user while the user keeps control over how they receive.",
+      },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string) {

@@ -204,3 +204,12 @@ head: eb711e6
 summary: Completed GPTW-S5-T8 by publishing "Building a PayToDapp Integration."
 validation: Confirmed the post covers app registration, user consent, route capability registration, Modality B callbacks, revocation, provider SDK helpers, and mock resolver testing without telling PayToDapps to submit wallet addresses.
 follow-ups: Continue Sprint 5 with the PayingDapp integration walkthrough.
+
+---
+
+agent: Codex
+branch: main
+head: 9215a8e
+summary: Completed GPTW-S5-T9 by publishing "Building a PayingDapp Integration."
+validation: Confirmed the post covers collecting an approved pay-to identifier, resolver authorization, supported paths, resolved/no_route/user_action_required/authorization_required handling, and payment intent presentation.
+follow-ups: Continue Sprint 5 with the universal CubidID privacy post.
