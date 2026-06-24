@@ -186,3 +186,12 @@ head: 1844e4f
 summary: Completed GPTW-S5-T6 by publishing "Modality A vs Modality B: Two Ways to Integrate Wallets."
 validation: Confirmed the post explains Modality A as resolver-built intent context, Modality B as route registration plus provider-built intents, and states that MVP integrations should use Modality B.
 follow-ups: Continue Sprint 5 with the minimal API developer post.
+
+---
+
+agent: Codex
+branch: main
+head: f39da0b
+summary: Completed GPTW-S5-T7 by publishing "The Minimal API for Identity-Based Crypto Payments."
+validation: Confirmed the post includes a verified-stamp resolve request with supported paths, amount, purpose, one-time intent mode, PayingDapp reference, and public status handling aligned to the SDK/API contract.
+follow-ups: Continue Sprint 5 with the PayToDapp integration walkthrough.

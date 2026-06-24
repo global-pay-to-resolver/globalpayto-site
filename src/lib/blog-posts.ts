@@ -434,6 +434,79 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "the-minimal-api-for-identity-based-crypto-payments",
+    title: "The Minimal API for Identity-Based Crypto Payments",
+    description:
+      "The resolver API starts with a verified recipient, supported paths, amount, purpose, and a one-time intent mode.",
+    category: "Developer Education",
+    publishedAt: "2026-06-24",
+    readingMinutes: 6,
+    body: [
+      {
+        type: "paragraph",
+        text: "The smallest useful GlobalPayTo request says who the PayingDapp wants to pay, what payment paths it can support, and what amount should be resolved into a one-time payment intent.",
+      },
+      {
+        type: "paragraph",
+        text: "The API is deliberately not a wallet-address lookup. It is a request for a scoped resolver outcome: resolved, no route, user action required, authorization required, or another public status the app can safely handle.",
+      },
+      {
+        type: "heading",
+        text: "Example resolve request",
+      },
+      {
+        type: "code",
+        code: `{
+  "recipient": {
+    "identifierType": "verified_stamp",
+    "identifier": "email:recipient@example.com"
+  },
+  "supportedPaths": [
+    {
+      "chain": "eip155:8453",
+      "network": "base-mainnet",
+      "asset": "USDC"
+    }
+  ],
+  "amount": {
+    "value": "25.00",
+    "currency": "USDC"
+  },
+  "purpose": "contributor_payout",
+  "intentMode": "one_time",
+  "payingDappReference": "payout_2026_0001"
+}`,
+      },
+      {
+        type: "heading",
+        text: "What each field does",
+      },
+      {
+        type: "list",
+        items: [
+          "recipient identifies the user through an approved pay-to identifier, not a public wallet graph.",
+          "supportedPaths tells the resolver what the PayingDapp can actually pay.",
+          "amount binds the resulting intent to a concrete value and currency.",
+          "purpose gives the user and resolver context for the authorization moment.",
+          "intentMode is one_time for the MVP so the returned instruction is not a standing destination.",
+          "payingDappReference lets the PayingDapp reconcile the result with its own payout or order record.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Typical response handling",
+      },
+      {
+        type: "paragraph",
+        text: "If the response is resolved, the app receives a GlobalPayTo intent envelope with the selected path and provider payment instruction. If the response is no route or user action required, the app should present the hosted action URL or retry after the user completes setup.",
+      },
+      {
+        type: "paragraph",
+        text: "The public SDK helpers are meant to keep this boring: build the request, validate the response, narrow the status, and only hand execution code a payment instruction once the resolver has returned a ready intent.",
+      },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string) {
