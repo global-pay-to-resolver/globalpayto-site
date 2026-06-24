@@ -173,9 +173,9 @@ Acceptance notes:
 
 ### GPTW-S3-T3 Verify Browser Bundle Contains No Resolver Secrets
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete
+Feature branch: main
+Session log: agent-context/session-log/main.md
 Depends on: globalpayto-site:GPTW-S1-T2
 
 Add verification that the browser bundle contains no resolver secrets or server-only credentials.

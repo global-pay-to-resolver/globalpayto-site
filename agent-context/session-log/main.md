@@ -114,3 +114,12 @@ head: fed0d0c
 summary: Completed GPTW-S3-T2 by adding no-store, no-referrer, noindex/noarchive hosted-action route headers, page-level robots metadata, and action URL redaction support while preserving generic expired/invalid states.
 validation: Ran pnpm typecheck, pnpm lint, and pnpm build; Next built hosted action routes with the safety headers configured.
 follow-ups: Continue site Sprint 3 with browser bundle and rendered-output secret scanning.
+
+---
+
+agent: Codex
+branch: main
+head: 0b7ada4
+summary: Completed GPTW-S3-T3 by adding a browser secret scanner covering built browser assets, public files, server route output, and source for resolver/Cubid/database/provider secret exposure and NEXT_PUBLIC secret misuse.
+validation: Ran pnpm build, pnpm scan:browser-secrets, pnpm typecheck, and pnpm lint. The scanner initially caught server-only Cubid env names in server chunks, then was refined to fail browser assets on server-only env names while checking source/server output for public secret misuse and literal secret values.
+follow-ups: Finish site Sprint 3 with route-selection privacy checks for wallet graph and provider-detail leakage.

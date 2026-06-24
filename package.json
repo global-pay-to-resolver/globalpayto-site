@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "scan:browser-secrets": "node scripts/scan-browser-secrets.mjs",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit"
