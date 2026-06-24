@@ -83,6 +83,8 @@ export const routeSelectionActions: Record<string, RouteSelectionAction> = {
   },
 };
 
+// REVIEW: Gap: mock action IDs map directly to hydrated dapp names, masked identifiers, route labels, and eligible PayToDapps. Recommendation: keep this file fixture-only and require Sprint 3 to replace it with a backend token-exchange path that returns only safe details after action validation and user authentication.
+
 export function getSetupAction(actionId: string): SetupAction {
   return (
     setupActions[actionId] ?? {

@@ -124,6 +124,8 @@ export function RouteSelectionClient({ action }: RouteSelectionClientProps) {
               : "No route details are available for this action state."}
           </div>
 
+          {/* REVIEW: Gap: saving a route changes only local component state and never revalidates that the selected PayToDapp is still eligible for the action tuple. Recommendation: production save must post the selected route id to the backend, re-check route eligibility/default state server-side, create audit events, and invalidate or complete the action token atomically. */}
+
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             <button
               className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#176b46] px-5 text-sm font-semibold text-white transition hover:bg-[#12583a] disabled:bg-[#aeb8a6]"

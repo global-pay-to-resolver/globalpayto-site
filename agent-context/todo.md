@@ -69,6 +69,8 @@ Acceptance notes:
 - Flow does not hard-code email as the only possible stamp type.
 - Flow uses Cubid identity patterns that fit the current starter baseline.
 
+<!-- REVIEW: Gap: this completed design task does not explicitly require generic pre-auth/loading states before action details are hydrated. Recommendation: add that setup pages must render no dapp/stamp/scope details until backend action validation and user authentication have succeeded. -->
+
 ### GPTW-S2-T2 Implement Authorization And Setup Pages
 
 Status: Complete  
@@ -83,6 +85,8 @@ Acceptance notes:
 - Pages can render action state, approval/denial controls, and safe expired/invalid states.
 - Pages do not store secrets in local storage.
 - Pages do not write directly to production Supabase.
+
+<!-- REVIEW: Gap: implementation acceptance allows local-only state changes to count as approval/denial. Recommendation: mark Sprint 2 pages as mock-only and require Sprint 3 to replace local completion with backend-confirmed approval/denial plus action-token invalidation. -->
 
 ### GPTW-S2-T3 Design Route Selection Flow
 
@@ -115,6 +119,8 @@ Acceptance notes:
 - Pages support selecting and submitting a route/default choice.
 - Pages handle expired, invalid, denied, and completed states safely.
 - Pages keep route details limited to the current user action.
+
+<!-- REVIEW: Gap: route-selection implementation acceptance does not require server-side revalidation of selected route eligibility at submit time. Recommendation: add Sprint 3 acceptance that save posts to the backend and re-checks the selected PayToDapp/default tuple before showing `selected_route`. -->
 
 ### GPTW-S2-T5 Remove Starter-Only UI That Conflicts With GlobalPayTo MVP
 

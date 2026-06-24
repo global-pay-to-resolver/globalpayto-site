@@ -20,6 +20,8 @@ Unauthenticated URL rule:
 - dapp metadata, masked stamp display, requested scope, and action copy are hydrated after local action-token validation,
 - no wallet address, route graph, route count, provider internal detail, raw identifier, or private diagnostic appears in the URL.
 
+<!-- REVIEW: Gap: "local action-token validation" is ambiguous and could be read as validating the token entirely in the public site. Recommendation: specify that production validation/hydration is a backend action-token exchange after Cubid-authenticated user validation, with the site only rendering the returned browser-safe view model. -->
+
 Visible states:
 
 - `ready`: show dapp display name, masked identifier, requested scope, and approve/deny controls,
@@ -69,6 +71,8 @@ Interaction behavior:
 - declining stores only local Sprint 2 UI state and shows `denied`,
 - expired, invalid, completed, and restart-required states disable route controls.
 
+<!-- REVIEW: Gap: the flow design documents local-only submit behavior but does not define the production transition criteria. Recommendation: add Sprint 3 acceptance that save/deny/approve states are shown only after backend confirmation, token completion, and audit-event creation. -->
+
 Displayed route details:
 
 - route label may show chain, network, and asset,
@@ -83,3 +87,5 @@ Sprint 2 uses local mock action state only. Sprint 3 will replace mock hydration
 - hydrated details are fixture-only,
 - expired and invalid states do not reveal recipient existence,
 - no production Supabase access or resolver secrets are introduced.
+
+<!-- REVIEW: Gap: the mock boundary does not mention crawler/indexing or referrer controls for action URLs. Recommendation: require hosted action routes to set noindex/noarchive behavior and a strict referrer policy before real action links are distributed. -->
