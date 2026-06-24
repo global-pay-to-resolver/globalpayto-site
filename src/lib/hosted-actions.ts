@@ -51,6 +51,10 @@ export async function submitHostedAction(input: {
   return await response.json() as HostedActionCompletion;
 }
 
+export function redactActionUrlForLogs(url: string): string {
+  return url.replace(/\/actions\/(setup|route-selection)\/[^/?#]+/g, "/actions/$1/[redacted]");
+}
+
 async function getHostedAction<T>(
   actionId: string,
   kind: HostedActionKind,

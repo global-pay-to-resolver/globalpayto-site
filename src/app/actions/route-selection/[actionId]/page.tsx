@@ -1,5 +1,14 @@
 import { RouteSelectionClient } from "@/components/hosted-action/route-selection-client";
 import { getHostedRouteSelectionAction } from "@/lib/hosted-actions";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+  },
+};
 
 interface RouteSelectionPageProps {
   params: Promise<{

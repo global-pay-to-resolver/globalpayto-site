@@ -156,9 +156,9 @@ Acceptance notes:
 
 ### GPTW-S3-T2 Handle Expired Or Invalid Action Links Safely
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete
+Feature branch: main
+Session log: agent-context/session-log/main.md
 Depends on: globalpayto-site:GPTW-S2-T2, globalpayto-site:GPTW-S2-T4
 
 Implement safe handling for expired, invalid, already-used, or denied action links.
