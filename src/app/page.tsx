@@ -12,7 +12,7 @@ const actionLinks = [
     href: "/actions/setup/gptr_act_setup_demo",
     icon: ShieldCheck,
     title: "Review setup authorization",
-    text: "Approve a scoped payment-resolution grant without exposing wallet graph details.",
+    text: "Approve a scoped payment-resolution grant while showing only the current action details.",
   },
   {
     href: "/actions/route-selection/gptr_act_route_demo",
