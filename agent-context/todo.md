@@ -408,3 +408,18 @@ Acceptance notes:
 - Post explains why universal IDs are convenient but privacy-hostile.
 - Post explains app-scoped `DappUserId` behavior and user-approved pay-to identifiers.
 - Post makes cross-dapp tracking prevention feel intentional and mature.
+
+### GPTW-S5-T11 Write And Publish Four Ways To Identify A User For Payment Resolution
+
+Status: TBD  
+Feature branch: TBD  
+Session log: TBD  
+Depends on: globalpayto-site:GPTW-S5-T10
+
+Write and publish the identity model post explaining the main options for identifying a user for payment resolution.
+
+Acceptance notes:
+
+- Post covers verified stamps as pay-to identifiers, PublicCubidPayToID, Cubid-brokered DappUserId sharing, and manual fallback identifiers.
+- Post recommends verified stamps as the likely MVP default.
+- Post frames public IDs as useful but optional rather than required for payment resolution.
