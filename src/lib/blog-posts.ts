@@ -153,6 +153,82 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "from-wallet-addresses-to-payment-intents",
+    title: "From Wallet Addresses to Payment Intents",
+    description:
+      "A payment resolver should return a structured, scoped, expiring instruction instead of a static wallet address.",
+    category: "Developer Education",
+    publishedAt: "2026-06-24",
+    readingMinutes: 5,
+    body: [
+      {
+        type: "paragraph",
+        text: "A wallet address is a destination. A payment intent is a decision package. That difference is the heart of GlobalPayToResolver.",
+      },
+      {
+        type: "paragraph",
+        text: "When a PayingDapp asks where to send funds, the answer often needs more than a recipient string. It may need a chain, network, asset, amount, expiry, memo or reference, provider-specific instruction, and proof that the user actually authorized this receive path.",
+      },
+      {
+        type: "heading",
+        text: "Why static addresses break down",
+      },
+      {
+        type: "list",
+        items: [
+          "Addresses are durable, so copied values can outlive the user's current preference.",
+          "Addresses do not carry consent or route-selection context.",
+          "Addresses do not explain whether the receiving provider needs a memo, reference, or hosted flow.",
+          "Addresses can expose wallet relationships when reused across apps.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "What a payment intent adds",
+      },
+      {
+        type: "paragraph",
+        text: "The GlobalPayTo intent is a normalized resolver envelope. It gives the PayingDapp a consistent status, selected path, amount, expiry, single-use behavior, and references while allowing the selected PayToDapp to return the provider-specific instruction needed to execute the payment.",
+      },
+      {
+        type: "paragraph",
+        text: "That provider instruction is still constrained by the public contract. It must identify the provider intent, chain, network, asset, amount, expiry, and destination shape. It is not a free-form address blob hidden inside an otherwise normalized response.",
+      },
+      {
+        type: "code",
+        code: `{
+  "status": "resolved",
+  "intent": {
+    "schema": "globalpayto.intent.v1",
+    "status": "ready",
+    "singleUse": true,
+    "selectedRoute": {
+      "chain": "eip155:8453",
+      "network": "base-mainnet",
+      "asset": "USDC"
+    },
+    "paymentInstruction": {
+      "type": "provider_json",
+      "provider": "example-paytodapp"
+    }
+  }
+}`,
+      },
+      {
+        type: "heading",
+        text: "Scoped, expiring, auditable",
+      },
+      {
+        type: "paragraph",
+        text: "Payment intents can expire, bind to a specific amount, carry payer and provider references, and support one-time receive routes. They also create a clean audit boundary: the resolver can record that a scoped intent was created without teaching every PayingDapp about private wallet routing internals.",
+      },
+      {
+        type: "paragraph",
+        text: "That is why GlobalPayToResolver is intent-first. The product promise is not that every payment protocol becomes identical. The promise is that identity-based payment resolution returns a safer, structured instruction envelope instead of asking apps to store and replay raw destinations.",
+      },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string) {

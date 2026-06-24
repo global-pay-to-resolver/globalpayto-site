@@ -150,3 +150,12 @@ head: aa1dfd5
 summary: Completed GPTW-S5-T2 by publishing "Why Crypto Needs a Pay-To Layer" as the ecosystem thesis post for identity, wallet, chain, and app fragmentation.
 validation: Confirmed the post contrasts names, address books, and payment links with consent, route preference, privacy, and user-controlled payment resolution.
 follow-ups: Continue Sprint 5 with the payment-intents abstraction post.
+
+---
+
+agent: Codex
+branch: main
+head: a6bd97c
+summary: Completed GPTW-S5-T3 by publishing "From Wallet Addresses to Payment Intents" as the resolver-output abstraction post.
+validation: Confirmed the post contrasts static addresses with scoped expiring intents, covers references, expiry, one-time behavior, provider-specific instructions, and frames the GlobalPayTo response as a normalized resolver envelope.
+follow-ups: Continue Sprint 5 with the five-roles developer education post.

@@ -300,9 +300,9 @@ Acceptance notes:
 
 ### GPTW-S5-T3 Write And Publish From Wallet Addresses To Payment Intents
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t3  
 Depends on: globalpayto-sdk:GPTS-S1-T5, globalpayto-site:GPTW-S5-T1
 
 Write and publish the product abstraction post explaining why the resolver returns payment intents rather than static addresses.
