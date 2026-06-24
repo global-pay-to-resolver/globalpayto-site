@@ -56,9 +56,9 @@ Acceptance notes:
 
 ### GPTW-S2-T1 Design Authorization And Setup Link Flow
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md  
 Depends on: globalpayto-site:GPTW-S1-T1
 
 Design the authorization/setup flow for enabling a verified Cubid stamp as pay-to and authorizing a PayingDapp or PayToDapp.

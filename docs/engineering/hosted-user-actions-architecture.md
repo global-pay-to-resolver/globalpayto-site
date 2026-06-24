@@ -105,6 +105,8 @@ The hosted action pages should receive opaque action identifiers or tokens, not 
 
 Sprint 1 hosted action contract details live in [`hosted-action-contract.md`](./hosted-action-contract.md).
 
+Sprint 2 flow design details live in [`hosted-action-flow-design.md`](./hosted-action-flow-design.md).
+
 Expected page inputs:
 
 - action id,

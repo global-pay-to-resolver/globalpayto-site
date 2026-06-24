@@ -42,3 +42,12 @@ head: 1e6857f
 summary: Tightened site architecture, TODO requirements, and blog roadmap notes to match the MVP PRD trust-boundary updates, including opaque action URLs, post-validation hydration, intent-created-only notification copy, and broader browser leak checks.
 validation: Confirmed site architecture, TODO, and blog authoring docs no longer contain raw REVIEW notes or payment_received/payment received MVP requirements, and removed the local sibling-checkout architecture link from public docs.
 follow-ups: Align SDK public docs/TODOs with the tightened MVP notification and action-token boundaries before implementation continues.
+
+---
+
+agent: Codex
+branch: main
+head: 1b7217b
+summary: Completed GPTW-S2-T1 by documenting the authorization/setup hosted action flow, safe action-token hydration model, visible outcome states, and Sprint 2 mock-data boundary.
+validation: Confirmed the flow design keeps URLs opaque, avoids raw identifiers and wallet graph disclosure, and leaves live backend wiring for Sprint 3.
+follow-ups: Implement authorization/setup pages with mock action state.
