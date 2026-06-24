@@ -22,9 +22,9 @@ Acceptance notes:
 
 ### GPTW-S1-T2 Define Browser-Safe Runtime Configuration
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md  
 Depends on: TBD
 
 Define which environment variables and runtime settings are browser-safe for the public site.

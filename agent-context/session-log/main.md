@@ -15,3 +15,12 @@ head: dd0aa50
 summary: Completed GPTW-S1-T1 by finalizing the browser-safe hosted action page contract.
 validation: Confirmed hosted actions use opaque short-lived identifiers and cover approval, denial, route selection, expired, invalid, completed, and restart-required outcomes.
 follow-ups: Continue site Sprint 1 with browser-safe runtime configuration and public copy for statuses and notifications.
+
+---
+
+agent: Codex
+branch: main
+head: 5bddca5
+summary: Completed GPTW-S1-T2 by documenting browser-safe runtime configuration boundaries for hosted action pages.
+validation: Confirmed resolver secrets, Cubid dapp API keys, service-role keys, provider callback credentials, and production database credentials stay out of browser env vars and bundles.
+follow-ups: Finish site Sprint 1 with public copy for resolver statuses and Cubid comms notifications.
