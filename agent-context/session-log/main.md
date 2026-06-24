@@ -195,3 +195,12 @@ head: f39da0b
 summary: Completed GPTW-S5-T7 by publishing "The Minimal API for Identity-Based Crypto Payments."
 validation: Confirmed the post includes a verified-stamp resolve request with supported paths, amount, purpose, one-time intent mode, PayingDapp reference, and public status handling aligned to the SDK/API contract.
 follow-ups: Continue Sprint 5 with the PayToDapp integration walkthrough.
+
+---
+
+agent: Codex
+branch: main
+head: eb711e6
+summary: Completed GPTW-S5-T8 by publishing "Building a PayToDapp Integration."
+validation: Confirmed the post covers app registration, user consent, route capability registration, Modality B callbacks, revocation, provider SDK helpers, and mock resolver testing without telling PayToDapps to submit wallet addresses.
+follow-ups: Continue Sprint 5 with the PayingDapp integration walkthrough.

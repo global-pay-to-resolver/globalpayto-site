@@ -507,6 +507,89 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "building-a-paytodapp-integration",
+    title: "Building a PayToDapp Integration",
+    description:
+      "How wallets and receive-path providers can register capabilities, handle Modality B intent callbacks, and test against the resolver contract.",
+    category: "Wallet Integration",
+    publishedAt: "2026-06-24",
+    readingMinutes: 7,
+    body: [
+      {
+        type: "paragraph",
+        text: "A PayToDapp integration lets a user receive funds through your product when another app wants to pay them. For the MVP, the recommended path is Modality B: register capabilities, then build the payment intent when your route is selected.",
+      },
+      {
+        type: "heading",
+        text: "1. Register the app",
+      },
+      {
+        type: "paragraph",
+        text: "Start by treating GlobalPayToResolver as an integration boundary with its own app identity, callback credentials, and environment separation. Your provider SDK integration should know which routes it can advertise and which callback requests it is willing to honor.",
+      },
+      {
+        type: "heading",
+        text: "2. Ask for user consent",
+      },
+      {
+        type: "paragraph",
+        text: "The user should explicitly allow your app to act as a receive path for the relevant pay-to identifier and payment context. Consent is not implied by the fact that your product already has a wallet or account for the user.",
+      },
+      {
+        type: "heading",
+        text: "3. Register supported routes",
+      },
+      {
+        type: "paragraph",
+        text: "Route registration should describe capability, not a raw address. A PayToDapp can say it supports Base mainnet USDC, for example, without handing the resolver a durable wallet destination.",
+      },
+      {
+        type: "code",
+        code: `{
+  "recipient": {
+    "identifierType": "verified_stamp",
+    "identifier": "email:recipient@example.com"
+  },
+  "supportedRoutes": [
+    {
+      "chain": "eip155:8453",
+      "network": "base-mainnet",
+      "asset": "USDC"
+    }
+  ]
+}`,
+      },
+      {
+        type: "heading",
+        text: "4. Handle Modality B callbacks",
+      },
+      {
+        type: "paragraph",
+        text: "When your route is selected for a payment, the resolver calls your provider callback. Validate callback authentication, reject replay, check expiry, verify amount/path fields, and return a provider response that satisfies the public payment-instruction schema.",
+      },
+      {
+        type: "heading",
+        text: "5. Support revocation",
+      },
+      {
+        type: "paragraph",
+        text: "Users need a concrete path to disable a receive capability or revoke an authorization. Route availability and route preference are separate concepts: removing support for a route should not be confused with changing which eligible route is preferred.",
+      },
+      {
+        type: "heading",
+        text: "6. Test with mocks",
+      },
+      {
+        type: "paragraph",
+        text: "Use the provider SDK helpers and mock resolver fixtures to test registration, callback validation, provider failures, forbidden address fields, and payment_intent_created notification payloads before wiring live traffic.",
+      },
+      {
+        type: "paragraph",
+        text: "The PayToDapp's job is to protect the user's receive path while still producing a payment intent the payer can execute. Modality B keeps that responsibility in the right place.",
+      },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string) {

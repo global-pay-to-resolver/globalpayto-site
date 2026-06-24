@@ -376,9 +376,9 @@ Acceptance notes:
 
 ### GPTW-S5-T8 Write And Publish Building A PayToDapp Integration
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t8  
 Depends on: globalpayto-sdk:GPTS-S1-T2, globalpayto-sdk:GPTS-S1-T4, globalpayto-site:GPTW-S5-T5
 
 Write and publish a wallet-focused integration walkthrough for PayToDapps.
