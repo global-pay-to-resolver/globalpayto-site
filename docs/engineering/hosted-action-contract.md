@@ -77,6 +77,8 @@ Hosted action pages must show only data needed for the current action:
 - show only route options relevant to the current route-selection action,
 - do not show unrelated PayToDapps, unrelated routes, route preferences, wallet addresses, provider internals, or private diagnostics.
 
+Route-selection pages must validate the action state before rendering eligible PayToDapps or defaults. Expired, invalid, completed, denied, and restart-required states must not reveal whether the hidden recipient has other routes.
+
 Cubid comms notification links may land on hosted actions, but the site is not the notification delivery system.
 
 ## Acceptance

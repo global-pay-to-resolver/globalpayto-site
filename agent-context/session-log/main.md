@@ -60,3 +60,12 @@ head: 827c237
 summary: Completed GPTW-S2-T2 by implementing the setup/authorization hosted action page with local mock action hydration, safe approved/denied/expired/invalid/completed/restart states, and no production Supabase access.
 validation: Ran pnpm typecheck, pnpm lint, and pnpm build; Next built the new dynamic setup action route successfully.
 follow-ups: Design route selection flow details before implementing route-selection hosted action pages.
+
+---
+
+agent: Codex
+branch: main
+head: 0b14c01
+summary: Completed GPTW-S2-T3 by tightening route-selection flow design around explicit user selection, current-default behavior, disabled non-ready states, safe hydration, and route/provider disclosure limits.
+validation: Reviewed hosted-action design and contract docs to confirm route options/defaults render only after action validation and do not expose unrelated routes, PayToDapps, wallet addresses, route counts, or provider internals.
+follow-ups: Implement route-selection hosted action pages with mock action state.

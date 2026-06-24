@@ -60,6 +60,21 @@ Visible states:
 - `completed`: show already-completed copy,
 - `restart_required`: show generic restart/setup-needed copy.
 
+Interaction behavior:
+
+- the first eligible option is never auto-submitted by the site,
+- the current default is visually selected when the action loads,
+- the user must explicitly choose an option and submit,
+- submitting stores only local Sprint 2 UI state and shows `selected_route`,
+- declining stores only local Sprint 2 UI state and shows `denied`,
+- expired, invalid, completed, and restart-required states disable route controls.
+
+Displayed route details:
+
+- route label may show chain, network, and asset,
+- PayToDapp names may be shown only for eligible options in this action,
+- no unrelated routes, unrelated PayToDapps, wallet addresses, route counts, private diagnostics, or provider internals are shown.
+
 ## Mock Data Boundary
 
 Sprint 2 uses local mock action state only. Sprint 3 will replace mock hydration and submit handlers with backend action endpoints. Mock state must preserve the privacy contract:

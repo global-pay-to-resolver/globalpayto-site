@@ -86,9 +86,9 @@ Acceptance notes:
 
 ### GPTW-S2-T3 Design Route Selection Flow
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md  
 Depends on: globalpayto-site:GPTW-S1-T1
 
 Design the route-selection flow for choosing a default when multiple PayToDapps support the same route.
