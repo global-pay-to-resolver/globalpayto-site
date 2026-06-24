@@ -71,9 +71,9 @@ Acceptance notes:
 
 ### GPTW-S2-T2 Implement Authorization And Setup Pages
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md  
 Depends on: globalpayto-site:GPTW-S2-T1
 
 Implement the hosted authorization/setup pages in the public site.

@@ -51,3 +51,12 @@ head: 1b7217b
 summary: Completed GPTW-S2-T1 by documenting the authorization/setup hosted action flow, safe action-token hydration model, visible outcome states, and Sprint 2 mock-data boundary.
 validation: Confirmed the flow design keeps URLs opaque, avoids raw identifiers and wallet graph disclosure, and leaves live backend wiring for Sprint 3.
 follow-ups: Implement authorization/setup pages with mock action state.
+
+---
+
+agent: Codex
+branch: main
+head: 827c237
+summary: Completed GPTW-S2-T2 by implementing the setup/authorization hosted action page with local mock action hydration, safe approved/denied/expired/invalid/completed/restart states, and no production Supabase access.
+validation: Ran pnpm typecheck, pnpm lint, and pnpm build; Next built the new dynamic setup action route successfully.
+follow-ups: Design route selection flow details before implementing route-selection hosted action pages.
