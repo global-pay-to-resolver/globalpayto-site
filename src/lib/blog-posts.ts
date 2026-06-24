@@ -705,6 +705,65 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "four-ways-to-identify-a-user-for-payment-resolution",
+    title: "Four Ways to Identify a User for Payment Resolution",
+    description:
+      "Verified stamps, public pay-to IDs, brokered DappUserId sharing, and manual fallback identifiers each fit different payment-resolution needs.",
+    category: "Identity + Privacy",
+    publishedAt: "2026-06-24",
+    readingMinutes: 6,
+    body: [
+      {
+        type: "paragraph",
+        text: "Identity-based payment resolution should not force every user into one public identity model. Different products need different ways to say who should be paid, and users need control over which identifiers become payable.",
+      },
+      {
+        type: "heading",
+        text: "1. Verified stamps as pay-to identifiers",
+      },
+      {
+        type: "paragraph",
+        text: "A verified stamp is the likely MVP default. The user proves control of an identifier through Cubid, approves its use for payment resolution, and can be nudged toward less revealing identifiers when email-like, phone-like, or domain-like values would create enumeration risk.",
+      },
+      {
+        type: "heading",
+        text: "2. PublicCubidPayToID",
+      },
+      {
+        type: "paragraph",
+        text: "Some users and creators may want a public payment identity. A public pay-to id can be useful when discoverability is intentional, but it should be optional rather than required for payment resolution.",
+      },
+      {
+        type: "heading",
+        text: "3. Cubid-brokered DappUserId sharing",
+      },
+      {
+        type: "paragraph",
+        text: "In some partnerships, Cubid can broker a scoped way for one app's user context to be recognized by another app without exposing a universal CubidID. This is useful when the product relationship is app-to-app rather than public-to-anyone.",
+      },
+      {
+        type: "heading",
+        text: "4. Manual fallback identifiers",
+      },
+      {
+        type: "paragraph",
+        text: "Manual fallback identifiers can help early integrations or support workflows, but they should not become the main payment identity model. They need clear consent, careful display masking, and revocation paths.",
+      },
+      {
+        type: "heading",
+        text: "Recommended MVP default",
+      },
+      {
+        type: "paragraph",
+        text: "Verified stamps are the best starting point because they balance familiarity, Cubid-backed verification, and user approval. Public IDs remain useful for people who want them, brokered DappUserId sharing can support deeper app relationships, and manual fallbacks can fill gaps while the ecosystem matures.",
+      },
+      {
+        type: "paragraph",
+        text: "The principle is simple: payment resolution should identify enough to pay the right user, and no more than the current context requires.",
+      },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string) {

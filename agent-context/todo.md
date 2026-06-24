@@ -421,9 +421,9 @@ Acceptance notes:
 
 ### GPTW-S5-T11 Write And Publish Four Ways To Identify A User For Payment Resolution
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t11  
 Depends on: globalpayto-site:GPTW-S5-T10
 
 Write and publish the identity model post explaining the main options for identifying a user for payment resolution.

@@ -222,3 +222,12 @@ head: d2b5ab2
 summary: Completed GPTW-S5-T10 by publishing "Why We Don't Use a Universal CubidID."
 validation: Confirmed the post explains app-scoped DappUserId behavior, user-approved pay-to identifiers, cross-dapp tracking prevention, and enumeration-aware privacy boundaries.
 follow-ups: Continue Sprint 5 with the four identity options post.
+
+---
+
+agent: Codex
+branch: main
+head: 20006c3
+summary: Completed GPTW-S5-T11 by publishing "Four Ways to Identify a User for Payment Resolution."
+validation: Confirmed the post covers verified stamps, PublicCubidPayToID, Cubid-brokered DappUserId sharing, and manual fallback identifiers while recommending verified stamps as the likely MVP default and public IDs as optional.
+follow-ups: Sprint 5 blog publishing todos are complete; run full site validation before pushing or release review.
