@@ -32,6 +32,9 @@ export async function submitHostedAction(input: {
   selectedRouteId?: string;
 }): Promise<HostedActionCompletion> {
   if (!resolverBaseUrl) {
+    // REVIEW: In no-backend mode every action id can transition to an approved/selected state,
+    // including expired or invalid ids. Keep this fallback limited to explicit fixture ids and
+    // ready actions so demos cannot accidentally teach the client to trust local-only state.
     return {
       state: input.kind === "setup"
         ? input.decision === "approve" ? "approved" : "denied"
@@ -81,6 +84,9 @@ function backendHeaders(): HeadersInit {
   };
 
   if (devCubidUserId) {
+    // REVIEW: The dev user override should fail closed outside local/test environments. Otherwise
+    // a staging or production deployment with this env accidentally set would send an impersonation
+    // header on every hosted-action backend request.
     headers["x-globalpayto-dev-cubid-user-id"] = devCubidUserId;
   }
 

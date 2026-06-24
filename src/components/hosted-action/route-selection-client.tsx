@@ -52,6 +52,9 @@ export function RouteSelectionClient({ action, submitUrl }: RouteSelectionClient
   const copy = stateCopy[state];
   const isReady = state === "ready";
   const selectedOption = action.options.find((option) => option.id === selectedId);
+  // REVIEW: `selectedId` starts from `currentDefaultId`, but the Save button only checks that it is
+  // truthy. If the backend returns a default that is absent from `options`, the client can submit a
+  // hidden route id; require `selectedOption` for submission and initialize to a visible option.
 
   async function submit(decision: "select_route" | "leave_unchanged") {
     setPending(true);

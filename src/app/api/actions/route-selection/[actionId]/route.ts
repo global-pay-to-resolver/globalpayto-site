@@ -5,6 +5,9 @@ export async function POST(
   { params }: { params: Promise<{ actionId: string }> },
 ) {
   const { actionId } = await params;
+  // REVIEW: Add the same action-token and same-origin validation as setup before route selection
+  // becomes session-backed. A forged POST could otherwise try arbitrary `selectedRouteId` values
+  // and rely on downstream checks to catch them.
   const body = await request.json() as {
     decision?: "select_route" | "leave_unchanged";
     selectedRouteId?: string;
