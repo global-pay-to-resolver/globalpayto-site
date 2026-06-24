@@ -252,9 +252,9 @@ Acceptance notes:
 
 ### GPTW-S4-T4 Validate Public Docs Do Not Link Into The Private Repo
 
-Status: Complete  
-Feature branch: main  
-Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t1  
+Status: TBD  
+Feature branch: TBD  
+Session log: TBD  
 Depends on: globalpayto-site:GPTW-S4-T3
 
 Review public site docs for private-repo links and private implementation leakage.
@@ -269,9 +269,9 @@ Acceptance notes:
 
 ### GPTW-S5-T1 Write And Publish Introducing GlobalPayToResolver: Pay Users, Not Wallet Addresses
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t1  
 Depends on: globalpayto-site:GPTW-S4-T3
 
 Write and publish the core launch post introducing GlobalPayToResolver as a way to pay users by approved identity rather than wallet address.
