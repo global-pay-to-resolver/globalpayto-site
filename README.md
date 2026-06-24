@@ -2,6 +2,17 @@
 
 Public user-facing app/site for GlobalPayTo.
 
+This repo owns the browser-safe hosted pages used for GlobalPayTo user actions,
+including authorization/setup links and route-selection links. Private resolver
+implementation, production Supabase schema, provider callbacks, audit logging,
+and admin tooling belong outside this public repo.
+
+## Architecture
+
+- [Hosted user actions architecture](docs/engineering/hosted-user-actions-architecture.md)
+- Public protocol and SDK architecture lives in the sibling `globalpayto-sdk`
+  repo.
+
 This repo is forked from [`Cubid-Me/cubid-starter-v3`](https://github.com/Cubid-Me/cubid-starter-v3) so it can continue to receive useful upstream starter updates while the GlobalPayTo experience is built out.
 
 The current codebase is still the canonical full-stack Next.js starter for the
