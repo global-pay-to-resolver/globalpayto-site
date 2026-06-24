@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cubid Starter v3",
+  title: "GlobalPayTo Hosted Actions",
   description:
-    "Canonical Next.js starter for modern Cubid identity, verification, comms, and wallet recovery flows.",
+    "Browser-safe hosted action pages for GlobalPayTo setup, authorization, and route selection.",
 };
 
 export default function RootLayout({

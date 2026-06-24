@@ -78,3 +78,12 @@ head: cb38fcd
 summary: Completed GPTW-S2-T4 by implementing the route-selection hosted action page with mock action hydration, explicit route choice, current-default display, safe non-ready states, and local selected/denied outcomes.
 validation: Ran pnpm typecheck, pnpm lint, and pnpm build; Next built both dynamic hosted action route families successfully.
 follow-ups: Remove or reframe starter-only UI that conflicts with the GlobalPayTo MVP boundary.
+
+---
+
+agent: Codex
+branch: main
+head: a11b194
+summary: Completed GPTW-S2-T5 by replacing the Cubid starter-centered homepage with a GlobalPayTo hosted-action entry screen and updating app metadata to the GlobalPayTo product boundary.
+validation: Ran pnpm typecheck, pnpm lint, and pnpm build. Browser-smoked the homepage plus setup and route-selection action routes on desktop, and checked route-selection at mobile width for non-overlap.
+follow-ups: Site Sprint 3 can wire hosted action pages to backend action endpoints and add privacy hardening checks.

@@ -118,9 +118,9 @@ Acceptance notes:
 
 ### GPTW-S2-T5 Remove Starter-Only UI That Conflicts With GlobalPayTo MVP
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md  
 Depends on: globalpayto-site:GPTW-S2-T1
 
 Remove, hide, or reframe starter UI that conflicts with the GlobalPayTo MVP product boundary.
