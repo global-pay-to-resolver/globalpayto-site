@@ -103,9 +103,9 @@ Acceptance notes:
 
 ### GPTW-S2-T4 Implement Route Selection Pages
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md  
 Depends on: globalpayto-site:GPTW-S2-T3
 
 Implement hosted route-selection pages in the public site.

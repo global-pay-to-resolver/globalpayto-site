@@ -69,3 +69,12 @@ head: 0b14c01
 summary: Completed GPTW-S2-T3 by tightening route-selection flow design around explicit user selection, current-default behavior, disabled non-ready states, safe hydration, and route/provider disclosure limits.
 validation: Reviewed hosted-action design and contract docs to confirm route options/defaults render only after action validation and do not expose unrelated routes, PayToDapps, wallet addresses, route counts, or provider internals.
 follow-ups: Implement route-selection hosted action pages with mock action state.
+
+---
+
+agent: Codex
+branch: main
+head: cb38fcd
+summary: Completed GPTW-S2-T4 by implementing the route-selection hosted action page with mock action hydration, explicit route choice, current-default display, safe non-ready states, and local selected/denied outcomes.
+validation: Ran pnpm typecheck, pnpm lint, and pnpm build; Next built both dynamic hosted action route families successfully.
+follow-ups: Remove or reframe starter-only UI that conflicts with the GlobalPayTo MVP boundary.
