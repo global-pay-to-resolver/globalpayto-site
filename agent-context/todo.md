@@ -345,9 +345,9 @@ Acceptance notes:
 
 ### GPTW-S5-T6 Write And Publish Modality A Vs Modality B: Two Ways To Integrate Wallets
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t6  
 Depends on: globalpayto-sdk:GPTS-S1-T2, globalpayto-site:GPTW-S5-T3
 
 Write and publish the wallet integration post comparing Modality A and Modality B while making clear that MVP implementation uses Modality B only.

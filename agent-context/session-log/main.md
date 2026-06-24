@@ -177,3 +177,12 @@ head: 2d60620
 summary: Completed GPTW-S5-T5 by publishing "PayToDapp vs PayingDapp: Which One Are You?"
 validation: Confirmed the post includes wallet, payout, marketplace, and escrow examples; explains dual-role apps; and points readers to the relevant SDK integration path.
 follow-ups: Continue Sprint 5 with the Modality A versus Modality B integration post.
+
+---
+
+agent: Codex
+branch: main
+head: 1844e4f
+summary: Completed GPTW-S5-T6 by publishing "Modality A vs Modality B: Two Ways to Integrate Wallets."
+validation: Confirmed the post explains Modality A as resolver-built intent context, Modality B as route registration plus provider-built intents, and states that MVP integrations should use Modality B.
+follow-ups: Continue Sprint 5 with the minimal API developer post.

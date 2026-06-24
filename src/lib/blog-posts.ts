@@ -371,6 +371,69 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "modality-a-vs-modality-b-two-ways-to-integrate-wallets",
+    title: "Modality A vs Modality B: Two Ways to Integrate Wallets",
+    description:
+      "GlobalPayToResolver can describe two wallet integration modes, but the MVP path is Modality B: route registration plus provider-built intents.",
+    category: "Wallet Integration",
+    publishedAt: "2026-06-24",
+    readingMinutes: 6,
+    body: [
+      {
+        type: "paragraph",
+        text: "Wallet integrations can be simple or deeply provider-specific. GlobalPayToResolver uses the terms Modality A and Modality B to distinguish two ways a PayToDapp can participate in payment resolution.",
+      },
+      {
+        type: "heading",
+        text: "Modality A: resolver-built intents",
+      },
+      {
+        type: "paragraph",
+        text: "In Modality A, the PayToDapp gives the resolver enough account or address material for the resolver to build a payment instruction. This can work for simple externally owned accounts, basic receive addresses, and wallet patterns where the payment output is nearly static.",
+      },
+      {
+        type: "paragraph",
+        text: "Modality A is conceptually easy, but it asks the resolver to hold or process more destination detail. That is not the MVP integration path.",
+      },
+      {
+        type: "heading",
+        text: "Modality B: provider-built intents",
+      },
+      {
+        type: "paragraph",
+        text: "In Modality B, the PayToDapp registers supported receive routes without handing the resolver raw wallet destinations. When the route is selected, the PayToDapp builds the provider-specific payment intent and returns it through the callback contract.",
+      },
+      {
+        type: "list",
+        items: [
+          "The resolver knows which chain, network, and asset routes are available.",
+          "The PayToDapp keeps provider-specific receive logic close to its own system.",
+          "The PayingDapp receives a normalized resolver envelope with a constrained provider instruction.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "Why MVP uses Modality B",
+      },
+      {
+        type: "paragraph",
+        text: "Modality B is better for embedded wallets, dynamic wallets, custodial or semi-custodial receive accounts, and privacy-sensitive wallet systems. It avoids turning the resolver into a durable address warehouse and gives PayToDapps room to enforce their own receive policies.",
+      },
+      {
+        type: "paragraph",
+        text: "It is also more powerful. A provider can return a payment intent that includes references, expiry, memos, or other provider-required fields while still satisfying the public GlobalPayTo contract.",
+      },
+      {
+        type: "heading",
+        text: "Where Modality A fits later",
+      },
+      {
+        type: "paragraph",
+        text: "Modality A may become useful for simple wallets or protocols that genuinely only need a static destination output. For launch, it remains roadmap context. Builders integrating now should use Modality B and the PayToDapp provider SDK path.",
+      },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string) {
