@@ -96,8 +96,7 @@ export function SetupActionClient({ action }: SetupActionClientProps) {
             </p>
           </div>
 
-          {/* REVIEW: Gap: approve/decline only mutate local UI state, so the current page can appear to complete an authorization without backend confirmation, audit logging, or token invalidation. Recommendation: when leaving mock mode, submit decisions to the backend action endpoint, handle failure/expired/replay responses, and show success only after the backend confirms the action. */}
-
+          {/* Sprint 2 mock actions complete locally; Sprint 3 submits decisions before showing success. */}
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             <button
               className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#176b46] px-5 text-sm font-semibold text-white transition hover:bg-[#12583a] disabled:bg-[#aeb8a6]"

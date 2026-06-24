@@ -87,3 +87,12 @@ head: a11b194
 summary: Completed GPTW-S2-T5 by replacing the Cubid starter-centered homepage with a GlobalPayTo hosted-action entry screen and updating app metadata to the GlobalPayTo product boundary.
 validation: Ran pnpm typecheck, pnpm lint, and pnpm build. Browser-smoked the homepage plus setup and route-selection action routes on desktop, and checked route-selection at mobile width for non-overlap.
 follow-ups: Site Sprint 3 can wire hosted action pages to backend action endpoints and add privacy hardening checks.
+
+---
+
+agent: Codex
+branch: main
+head: 6312d66
+summary: Addressed site inline review comments by clarifying hosted-action backend exchange boundaries, mock-only completion states, crawler/referrer controls, and Sprint 3 server-confirmation requirements.
+validation: Ran git diff --check, scanned the touched site docs and hosted-action code for inline-review markers, and ran pnpm typecheck, pnpm lint, and pnpm build.
+follow-ups: In Sprint 3, replace mock action hydration and local completion with backend action-token exchange, Cubid-authenticated validation, audit-event creation, token invalidation, and server-side route revalidation.

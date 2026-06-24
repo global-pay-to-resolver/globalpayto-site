@@ -11,7 +11,7 @@ export default async function RouteSelectionPage({ params }: RouteSelectionPageP
   const { actionId } = await params;
   const action = getRouteSelectionAction(actionId);
 
-  // REVIEW: Gap: route-selection options and current default are hydrated solely from `actionId`, so a guessed valid action URL can reveal eligible PayToDapps in the mock pattern. Recommendation: production hydration should exchange the opaque action id with the backend after Cubid-authenticated user validation, then fetch options for that user/action only.
+  // Sprint 2 fixture hydration; Sprint 3 fetches options only after backend action exchange.
 
   return <RouteSelectionClient action={action} />;
 }

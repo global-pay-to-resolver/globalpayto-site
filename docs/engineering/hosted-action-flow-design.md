@@ -17,10 +17,10 @@ Purpose:
 Unauthenticated URL rule:
 
 - the URL contains only an opaque `actionId`,
-- dapp metadata, masked stamp display, requested scope, and action copy are hydrated after local action-token validation,
+- Sprint 2 mock pages use local fixtures only,
+- production dapp metadata, masked stamp display, requested scope, and action copy are hydrated only after backend action-token exchange and Cubid-authenticated user validation,
+- the public site renders only the browser-safe view model returned by the backend,
 - no wallet address, route graph, route count, provider internal detail, raw identifier, or private diagnostic appears in the URL.
-
-<!-- REVIEW: Gap: "local action-token validation" is ambiguous and could be read as validating the token entirely in the public site. Recommendation: specify that production validation/hydration is a backend action-token exchange after Cubid-authenticated user validation, with the site only rendering the returned browser-safe view model. -->
 
 Visible states:
 
@@ -71,7 +71,12 @@ Interaction behavior:
 - declining stores only local Sprint 2 UI state and shows `denied`,
 - expired, invalid, completed, and restart-required states disable route controls.
 
-<!-- REVIEW: Gap: the flow design documents local-only submit behavior but does not define the production transition criteria. Recommendation: add Sprint 3 acceptance that save/deny/approve states are shown only after backend confirmation, token completion, and audit-event creation. -->
+Sprint 3 production transition criteria:
+
+- approve, deny, save, and leave-unchanged states are shown only after backend confirmation,
+- the backend must complete or invalidate the action token before the site renders success,
+- the backend must create the required audit event before the site renders success,
+- expired, replayed, or unauthorized submissions render safe restart-required or expired states without private diagnostics.
 
 Displayed route details:
 
@@ -88,4 +93,6 @@ Sprint 2 uses local mock action state only. Sprint 3 will replace mock hydration
 - expired and invalid states do not reveal recipient existence,
 - no production Supabase access or resolver secrets are introduced.
 
-<!-- REVIEW: Gap: the mock boundary does not mention crawler/indexing or referrer controls for action URLs. Recommendation: require hosted action routes to set noindex/noarchive behavior and a strict referrer policy before real action links are distributed. -->
+Before real action links are distributed, hosted action routes must set
+`noindex`/`noarchive` robot behavior and a strict referrer policy so opaque
+action URLs are not indexed or leaked through outbound navigation.
