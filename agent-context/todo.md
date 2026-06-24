@@ -37,9 +37,9 @@ Acceptance notes:
 
 ### GPTW-S1-T3 Define Public Copy For Resolver Statuses And Notifications
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md  
 Depends on: globalpayto-sdk:GPTS-S1-T1, globalpayto-sdk:GPTS-S1-T7
 
 Define user-facing copy for resolver statuses and Cubid comms notifications that may appear in hosted action flows.

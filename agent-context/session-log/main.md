@@ -24,3 +24,12 @@ head: 5bddca5
 summary: Completed GPTW-S1-T2 by documenting browser-safe runtime configuration boundaries for hosted action pages.
 validation: Confirmed resolver secrets, Cubid dapp API keys, service-role keys, provider callback credentials, and production database credentials stay out of browser env vars and bundles.
 follow-ups: Finish site Sprint 1 with public copy for resolver statuses and Cubid comms notifications.
+
+---
+
+agent: Codex
+branch: main
+head: c414106
+summary: Completed GPTW-S1-T3 by defining public copy requirements for resolver statuses and Cubid comms notifications.
+validation: Confirmed copy coverage for setup, route selection, authorization, provider unavailable, expired/invalid links, payment intent created, payment received, and user action required without private diagnostics or wallet graph claims.
+follow-ups: Site Sprint 2 can begin hosted action app design after SDK contract dependencies remain complete.
