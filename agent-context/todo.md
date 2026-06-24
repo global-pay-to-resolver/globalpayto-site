@@ -330,9 +330,9 @@ Acceptance notes:
 
 ### GPTW-S5-T5 Write And Publish PayToDapp Vs PayingDapp: Which One Are You?
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete  
+Feature branch: main  
+Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t5  
 Depends on: globalpayto-site:GPTW-S5-T4
 
 Write and publish a practical integration post helping builders identify whether their app is a PayToDapp, PayingDapp, or both.

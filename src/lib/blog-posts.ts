@@ -300,6 +300,77 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    slug: "paytodapp-vs-payingdapp-which-one-are-you",
+    title: "PayToDapp vs PayingDapp: Which One Are You?",
+    description:
+      "A practical guide for deciding whether your product provides receive paths, requests payment intents, or does both.",
+    category: "Developer Education",
+    publishedAt: "2026-06-24",
+    readingMinutes: 5,
+    body: [
+      {
+        type: "paragraph",
+        text: "GlobalPayToResolver uses two developer-facing roles because payment products tend to face one of two directions. Some apps help users receive funds. Other apps need to pay users. A few do both.",
+      },
+      {
+        type: "heading",
+        text: "You are a PayToDapp if you provide a receive path",
+      },
+      {
+        type: "paragraph",
+        text: "A PayToDapp is selected when a user wants funds to land through your product. Wallets, embedded wallet systems, provider-managed accounts, and receive-routing services are natural PayToDapps.",
+      },
+      {
+        type: "list",
+        items: [
+          "SmarTrust Wallet acting as the user's selected receive wallet.",
+          "A marketplace seller wallet that can accept seller proceeds.",
+          "An embedded wallet provider that can create a one-time receive instruction.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "PayToDapps register supported receive routes and, in the MVP, build the provider-specific payment intent when selected. They should not submit raw wallet addresses as the integration contract.",
+      },
+      {
+        type: "heading",
+        text: "You are a PayingDapp if you need to pay a user",
+      },
+      {
+        type: "paragraph",
+        text: "A PayingDapp knows the product reason for a payment. It might owe a payout, release escrow, pay a contributor, send a reward, or settle a balance. It does not want to manage the user's wallet graph.",
+      },
+      {
+        type: "list",
+        items: [
+          "ChainCrew payout flow paying a contributor.",
+          "A marketplace payout flow paying a seller.",
+          "An escrow release system paying the recipient after conditions are met.",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "PayingDapps submit a recipient pay-to identifier, amount, supported paths, and reference. They handle public resolver statuses such as resolved, no route, and user action required.",
+      },
+      {
+        type: "heading",
+        text: "Some apps are both",
+      },
+      {
+        type: "paragraph",
+        text: "A marketplace could be a PayingDapp when releasing funds to sellers and a PayToDapp if it also hosts seller balances or seller wallets. The roles describe the direction of a specific integration, not a permanent label for the company.",
+      },
+      {
+        type: "heading",
+        text: "Which SDK path should you start with?",
+      },
+      {
+        type: "paragraph",
+        text: "If your product creates or manages receive instructions, start with the PayToDapp provider SDK path. If your product needs to request payment intents for users, start with the PayingDapp SDK path. If you do both, keep the two integrations separate so each side has its own auth, consent, callback, and testing boundary.",
+      },
+    ],
+  },
 ];
 
 export function getBlogPost(slug: string) {

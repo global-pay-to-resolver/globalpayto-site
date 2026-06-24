@@ -168,3 +168,12 @@ head: 4427389
 summary: Completed GPTW-S5-T4 by publishing "How GlobalPayToResolver Works: The Five Roles."
 validation: Confirmed the post separates User, Cubid, GlobalPayToResolver, PayToDapp, and PayingDapp responsibilities while emphasizing user consent and receive-route preferences.
 follow-ups: Continue Sprint 5 with the PayToDapp versus PayingDapp practical integration post.
+
+---
+
+agent: Codex
+branch: main
+head: 2d60620
+summary: Completed GPTW-S5-T5 by publishing "PayToDapp vs PayingDapp: Which One Are You?"
+validation: Confirmed the post includes wallet, payout, marketplace, and escrow examples; explains dual-role apps; and points readers to the relevant SDK integration path.
+follow-ups: Continue Sprint 5 with the Modality A versus Modality B integration post.
