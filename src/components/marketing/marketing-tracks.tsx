@@ -1,9 +1,9 @@
 "use client";
 
 import {
-  ArrowRight,
   BadgeCheck,
   BanknoteArrowDown,
+  Check,
   Code2,
   Gift,
   Landmark,
@@ -144,8 +144,8 @@ const tracks: Record<
 const trackOrder: TrackId[] = ["sending", "receiving", "users"];
 
 export function MarketingTracks() {
-  const [selectedTrack, setSelectedTrack] = useState<TrackId>("sending");
-  const track = tracks[selectedTrack];
+  const [selectedTrack, setSelectedTrack] = useState<TrackId | null>(null);
+  const visibleTracks = selectedTrack ? [selectedTrack] : trackOrder;
 
   return (
     <section className="border-b border-[#d9dfd1] bg-[#fbfcf8]" id="tracks">
@@ -155,90 +155,99 @@ export function MarketingTracks() {
             Choose a track
           </p>
           <h2 className="mt-4 text-4xl font-semibold leading-tight">
-            Start with the role your product plays.
+            What role do you play?
           </h2>
           <p className="mt-4 text-base leading-7 text-[#586250]">
-            GlobalPayTo connects three groups. Pick one to see the benefits and
-            features that matter for that side of the network.
+            GlobalPayTo connects three groups. All benefits are visible until
+            you pick the role that matches your product.
           </p>
         </div>
 
-        <div className="mt-8 grid gap-3 lg:grid-cols-3">
+        <div className="mt-8 flex flex-wrap gap-3">
           {trackOrder.map((trackId) => {
             const option = tracks[trackId];
             const active = selectedTrack === trackId;
 
             return (
               <button
-                className={`group rounded-md border p-5 text-left transition duration-200 hover:-translate-y-1 ${
+                className={`inline-flex h-11 items-center gap-3 rounded-md border px-4 text-sm font-semibold transition duration-200 hover:-translate-y-0.5 ${
                   active
-                    ? "border-[#121612] bg-white shadow-sm"
+                    ? "border-[#121612] bg-white text-[#121612] shadow-sm"
                     : "border-[#d9dfd1] bg-[#f6f7f2] hover:border-[#b9c7ad]"
                 }`}
                 key={trackId}
-                onClick={() => setSelectedTrack(trackId)}
+                onClick={() => setSelectedTrack(active ? null : trackId)}
                 type="button"
               >
                 <span
-                  className="inline-flex h-2 w-12 rounded-full"
+                  className="h-2 w-2 rounded-full"
                   style={{ backgroundColor: option.accent }}
                 />
-                <span className="mt-5 block text-sm font-semibold uppercase tracking-[0.14em] text-[#586250]">
-                  {option.audience}
-                </span>
-                <span className="mt-2 block text-2xl font-semibold leading-snug text-[#121612]">
-                  {option.title}
-                </span>
-                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#176b46]">
-                  Read this track
-                  <ArrowRight
-                    className="transition group-hover:translate-x-1"
-                    size={16}
-                    aria-hidden="true"
-                  />
+                <span>{option.audience}</span>
+                <span
+                  className={`flex h-5 w-5 items-center justify-center rounded-sm border ${
+                    active
+                      ? "border-[#121612] bg-[#121612] text-white"
+                      : "border-[#b9c7ad] bg-white text-transparent"
+                  }`}
+                >
+                  <Check size={14} aria-hidden="true" />
                 </span>
               </button>
             );
           })}
         </div>
 
-        <div className="mt-10 grid gap-8 border-t border-[#d9dfd1] pt-10 lg:grid-cols-[0.7fr_1.3fr]">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#586250]">
-              {track.eyebrow}
-            </p>
-            <h3 className="mt-4 text-4xl font-semibold leading-tight text-[#121612]">
-              {track.title}
-            </h3>
-            <p className="mt-4 text-base leading-7 text-[#586250]">{track.intro}</p>
-            <ul className="mt-8 grid gap-3">
-              {track.features.map((feature) => (
-                <li className="flex gap-3 text-sm leading-6 text-[#3f493a]" key={feature}>
-                  <span
-                    className="mt-2 h-2 w-2 shrink-0 rounded-full"
-                    style={{ backgroundColor: track.accent }}
-                  />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="mt-10 grid gap-10 border-t border-[#d9dfd1] pt-10">
+          {visibleTracks.map((trackId) => {
+            const track = tracks[trackId];
 
-          <div className="grid gap-4 md:grid-cols-2">
-            {track.benefits.map((benefit) => {
-              const Icon = benefit.icon;
-
-              return (
-                <div className="rounded-md border border-[#d9dfd1] bg-white p-5" key={benefit.title}>
-                  <Icon style={{ color: track.accent }} size={22} aria-hidden="true" />
-                  <h4 className="mt-4 text-lg font-semibold text-[#121612]">
-                    {benefit.title}
-                  </h4>
-                  <p className="mt-2 text-sm leading-6 text-[#586250]">{benefit.text}</p>
+            return (
+              <section
+                className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr]"
+                key={trackId}
+              >
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#586250]">
+                    {track.eyebrow}
+                  </p>
+                  <h3 className="mt-4 text-3xl font-semibold leading-tight text-[#121612] sm:text-4xl">
+                    {track.title}
+                  </h3>
+                  <p className="mt-4 text-base leading-7 text-[#586250]">
+                    {track.intro}
+                  </p>
+                  <ul className="mt-8 grid gap-3">
+                    {track.features.map((feature) => (
+                      <li className="flex gap-3 text-sm leading-6 text-[#3f493a]" key={feature}>
+                        <span
+                          className="mt-2 h-2 w-2 shrink-0 rounded-full"
+                          style={{ backgroundColor: track.accent }}
+                        />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              );
-            })}
-          </div>
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  {track.benefits.map((benefit) => {
+                    const Icon = benefit.icon;
+
+                    return (
+                      <div className="rounded-md border border-[#d9dfd1] bg-white p-5" key={benefit.title}>
+                        <Icon style={{ color: track.accent }} size={22} aria-hidden="true" />
+                        <h4 className="mt-4 text-lg font-semibold text-[#121612]">
+                          {benefit.title}
+                        </h4>
+                        <p className="mt-2 text-sm leading-6 text-[#586250]">{benefit.text}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            );
+          })}
         </div>
       </div>
     </section>
