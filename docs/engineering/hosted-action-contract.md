@@ -12,7 +12,9 @@ Per-request setup and authorization approval pages are out of scope. Send-to
 channels are pre-authorized for requesting apps by default; users manage where
 funds land by selecting or changing receive-route preferences.
 
-The app also includes signed-in Cubid access for `/actions/*` and `/history`.
+The app also includes signed-in access for `/actions/*`, `/history`, and
+`/developer`. This is currently a temporary mock header session until SIWC is
+connected.
 Route-selection action details and history rows are not rendered for signed-out
 users.
 
@@ -30,9 +32,9 @@ Common page inputs:
 
 Public URLs must carry only opaque action identifiers or short-lived tokens. Display metadata, masked identifiers, and route options must be hydrated after action-token validation so they do not leak through referrers, browser history, CDN logs, or analytics.
 
-The route-selection page fetches action details only after the Cubid auth gate
-has reached a signed-in state. The incoming history page is also Cubid-gated and
-is scoped to the signed-in user's resolver activity.
+The route-selection page fetches action details only after the auth gate has
+reached a signed-in state. The incoming history page is also gated and is scoped
+to the signed-in user's resolver activity.
 
 Notification-triggered visits from Cubid comms use the same action identifier model.
 

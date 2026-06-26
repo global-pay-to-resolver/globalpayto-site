@@ -35,7 +35,8 @@ or normal Cubid transaction-signing examples from those projects.
 
 ## What This Starter Shows
 
-- GlobalPayTo landing page with Sign in with Cubid.
+- GlobalPayTo landing page with a persistent mock Sign In / Sign Out header
+  until SIWC is connected.
 - Three marketing tracks for users, devs of sending apps, and devs of receiving
   apps/wallets.
 - Signed-in `/actions/route-selection/[actionId]` route-selection flow.
@@ -51,9 +52,10 @@ or normal Cubid transaction-signing examples from those projects.
 Cubid dapp API keys, service-role keys, and recovery bundle material must stay
 out of browser env vars and client bundles.
 
-`/actions/*` and `/history` are Cubid-authenticated app surfaces. When Cubid
-browser config is missing, those routes render a safe setup state instead of
-hydrating action details or history data.
+`/actions/*`, `/history`, and `/developer` are protected by the temporary mock
+header session until SIWC is connected. The header supports logging in as a user
+or as a developer; developer mode exposes mock API provisioning, key rotation,
+team invites, and recent app history.
 
 ## Copy-Paste Local Setup
 

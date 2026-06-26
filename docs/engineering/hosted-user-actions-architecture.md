@@ -10,9 +10,10 @@ This public repo owns the user-facing GlobalPayTo site and the minimal hosted ac
 
 The MVP site surfaces are:
 
-- Sign in with Cubid for app access.
+- Persistent app header with temporary mock Sign In / Sign Out until SIWC is connected.
 - route-selection links for choosing a default when multiple PayToDapps support the same route.
 - signed-in incoming history for resolver activity grouped by PayingDapp, PayToDapp, token, or chain, with quick filters for queries, intents, transactions, and all activity.
+- mock developer console for API provisioning, key rotation, developer invites, and recent app history.
 - landing targets for Cubid comms `payment_intent_created` notifications when the notification links back to the current intent context.
 
 The site does not own production Supabase schema, Edge Functions, provider callbacks, audit logging, private admin tools, or operational resolver logic.
@@ -63,7 +64,7 @@ The page should show:
 - the current default when one exists,
 - the effect of choosing a default.
 
-The hosted action must validate the action token and authenticate the user before route options, eligible PayToDapps, or current defaults are rendered. Route details should be fetched for that action after validation rather than embedded in an unauthenticated URL. In the current site, the route-selection page is gated by the shared Cubid auth provider and fetches action details from the action API only after the user reaches the signed-in state.
+The hosted action must validate the action token and authenticate the user before route options, eligible PayToDapps, or current defaults are rendered. Route details should be fetched for that action after validation rather than embedded in an unauthenticated URL. In the current site, the route-selection page is gated by a temporary mock header session and fetches action details from the action API only after the user reaches the signed-in state. Replace this mock gate with SIWC once connected.
 
 It should not reveal unrelated routes, wallet addresses, provider internals, or a user's broader payment graph.
 
@@ -92,7 +93,7 @@ Keep deprecated wallet-heavy Cubid starter patterns out of this app.
 
 ## API Expectations
 
-The hosted action pages should receive opaque action identifiers or tokens, not private backend state. `/actions/*` and `/history` are signed-in app surfaces; unauthenticated users see a Cubid sign-in gate or a safe configuration state.
+The hosted action pages should receive opaque action identifiers or tokens, not private backend state. `/actions/*`, `/history`, and `/developer` are signed-in app surfaces; unauthenticated users see the mock header sign-in path until SIWC replaces it.
 
 Sprint 1 hosted action contract details live in [`hosted-action-contract.md`](./hosted-action-contract.md).
 
@@ -149,7 +150,8 @@ The site must:
 The site architecture is MVP-complete when:
 
 - a user can choose a route default when overlapping PayToDapp routes exist,
-- a user can sign in with Cubid before viewing route-selection or history pages,
+- a user can sign in before viewing route-selection or history pages,
+- a developer can sign in before viewing API keys, team invites, and app history,
 - a user can review incoming resolver activity by group and activity type without wallet graph disclosure,
 - expired or invalid links fail safely,
 - the browser bundle contains no resolver secrets,

@@ -31,9 +31,10 @@ Purpose:
 - show only route options for the current action,
 - keep the current default and eligible PayToDapps unavailable until action validation succeeds.
 
-The page is protected by Sign in with Cubid. The action id is present in the URL,
-but route details are fetched from the action API only after the browser reaches
-the signed-in state.
+The page is protected by the persistent header sign-in state. This is currently
+a mock user/developer session until SIWC is connected. The action id is present
+in the URL, but route details are fetched from the action API only after the
+browser reaches the signed-in state.
 
 Preference tuple:
 
@@ -96,6 +97,20 @@ Activity types:
 The All filter clears the activity-type filter and shows the same result as if
 all activity types were selected. History rows must not expose wallet addresses,
 unrelated routes, provider internals, or settlement claims.
+
+## Developer Console Flow
+
+Route family: `/developer`
+
+Purpose:
+
+- let a developer-mode signed-in session see provisioned API access,
+- rotate mock API keys,
+- invite other developers to the same app account,
+- review recent app history.
+
+This is a mock surface until SIWC and real developer account provisioning are
+connected. User-mode login must not unlock developer controls.
 
 ## Mock Data Boundary
 

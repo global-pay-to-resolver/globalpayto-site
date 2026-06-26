@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-import { CubidSessionControl } from "@/components/cubid/session-control";
 import { MarketingTracks } from "@/components/marketing/marketing-tracks";
 
 const introPoints = [
@@ -41,25 +40,6 @@ const ecosystemSteps = [
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#f6f7f2] text-[#121612]">
-      <header className="border-b border-[#d9dfd1] bg-[#fbfcf8]/95">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4 lg:px-8">
-          <Link className="text-base font-semibold text-[#121612]" href="/">
-            GlobalPayTo
-          </Link>
-          <nav className="flex flex-wrap items-center gap-3 text-sm font-semibold text-[#4f5a49]">
-            <a className="hover:text-[#176b46]" href="#tracks">
-              Tracks
-            </a>
-            <Link className="hover:text-[#176b46]" href="/blog">
-              Blog
-            </Link>
-            <Link className="hover:text-[#176b46]" href="/history">
-              History
-            </Link>
-          </nav>
-        </div>
-      </header>
-
       <section className="relative overflow-hidden border-b border-[#d9dfd1] bg-[#0f1712] text-white">
         <div className="absolute inset-0 opacity-55">
           <div className="h-full w-full bg-[radial-gradient(circle_at_18%_28%,rgba(63,167,111,0.42),transparent_28%),radial-gradient(circle_at_82%_12%,rgba(87,134,192,0.36),transparent_24%),linear-gradient(135deg,#0f1712_0%,#17251b_48%,#0d1511_100%)]" />
@@ -222,9 +202,6 @@ export default function Home() {
             >
               Compare tracks
             </a>
-            <div className="sm:min-w-48">
-              <CubidSessionControl />
-            </div>
           </div>
         </div>
       </section>

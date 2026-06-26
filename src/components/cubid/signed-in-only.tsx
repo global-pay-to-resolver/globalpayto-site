@@ -1,14 +1,10 @@
 "use client";
 
-import {
-  CubidSignInButton,
-  CubidSignOutButton,
-  useOptionalCubidAuth,
-} from "@cubid/auth-react";
-import { CheckCircle2, LoaderCircle, LogIn, ShieldCheck } from "lucide-react";
+import { LoaderCircle, ShieldCheck } from "lucide-react";
 import type { ReactNode } from "react";
 
-import { missingCubidPublicConfig } from "@/lib/cubid/public-config";
+import { useMockSession } from "@/components/auth/mock-session-provider";
+import { credentialLabel } from "@/lib/mock-session";
 
 interface SignedInOnlyProps {
   children: ReactNode;
@@ -17,61 +13,35 @@ interface SignedInOnlyProps {
 }
 
 export function SignedInOnly({ children, description, title }: SignedInOnlyProps) {
-  const auth = useOptionalCubidAuth();
-  const missing = missingCubidPublicConfig();
+  const { isLoaded, session } = useMockSession();
 
-  if (missing.length > 0 || !auth) {
+  if (!isLoaded) {
     return (
       <AccessPanel
-        description="Cubid sign-in is not configured for this browser build yet."
-        detail={`Missing browser-safe config: ${missing.join(", ") || "Cubid auth provider"}`}
-        title="Sign in with Cubid is unavailable"
-      />
-    );
-  }
-
-  if (auth.status === "idle" || auth.status === "loading") {
-    return (
-      <AccessPanel
-        description="Checking your Cubid session before showing this page."
+        description="Checking your mock session before showing this page."
         title="Checking sign-in"
       >
         <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#586250]">
           <LoaderCircle className="animate-spin" size={17} aria-hidden="true" />
-          {auth.status}
+          Loading
         </span>
       </AccessPanel>
     );
   }
 
-  if (!auth.isAuthenticated) {
+  if (!session) {
     return (
       <AccessPanel
         description={description}
-        detail={auth.error?.message}
         title={title}
-      >
-        <CubidSignInButton className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#176b46] px-5 text-sm font-semibold text-white transition hover:bg-[#12583a] disabled:bg-[#aeb8a6]">
-          <LogIn size={17} aria-hidden="true" />
-          Sign in with Cubid
-        </CubidSignInButton>
-      </AccessPanel>
+        detail="Use the Sign in menu in the header. This is a temporary mock gate until SIWC is connected."
+      />
     );
   }
 
   return (
     <>
-      <div className="border-b border-[#d9dfd1] bg-white">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-6 py-3 text-sm lg:px-8">
-          <span className="inline-flex items-center gap-2 font-semibold text-[#176b46]">
-            <CheckCircle2 size={17} aria-hidden="true" />
-            Signed in with Cubid
-          </span>
-          <CubidSignOutButton className="inline-flex h-9 items-center justify-center rounded-md border border-[#cbd4c3] bg-white px-3 text-sm font-semibold text-[#2c3429] transition hover:bg-[#f1f4ec]">
-            Sign out
-          </CubidSignOutButton>
-        </div>
-      </div>
+      <div className="sr-only">Signed in with {credentialLabel(session.credential)}</div>
       {children}
     </>
   );

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { MockSessionProvider } from "@/components/auth/mock-session-provider";
 import { AppAuthProvider } from "@/components/cubid/app-auth-provider";
+import { SiteHeader } from "@/components/navigation/site-header";
 
 import "./globals.css";
 
@@ -32,7 +34,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <AppAuthProvider>{children}</AppAuthProvider>
+        <AppAuthProvider>
+          <MockSessionProvider>
+            <SiteHeader />
+            {children}
+          </MockSessionProvider>
+        </AppAuthProvider>
       </body>
     </html>
   );
