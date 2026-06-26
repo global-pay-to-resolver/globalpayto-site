@@ -452,9 +452,9 @@ Acceptance notes:
 
 ### GPTW-S6-T2 Add Solver Adapter Developer Explainer
 
-Status: TBD
-Feature branch: TBD
-Session log: TBD
+Status: Complete
+Feature branch: feature/globalpayto-resolver-migration
+Session log: agent-context/session-log/main.md#2026-06-26-gptw-s6-t2
 Depends on: globalpayto-sdk:GPTS-S5-T1, globalpayto-sdk:GPTS-S5-T2
 
 Add public developer-facing content that explains how payor-apps should think about solver/router adapters.

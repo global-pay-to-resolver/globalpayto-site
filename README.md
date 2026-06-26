@@ -11,6 +11,7 @@ and admin tooling belong outside this public repo.
 ## Architecture
 
 - [Hosted user actions architecture](docs/engineering/hosted-user-actions-architecture.md)
+- [Solver adapter developer explainer](docs/engineering/solver-adapter-developer-explainer.md)
 - Public protocol and SDK architecture lives in the sibling `globalpayto-sdk`
   repo.
 

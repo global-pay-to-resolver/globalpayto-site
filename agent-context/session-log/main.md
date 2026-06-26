@@ -251,3 +251,14 @@ todo: globalpayto-site:GPTW-S6-T1
 summary: Kept the homepage solver-adapter section aligned with the public six-solver set and added a stable solver-adapters anchor/test hook for ongoing content checks.
 validation: Ran pnpm typecheck, pnpm lint, and pnpm build.
 follow-ups: Add a public developer explainer for preferred-solver behavior, quote fanout, and receive-requirement boundaries.
+
+---
+
+## 2026-06-26-gptw-s6-t2
+
+agent: Codex
+branch: feature/globalpayto-resolver-migration
+todo: globalpayto-site:GPTW-S6-T2
+summary: Added a public solver adapter developer explainer covering payor-app flow layering, preferred-solver behavior, quote fanout, resolved receive requirements, and privacy boundaries, then linked it from the site README.
+validation: Ran a public-content scan on docs/engineering/solver-adapter-developer-explainer.md for private repo links and private credential terms, plus pnpm typecheck and pnpm lint.
+follow-ups: Add a lightweight solver-content check for homepage solver names, private-term leakage, and responsive solver-section rendering.
