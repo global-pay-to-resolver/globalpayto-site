@@ -31,6 +31,10 @@ Purpose:
 - show only route options for the current action,
 - keep the current default and eligible PayToDapps unavailable until action validation succeeds.
 
+The page is protected by Sign in with Cubid. The action id is present in the URL,
+but route details are fetched from the action API only after the browser reaches
+the signed-in state.
+
 Preference tuple:
 
 - user,
@@ -72,6 +76,26 @@ Displayed route details:
 - route label may show chain, network, and asset,
 - PayToDapp names may be shown only for eligible options in this action,
 - no unrelated routes, unrelated PayToDapps, wallet addresses, route counts, private diagnostics, or provider internals are shown.
+
+## Incoming History Flow
+
+Route family: `/history`
+
+Purpose:
+
+- let a signed-in user review incoming GlobalPayTo resolver activity,
+- group activity by PayingDapp, PayToDapp, token, or chain,
+- quick-filter by queries, intents, transactions, or all activity.
+
+Activity types:
+
+- queries: a PayingDapp checked available routes only,
+- intents: a request such as "send USDT from Base to this recipient" produced a set of options,
+- transactions: an option was selected and a transfer was initiated.
+
+The All filter clears the activity-type filter and shows the same result as if
+all activity types were selected. History rows must not expose wallet addresses,
+unrelated routes, provider internals, or settlement claims.
 
 ## Mock Data Boundary
 

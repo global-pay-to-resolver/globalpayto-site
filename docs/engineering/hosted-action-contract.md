@@ -12,6 +12,10 @@ Per-request setup and authorization approval pages are out of scope. Send-to
 channels are pre-authorized for requesting apps by default; users manage where
 funds land by selecting or changing receive-route preferences.
 
+The app also includes signed-in Cubid access for `/actions/*` and `/history`.
+Route-selection action details and history rows are not rendered for signed-out
+users.
+
 ## Hosted Action Inputs
 
 Hosted action pages receive opaque, short-lived action identifiers. They must not receive raw backend records or production database credentials.
@@ -25,6 +29,10 @@ Common page inputs:
 - route options only for the current action.
 
 Public URLs must carry only opaque action identifiers or short-lived tokens. Display metadata, masked identifiers, and route options must be hydrated after action-token validation so they do not leak through referrers, browser history, CDN logs, or analytics.
+
+The route-selection page fetches action details only after the Cubid auth gate
+has reached a signed-in state. The incoming history page is also Cubid-gated and
+is scoped to the signed-in user's resolver activity.
 
 Notification-triggered visits from Cubid comms use the same action identifier model.
 
@@ -69,7 +77,10 @@ Copy must cover:
 
 Copy for provider-reported receipt events or Cubid-comms-driven user-action notifications is outside MVP until those events have explicit trust, disclosure, and callback contracts.
 
-Copy must not imply that GlobalPayTo exposes a wallet graph, profile directory, dashboard, inbox, or activity feed.
+Copy must not imply that GlobalPayTo exposes a wallet graph, profile directory,
+dashboard, inbox, settlement tracker, or public activity feed. The signed-in
+history page may describe resolver activity types: route availability queries,
+option-producing intents, initiated transactions, and all activity.
 
 ## Privacy Rules
 
@@ -80,6 +91,12 @@ Hosted action pages must show only data needed for the current action:
 - do not show unrelated PayToDapps, unrelated routes, route preferences, wallet addresses, provider internals, or private diagnostics.
 
 Route-selection pages must validate the action state before rendering eligible PayToDapps or defaults. Expired, invalid, completed, denied, and restart-required states must not reveal whether the hidden recipient has other routes.
+
+History pages must show only the signed-in user's GlobalPayTo activity. Query
+rows mean a PayingDapp checked available routes only. Intent rows mean a request
+like "send USDT from Base to this recipient" produced a set of options.
+Transaction rows mean an option was selected and a transfer was initiated; they
+must not imply provider-confirmed settlement.
 
 Cubid comms notification links may land on hosted actions, but the site is not the notification delivery system.
 

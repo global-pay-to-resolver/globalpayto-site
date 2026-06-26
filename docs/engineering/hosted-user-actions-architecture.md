@@ -10,7 +10,9 @@ This public repo owns the user-facing GlobalPayTo site and the minimal hosted ac
 
 The MVP site surfaces are:
 
+- Sign in with Cubid for app access.
 - route-selection links for choosing a default when multiple PayToDapps support the same route.
+- signed-in incoming history for resolver activity grouped by PayingDapp, PayToDapp, token, or chain, with quick filters for queries, intents, transactions, and all activity.
 - landing targets for Cubid comms `payment_intent_created` notifications when the notification links back to the current intent context.
 
 The site does not own production Supabase schema, Edge Functions, provider callbacks, audit logging, private admin tools, or operational resolver logic.
@@ -22,7 +24,6 @@ For public protocol contracts and integration examples, see the GlobalPayTo SDK 
 The site is not a full dashboard in the MVP. It should not include:
 
 - wallet manager pages,
-- activity history,
 - public searchable profiles,
 - directory pages,
 - payment status tracking beyond the action being completed,
@@ -31,7 +32,12 @@ The site is not a full dashboard in the MVP. It should not include:
 - arbitrary wallet connection,
 - private admin or provider operation views.
 
-The site exists to help a user safely complete receive-route selection that an API flow could not finish without user involvement.
+The site exists to help a user safely complete receive-route selection that an
+API flow could not finish without user involvement and to let a signed-in user
+review GlobalPayTo resolver activity without exposing wallet graphs. The history
+view is intentionally narrow: it distinguishes route availability queries,
+option-producing intents, and initiated transactions, but it is not a wallet
+manager, payment settlement tracker, inbox, or admin console.
 
 MVP notifications are limited to `payment_intent_created` through Cubid comms. Payment-received landing behavior belongs to a future provider-reported receipt phase with its own trust and disclosure rules. The site may render a linked intent-created landing target, but it should not become the notification delivery system.
 
@@ -57,7 +63,7 @@ The page should show:
 - the current default when one exists,
 - the effect of choosing a default.
 
-The hosted action must validate the action token and authenticate the user before route options, eligible PayToDapps, or current defaults are rendered. Route details should be fetched for that action after validation rather than embedded in an unauthenticated URL.
+The hosted action must validate the action token and authenticate the user before route options, eligible PayToDapps, or current defaults are rendered. Route details should be fetched for that action after validation rather than embedded in an unauthenticated URL. In the current site, the route-selection page is gated by the shared Cubid auth provider and fetches action details from the action API only after the user reaches the signed-in state.
 
 It should not reveal unrelated routes, wallet addresses, provider internals, or a user's broader payment graph.
 
@@ -86,7 +92,7 @@ Keep deprecated wallet-heavy Cubid starter patterns out of this app.
 
 ## API Expectations
 
-The hosted action pages should receive opaque action identifiers or tokens, not private backend state.
+The hosted action pages should receive opaque action identifiers or tokens, not private backend state. `/actions/*` and `/history` are signed-in app surfaces; unauthenticated users see a Cubid sign-in gate or a safe configuration state.
 
 Sprint 1 hosted action contract details live in [`hosted-action-contract.md`](./hosted-action-contract.md).
 
@@ -113,6 +119,17 @@ The public SDK docs should define any response status names that integrators nee
 
 Notification-triggered visits should use the same opaque action identifiers or short-lived tokens as other hosted action pages.
 
+History page inputs:
+
+- signed-in Cubid browser session,
+- grouping mode: PayingDapp, PayToDapp, token, or chain,
+- optional activity type filter: queries, intents, transactions, or all.
+
+History rows show only the current user's resolver activity. Transactions show
+sent timestamp, PayingDapp, sent value, token, and chain, plus received
+timestamp, PayToDapp, received value, token, and chain. Queries and intents use
+the same row shape but must not imply settlement or payment receipt.
+
 ## Privacy Requirements
 
 The site must:
@@ -123,14 +140,17 @@ The site must:
 - avoid storing secrets in local storage,
 - handle expired links without leaking whether a recipient exists,
 - avoid displaying notification content that exposes wallet graphs, unrelated PayToDapps, route preferences, provider internals, or raw identifiers,
+- keep `/actions/*` and `/history` behind Cubid sign-in,
+- keep history scoped to the current signed-in user and avoid exposing wallet addresses, unrelated routes, or settlement claims,
 - use masked identifier displays when a stamp value is shown.
 
 ## Acceptance Targets
 
 The site architecture is MVP-complete when:
 
-- a user can complete pay-to stamp enablement or authorization from a setup link,
 - a user can choose a route default when overlapping PayToDapp routes exist,
+- a user can sign in with Cubid before viewing route-selection or history pages,
+- a user can review incoming resolver activity by group and activity type without wallet graph disclosure,
 - expired or invalid links fail safely,
 - the browser bundle contains no resolver secrets,
 - the site calls backend APIs rather than writing directly to production data stores,

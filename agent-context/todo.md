@@ -131,7 +131,7 @@ Acceptance notes:
 - Site no longer centers wallet-heavy examples, deprecated Cubid package usage, or normal Cubid transaction-signing examples.
 - Retained Cubid starter behavior supports identity, consent, verification, or hosted action flows.
 - Retained Cubid comms behavior supports notification-driven action links without adding an inbox or activity feed.
-- Public UI does not imply dashboard, wallet manager, activity history, profile directory, or wallet graph features.
+- Public UI does not imply a full dashboard, wallet manager, public activity history, profile directory, settlement tracker, or wallet graph features.
 
 ## Sprint 3: Backend Integration And Privacy Hardening
 

@@ -3,9 +3,10 @@
 Public user-facing app/site for GlobalPayTo.
 
 This repo owns the browser-safe hosted pages used for GlobalPayTo user actions,
-including route-selection links and notification landing targets. Private resolver
-implementation, production Supabase schema, provider callbacks, audit logging,
-and admin tooling belong outside this public repo.
+including signed-in route-selection links, signed-in incoming history, and
+notification landing targets. Private resolver implementation, production
+Supabase schema, provider callbacks, audit logging, and admin tooling belong
+outside this public repo.
 
 ## Architecture
 
@@ -34,6 +35,10 @@ or normal Cubid transaction-signing examples from those projects.
 
 ## What This Starter Shows
 
+- GlobalPayTo landing page with Sign in with Cubid.
+- Signed-in `/actions/route-selection/[actionId]` route-selection flow.
+- Signed-in `/history` view grouped by PayingDapp, PayToDapp, token, or chain,
+  with quick filters for queries, intents, transactions, and all activity.
 - `@cubid/core` in a server-only Next.js API route for dapp API-key calls.
 - `@cubid/auth` and `@cubid/auth-react` for Login with Cubid / OIDC PKCE.
 - `@cubid/browser` and `@cubid/react` for hosted ClearPass Verify launchers.
@@ -43,6 +48,10 @@ or normal Cubid transaction-signing examples from those projects.
 
 Cubid dapp API keys, service-role keys, and recovery bundle material must stay
 out of browser env vars and client bundles.
+
+`/actions/*` and `/history` are Cubid-authenticated app surfaces. When Cubid
+browser config is missing, those routes render a safe setup state instead of
+hydrating action details or history data.
 
 ## Copy-Paste Local Setup
 
