@@ -28,9 +28,10 @@ export async function submitHostedAction(input: {
   if (!resolverBaseUrl) {
     const action = getRouteSelectionAction(input.actionId);
     if (action.state !== "ready") return { state: "restart_required" };
+    const options = action.paths.flatMap((path) => path.options);
     if (
       input.decision === "select_route" &&
-      !action.options.some((option) => option.id === input.selectedRouteId)
+      !options.some((option) => option.id === input.selectedRouteId)
     ) {
       return { state: "restart_required" };
     }

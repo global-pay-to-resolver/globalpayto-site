@@ -1,9 +1,14 @@
 "use client";
 
 import { CheckCircle2, Circle, GitBranch, XCircle } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-import type { HostedActionState, RouteSelectionAction } from "@/lib/mock-actions";
+import type {
+  HostedActionState,
+  ReceivePath,
+  RouteOption,
+  RouteSelectionAction,
+} from "@/lib/mock-actions";
 
 interface RouteSelectionClientProps {
   action: RouteSelectionAction;
@@ -12,16 +17,16 @@ interface RouteSelectionClientProps {
 
 const stateCopy: Record<HostedActionState, { title: string; body: string }> = {
   ready: {
-    title: "Choose a payment route",
-    body: "Pick the wallet app this paying app should use for this route.",
+    title: "Choose receive defaults",
+    body: "Review each chain and token channel. Channels with one PayToDapp are ready; channels with multiple PayToDapps need a default.",
   },
   denied: {
-    title: "No route change made",
-    body: "Your existing payment preferences were not changed.",
+    title: "No default changed",
+    body: "Your existing receive preferences were not changed.",
   },
   selected_route: {
-    title: "Route preference saved",
-    body: "This app can now use the selected route for matching payment intents.",
+    title: "Default saved",
+    body: "This receive channel can now use the selected PayToDapp by default.",
   },
   expired: {
     title: "This link expired",
@@ -37,24 +42,42 @@ const stateCopy: Record<HostedActionState, { title: string; body: string }> = {
   },
   restart_required: {
     title: "Restart required",
-    body: "Open a fresh route-selection link from the requesting app.",
+    body: "Open a fresh route-selection link.",
   },
 };
 
 export function RouteSelectionClient({ action, submitUrl }: RouteSelectionClientProps) {
   const [state, setState] = useState<HostedActionState>(action.state);
-  const [selectedId, setSelectedId] = useState(() =>
-    action.options.some((option) => option.id === action.currentDefaultId)
-      ? action.currentDefaultId
-      : action.options[0]?.id ?? ""
+  const paths = useMemo(() => action.paths ?? [], [action.paths]);
+  const [selectedPathId, setSelectedPathId] = useState(() => paths[0]?.id ?? "");
+  const [selectedOptionByPath, setSelectedOptionByPath] = useState<Record<string, string>>(() =>
+    Object.fromEntries(
+      paths.map((path) => [
+        path.id,
+        path.options.some((option) => option.id === path.currentDefaultId)
+          ? path.currentDefaultId
+          : path.options[0]?.id ?? "",
+      ]),
+    )
   );
   const [pending, setPending] = useState(false);
+
   const copy = stateCopy[state];
   const isReady = state === "ready";
-  const selectedOption = action.options.find((option) => option.id === selectedId);
+  const selectedPath = paths.find((path) => path.id === selectedPathId) ?? paths[0];
+  const selectedOption = selectedPath
+    ? selectedPath.options.find((option) => option.id === selectedOptionByPath[selectedPath.id]) ??
+      selectedPath.options[0]
+    : undefined;
+  const needsDefault = Boolean(selectedPath && selectedPath.options.length > 1);
+
+  const totalChoices = useMemo(
+    () => paths.reduce((sum, path) => sum + path.options.length, 0),
+    [paths],
+  );
 
   async function submit(decision: "select_route" | "leave_unchanged") {
-    if (decision === "select_route" && !selectedOption) {
+    if (decision === "select_route" && (!selectedPath || !selectedOption || !needsDefault)) {
       setState("restart_required");
       return;
     }
@@ -73,7 +96,6 @@ export function RouteSelectionClient({ action, submitUrl }: RouteSelectionClient
         state?: HostedActionState;
         selectedRouteId?: string;
       };
-      if (result.selectedRouteId) setSelectedId(result.selectedRouteId);
       setState(result.state ?? "restart_required");
     } catch {
       setState("restart_required");
@@ -82,60 +104,65 @@ export function RouteSelectionClient({ action, submitUrl }: RouteSelectionClient
     }
   }
 
+  function selectOption(path: ReceivePath, option: RouteOption) {
+    setSelectedOptionByPath((current) => ({
+      ...current,
+      [path.id]: option.id,
+    }));
+  }
+
   return (
     <main className="min-h-screen bg-[#f7f8f4] px-5 py-8 text-[#151713] sm:px-8">
-      <section className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-        <div className="rounded-lg border border-[#d9dfd1] bg-white p-6 shadow-sm">
+      <section className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.82fr_1.18fr]">
+        <div className="rounded-lg border border-[#d9dfd1] bg-white p-5 shadow-sm">
           <div className="flex h-11 w-11 items-center justify-center rounded-md bg-[#e5eef8] text-[#245c8d]">
             <GitBranch size={24} aria-hidden="true" />
           </div>
-          <h1 className="mt-6 text-3xl font-semibold leading-tight text-[#111611] sm:text-4xl">
+          <h1 className="mt-5 text-3xl font-semibold leading-tight text-[#111611] sm:text-4xl">
             {copy.title}
           </h1>
-          <p className="mt-4 text-base leading-7 text-[#586250]">{copy.body}</p>
-          <dl className="mt-8 grid gap-4 text-sm">
-            <div>
-              <dt className="font-semibold text-[#151713]">Paying app</dt>
-              <dd className="mt-1 text-[#586250]">{action.payingDappName}</dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-[#151713]">Pay-to identifier</dt>
-              <dd className="mt-1 text-[#586250]">{action.maskedIdentifier}</dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-[#151713]">Route</dt>
-              <dd className="mt-1 text-[#586250]">{action.routeLabel}</dd>
-            </div>
-          </dl>
-        </div>
+          <p className="mt-3 text-base leading-7 text-[#586250]">{copy.body}</p>
 
-        <div className="rounded-lg border border-[#d9dfd1] bg-[#fbfcf8] p-5 shadow-sm">
-          <div className="grid gap-3">
-            {isReady && action.options.length > 0 ? (
-              action.options.map((option) => {
-                const selected = selectedId === option.id;
+          <div className="mt-6 rounded-md border border-[#dfe5d7] bg-[#fbfcf8] p-4 text-sm leading-6 text-[#586250]">
+            <span className="font-semibold text-[#151713]">{action.maskedIdentifier}</span>
+            <span className="mx-2 text-[#9aa493]">/</span>
+            <span>{paths.length} channels</span>
+            <span className="mx-2 text-[#9aa493]">/</span>
+            <span>{totalChoices} PayToDapp options</span>
+          </div>
+
+          <div className="mt-5 grid gap-3">
+            {isReady && paths.length > 0 ? (
+              paths.map((path) => {
+                const active = selectedPath?.id === path.id;
+                const optionCount = path.options.length;
+                const status = optionCount === 1 ? "Single option" : `${optionCount} options`;
 
                 return (
                   <button
-                    className="grid grid-cols-[auto_1fr] gap-4 rounded-md border border-[#dfe5d7] bg-white p-4 text-left transition hover:border-[#b9c7ad] disabled:opacity-70"
-                    key={option.id}
-                    onClick={() => setSelectedId(option.id)}
+                    className={`rounded-md border p-4 text-left transition ${
+                      active
+                        ? "border-[#176b46] bg-[#eef7ef]"
+                        : "border-[#dfe5d7] bg-white hover:border-[#b9c7ad]"
+                    }`}
+                    key={path.id}
+                    onClick={() => setSelectedPathId(path.id)}
                     type="button"
                   >
-                    <span className="mt-1 text-[#176b46]">
-                      {selected ? (
-                        <CheckCircle2 size={20} aria-hidden="true" />
-                      ) : (
-                        <Circle size={20} aria-hidden="true" />
-                      )}
+                    <span className="block text-base font-semibold text-[#151713]">
+                      {path.label}
                     </span>
-                    <span>
-                      <span className="block text-base font-semibold text-[#151713]">
-                        {option.name}
-                      </span>
-                      <span className="mt-1 block text-sm leading-6 text-[#586250]">
-                        {option.detail}
-                      </span>
+                    <span className="mt-1 block text-sm leading-6 text-[#586250]">
+                      {path.chain} · {path.token}
+                    </span>
+                    <span
+                      className={`mt-3 inline-flex rounded-md px-2 py-1 text-xs font-semibold ${
+                        optionCount === 1
+                          ? "bg-[#e5eef8] text-[#245c8d]"
+                          : "bg-[#e4f2e6] text-[#176b46]"
+                      }`}
+                    >
+                      {status}
                     </span>
                   </button>
                 );
@@ -143,40 +170,130 @@ export function RouteSelectionClient({ action, submitUrl }: RouteSelectionClient
             ) : (
               <div className="rounded-md border border-[#dfe5d7] bg-white p-5">
                 <p className="text-sm leading-6 text-[#586250]">
-                  Route options are hidden for this action state.
+                  Receive channels are hidden for this action state.
                 </p>
               </div>
             )}
           </div>
+        </div>
 
-          <div className="mt-5 rounded-md bg-[#f2f5ed] p-4 text-sm leading-6 text-[#4f5a49]">
-            {selectedOption
-              ? `${selectedOption.name} will be used only for this paying app, identifier, route, and asset.`
-              : "No route details are available for this action state."}
-          </div>
+        <div className="rounded-lg border border-[#d9dfd1] bg-[#fbfcf8] p-5 shadow-sm">
+          {selectedPath && selectedOption ? (
+            <div className="grid gap-5">
+              <div className="rounded-md border border-[#dfe5d7] bg-white p-5">
+                <p className="text-xs font-semibold uppercase tracking-normal text-[#245c8d]">
+                  {selectedPath.label}
+                </p>
+                <h2 className="mt-2 text-2xl font-semibold leading-snug text-[#151713]">
+                  {needsDefault ? "Select the default PayToDapp" : selectedOption.name}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-[#586250]">
+                  {needsDefault
+                    ? "More than one PayToDapp can receive this channel. Choose the default GlobalPayTo should use."
+                    : "This channel has one active PayToDapp. No default selection is needed."}
+                </p>
+              </div>
 
-          <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-            <button
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#176b46] px-5 text-sm font-semibold text-white transition hover:bg-[#12583a] disabled:bg-[#aeb8a6]"
-              disabled={!isReady || !selectedOption || pending}
-              onClick={() => void submit("select_route")}
-              type="button"
-            >
-              <CheckCircle2 size={18} aria-hidden="true" />
-              Save route
-            </button>
-            <button
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-[#cbd4c3] bg-white px-5 text-sm font-semibold text-[#2c3429] transition hover:bg-[#f1f4ec] disabled:text-[#9aa493]"
-              disabled={!isReady || pending}
-              onClick={() => void submit("leave_unchanged")}
-              type="button"
-            >
-              <XCircle size={18} aria-hidden="true" />
-              Leave unchanged
-            </button>
-          </div>
+              {needsDefault ? (
+                <div className="grid gap-3">
+                  {selectedPath.options.map((option) => {
+                    const selected = selectedOption.id === option.id;
+
+                    return (
+                      <button
+                        className="grid grid-cols-[auto_1fr] gap-4 rounded-md border border-[#dfe5d7] bg-white p-4 text-left transition hover:border-[#b9c7ad] disabled:opacity-70"
+                        key={option.id}
+                        onClick={() => selectOption(selectedPath, option)}
+                        type="button"
+                      >
+                        <span className="mt-1 text-[#176b46]">
+                          {selected ? (
+                            <CheckCircle2 size={20} aria-hidden="true" />
+                          ) : (
+                            <Circle size={20} aria-hidden="true" />
+                          )}
+                        </span>
+                        <span>
+                          <span className="block text-base font-semibold text-[#151713]">
+                            {option.name}
+                          </span>
+                          <span className="mt-1 block text-sm leading-6 text-[#586250]">
+                            {option.detail}
+                          </span>
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : null}
+
+              <PayToAppDetails option={selectedOption} />
+
+              {needsDefault ? (
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <button
+                    className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#176b46] px-5 text-sm font-semibold text-white transition hover:bg-[#12583a] disabled:bg-[#aeb8a6]"
+                    disabled={!isReady || pending}
+                    onClick={() => void submit("select_route")}
+                    type="button"
+                  >
+                    <CheckCircle2 size={18} aria-hidden="true" />
+                    Save default
+                  </button>
+                  <button
+                    className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-[#cbd4c3] bg-white px-5 text-sm font-semibold text-[#2c3429] transition hover:bg-[#f1f4ec] disabled:text-[#9aa493]"
+                    disabled={!isReady || pending}
+                    onClick={() => void submit("leave_unchanged")}
+                    type="button"
+                  >
+                    <XCircle size={18} aria-hidden="true" />
+                    Leave unchanged
+                  </button>
+                </div>
+              ) : null}
+            </div>
+          ) : (
+            <div className="rounded-md border border-[#dfe5d7] bg-white p-5">
+              <p className="text-sm leading-6 text-[#586250]">
+                Receive channel details are unavailable for this action state.
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </main>
+  );
+}
+
+function PayToAppDetails({ option }: { option: RouteOption }) {
+  return (
+    <div className="rounded-md border border-[#dfe5d7] bg-white p-5">
+      <h3 className="text-lg font-semibold text-[#151713]">{option.name}</h3>
+      <p className="mt-2 text-sm leading-6 text-[#586250]">{option.detail}</p>
+      <dl className="mt-5 grid gap-4 text-sm sm:grid-cols-2">
+        <div>
+          <dt className="font-semibold text-[#151713]">Added</dt>
+          <dd className="mt-1 text-[#586250]">{option.addedAt}</dd>
+        </div>
+        <div>
+          <dt className="font-semibold text-[#151713]">Last facilitated</dt>
+          <dd className="mt-1 text-[#586250]">{option.lastTransaction.date}</dd>
+        </div>
+        <div>
+          <dt className="font-semibold text-[#151713]">Paying app</dt>
+          <dd className="mt-1 text-[#586250]">{option.lastTransaction.payingApp}</dd>
+        </div>
+        <div>
+          <dt className="font-semibold text-[#151713]">Amount</dt>
+          <dd className="mt-1 text-[#586250]">{option.lastTransaction.amount}</dd>
+        </div>
+        <div className="sm:col-span-2">
+          <dt className="font-semibold text-[#151713]">From account</dt>
+          <dd className="mt-1 break-words text-[#586250]">
+            {option.lastTransaction.fromAccount}
+          </dd>
+        </div>
+      </dl>
+    </div>
   );
 }
