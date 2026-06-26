@@ -436,9 +436,9 @@ Acceptance notes:
 
 ### GPTW-S6-T1 Maintain Solver Adapter Homepage Section
 
-Status: TBD
-Feature branch: TBD
-Session log: TBD
+Status: Complete
+Feature branch: feature/globalpayto-resolver-migration
+Session log: agent-context/session-log/main.md#2026-06-26-gptw-s6-t1
 Depends on: globalpayto-sdk:GPTS-S5-T2
 
 Keep the homepage solver adapter section aligned with the public SDK solver ids and product positioning.

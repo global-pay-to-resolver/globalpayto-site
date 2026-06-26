@@ -171,7 +171,11 @@ export default function Home() {
 
       <MarketingTracks />
 
-      <section className="border-t border-[#d9dfd1] bg-[#101710] text-white">
+      <section
+        className="border-t border-[#d9dfd1] bg-[#101710] text-white"
+        id="solver-adapters"
+        data-testid="solver-adapters"
+      >
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
             <div>

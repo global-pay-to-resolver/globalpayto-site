@@ -240,3 +240,14 @@ head: 30fd971
 summary: Removed the hosted setup/requesting-app approval flow from the public site and kept route selection as the only hosted action surface.
 validation: Ran pnpm typecheck, pnpm lint, pnpm build, pnpm scan:browser-secrets, and pnpm privacy:route-selection; Next no longer builds /actions/setup or /api/actions/setup routes.
 follow-ups: Update any future site acceptance work to cover route selection only, with send-to channels enabled by default for requesting apps.
+
+---
+
+## 2026-06-26-gptw-s6-t1
+
+agent: Codex
+branch: feature/globalpayto-resolver-migration
+todo: globalpayto-site:GPTW-S6-T1
+summary: Kept the homepage solver-adapter section aligned with the public six-solver set and added a stable solver-adapters anchor/test hook for ongoing content checks.
+validation: Ran pnpm typecheck, pnpm lint, and pnpm build.
+follow-ups: Add a public developer explainer for preferred-solver behavior, quote fanout, and receive-requirement boundaries.
