@@ -1,80 +1,94 @@
 import {
-  BellRing,
-  CheckCircle2,
-  Fingerprint,
+  ArrowRight,
+  CircleDollarSign,
+  Code2,
   GitBranch,
-  History,
+  Link2,
+  Route,
+  ShieldCheck,
+  WalletCards,
 } from "lucide-react";
 import Link from "next/link";
 
 import { CubidSessionControl } from "@/components/cubid/session-control";
+import { MarketingTracks } from "@/components/marketing/marketing-tracks";
 
-const actionLinks = [
+const introPoints = [
   {
-    href: "/actions/route-selection/gptr_act_route_demo",
-    icon: GitBranch,
-    title: "Choose a receive route",
-    text: "Pick the PayToDapp that should receive funds for a path when more than one channel is available.",
+    icon: Link2,
+    title: "One pay-to tag",
+    text: "A globally recognized tag becomes the bridge between apps, wallets, users, chains, and assets.",
   },
   {
-    href: "/history",
-    icon: History,
-    title: "View incoming history",
-    text: "Review facilitated incoming transactions by paying app, PayToDapp, token, or chain.",
+    icon: Route,
+    title: "Optimized routing",
+    text: "The sender can send from where they are; the recipient receives only through approved routes.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "No wallet graph",
+    text: "Apps resolve a payment flow, not a permanent address book of a user's wallets.",
   },
 ];
 
-const principles = [
-  {
-    icon: Fingerprint,
-    title: "Verified identifiers",
-    text: "Users pay with Cubid-backed stamps while hosted actions show masked displays only.",
-  },
-  {
-    icon: CheckCircle2,
-    title: "Scoped consent",
-    text: "Send-to channels are enabled by default for requesting apps while users control receive-route preferences.",
-  },
-  {
-    icon: BellRing,
-    title: "Intent notifications",
-    text: "MVP notification copy is limited to payment intent created events through Cubid comms.",
-  },
+const ecosystemSteps = [
+  "Paying app asks for a route",
+  "GlobalPayTo resolves options",
+  "Receiving app creates the intent",
+  "User gets paid where they prefer",
 ];
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#f7f8f4] text-[#151713]">
-      <section className="border-b border-[#d9dfd1] bg-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-16">
-          <div className="flex flex-col justify-center">
-            <div className="mb-8">
-              <CubidSessionControl />
-            </div>
-            <h1 className="max-w-4xl text-5xl font-semibold leading-[1.04] tracking-normal text-[#111611] sm:text-6xl">
-              GlobalPayTo hosted actions
+    <main className="min-h-screen bg-[#f6f7f2] text-[#121612]">
+      <header className="border-b border-[#d9dfd1] bg-[#fbfcf8]/95">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4 lg:px-8">
+          <Link className="text-base font-semibold text-[#121612]" href="/">
+            GlobalPayTo
+          </Link>
+          <nav className="flex flex-wrap items-center gap-3 text-sm font-semibold text-[#4f5a49]">
+            <a className="hover:text-[#176b46]" href="#tracks">
+              Tracks
+            </a>
+            <Link className="hover:text-[#176b46]" href="/blog">
+              Blog
+            </Link>
+            <Link className="hover:text-[#176b46]" href="/history">
+              History
+            </Link>
+          </nav>
+        </div>
+      </header>
+
+      <section className="relative overflow-hidden border-b border-[#d9dfd1] bg-[#0f1712] text-white">
+        <div className="absolute inset-0 opacity-55">
+          <div className="h-full w-full bg-[radial-gradient(circle_at_18%_28%,rgba(63,167,111,0.42),transparent_28%),radial-gradient(circle_at_82%_12%,rgba(87,134,192,0.36),transparent_24%),linear-gradient(135deg,#0f1712_0%,#17251b_48%,#0d1511_100%)]" />
+        </div>
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#97c39d] to-transparent" />
+
+        <div className="relative mx-auto grid min-h-[calc(100svh-73px)] max-w-7xl content-center gap-12 px-6 py-16 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+          <div className="animate-[fadeUp_650ms_ease-out_both]">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#9fd3a5]">
+              Pay users, not wallet addresses
+            </p>
+            <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-[1.02] tracking-normal sm:text-7xl">
+              A global pay-to layer for crypto apps.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#4f5a49]">
-              Users manage receive-route choices in a browser-safe flow. Send-to
-              channels are pre-authorized for requesting apps by default; hosted
-              actions are for choosing where funds should land when a route
-              preference is needed.
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#d6dfd1]">
+              GlobalPayTo lets sending apps reach any user through a simple tag
+              while receiving apps and wallets stay in control of where funds
+              land.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                className="inline-flex h-11 items-center justify-center rounded-md bg-[#176b46] px-5 text-sm font-semibold text-white transition hover:bg-[#12583a]"
-                href="/actions/route-selection/gptr_act_route_demo"
+              <a
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#9fd3a5] px-5 text-sm font-semibold text-[#101710] transition hover:bg-[#b8e3ba]"
+                href="#tracks"
               >
-                Open route selection
-              </Link>
+                Choose your track
+                <ArrowRight size={17} aria-hidden="true" />
+              </a>
               <Link
-                className="inline-flex h-11 items-center justify-center rounded-md border border-[#cbd4c3] bg-white px-5 text-sm font-semibold text-[#2c3429] transition hover:bg-[#f1f4ec]"
-                href="/history"
-              >
-                View history
-              </Link>
-              <Link
-                className="inline-flex h-11 items-center justify-center rounded-md border border-[#cbd4c3] bg-white px-5 text-sm font-semibold text-[#2c3429] transition hover:bg-[#f1f4ec]"
+                className="inline-flex h-11 items-center justify-center rounded-md border border-[#6f806f] px-5 text-sm font-semibold text-white transition hover:bg-white/10"
                 href="/blog"
               >
                 Read the blog
@@ -82,46 +96,137 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid gap-4">
-            {actionLinks.map((item) => {
+          <div className="animate-[fadeUp_800ms_160ms_ease-out_both]">
+            <div className="relative mx-auto aspect-square max-w-[34rem]">
+              <div className="absolute inset-8 rounded-full border border-[#d6e5d0]/20" />
+              <div className="absolute inset-20 rounded-full border border-[#d6e5d0]/25" />
+              <div className="absolute left-1/2 top-1/2 flex h-32 w-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#9fd3a5]/40 bg-[#f6f7f2] text-[#121612] shadow-2xl">
+                <span className="text-center text-sm font-bold leading-5">
+                  pay-to
+                  <br />
+                  tag
+                </span>
+              </div>
+              {ecosystemSteps.map((step, index) => (
+                <div
+                  className={`absolute max-w-40 rounded-md border border-white/15 bg-white/10 p-3 text-sm leading-5 text-[#eef4ea] backdrop-blur transition duration-200 hover:-translate-y-1 hover:bg-white/15 ${
+                    index === 0
+                      ? "left-0 top-16"
+                      : index === 1
+                        ? "right-0 top-24"
+                        : index === 2
+                          ? "bottom-20 left-3"
+                          : "bottom-10 right-4"
+                  }`}
+                  key={step}
+                >
+                  {step}
+                </div>
+              ))}
+              <div className="absolute left-1/2 top-1/2 h-[78%] w-px -translate-x-1/2 -translate-y-1/2 rotate-45 bg-gradient-to-b from-transparent via-[#9fd3a5]/70 to-transparent" />
+              <div className="absolute left-1/2 top-1/2 h-[78%] w-px -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-gradient-to-b from-transparent via-[#8cb0d8]/70 to-transparent" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-[#d9dfd1] bg-white">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-[0.75fr_1.25fr] lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#176b46]">
+              The network layer
+            </p>
+            <h2 className="mt-4 text-4xl font-semibold leading-tight">
+              Three audiences. One payment primitive.
+            </h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {introPoints.map((item) => {
               const Icon = item.icon;
 
               return (
-                <Link
-                  className="grid grid-cols-[auto_1fr] gap-4 rounded-lg border border-[#d9dfd1] bg-[#fbfcf8] p-5 shadow-sm transition hover:border-[#b9c7ad]"
-                  href={item.href}
-                  key={item.href}
-                >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-md bg-[#e4f2e6] text-[#176b46]">
-                    <Icon size={22} aria-hidden="true" />
-                  </span>
-                  <span>
-                    <span className="block text-lg font-semibold text-[#151713]">
-                      {item.title}
-                    </span>
-                    <span className="mt-2 block text-sm leading-6 text-[#586250]">
-                      {item.text}
-                    </span>
-                  </span>
-                </Link>
+                <div className="border-l border-[#d9dfd1] pl-5" key={item.title}>
+                  <Icon className="text-[#245c8d]" size={22} aria-hidden="true" />
+                  <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#586250]">{item.text}</p>
+                </div>
               );
             })}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-4 px-6 py-8 lg:grid-cols-3 lg:px-8">
-        {principles.map((item) => {
-          const Icon = item.icon;
+      <MarketingTracks />
 
-          return (
-            <div className="rounded-lg border border-[#d9dfd1] bg-white p-5" key={item.title}>
-              <Icon className="text-[#245c8d]" size={22} aria-hidden="true" />
-              <h2 className="mt-4 text-base font-semibold text-[#151713]">{item.title}</h2>
-              <p className="mt-2 text-sm leading-6 text-[#586250]">{item.text}</p>
+      <section className="bg-[#f6f7f2]">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-[1fr_1fr] lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#176b46]">
+              Developer-led, user-safe
+            </p>
+            <h2 className="mt-4 text-4xl font-semibold leading-tight">
+              Built to reduce integration surface area without taking control
+              away from apps.
+            </h2>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {[
+              {
+                icon: Code2,
+                title: "Simple API",
+                text: "Sending apps ask for a payment route by tag instead of collecting wallet details.",
+              },
+              {
+                icon: WalletCards,
+                title: "Wallet-native setup",
+                text: "Receiving apps can own setup inside their existing wallet experience.",
+              },
+              {
+                icon: GitBranch,
+                title: "Route choice",
+                text: "Users approve what they can receive; routing handles the rest.",
+              },
+              {
+                icon: CircleDollarSign,
+                title: "Fee control",
+                text: "Sender apps set and pay their fees; receiving users pay nothing to receive.",
+              },
+            ].map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <div className="rounded-md border border-[#d9dfd1] bg-white p-5" key={item.title}>
+                  <Icon className="text-[#245c8d]" size={22} aria-hidden="true" />
+                  <h3 className="mt-4 text-base font-semibold">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#586250]">{item.text}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-[#d9dfd1] bg-white">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+          <div>
+            <h2 className="text-2xl font-semibold">Ready to build on pay-to tags?</h2>
+            <p className="mt-2 text-sm leading-6 text-[#586250]">
+              Start with the track that matches your app, then wire the SDK
+              contracts into your product flow.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <a
+              className="inline-flex h-11 items-center justify-center rounded-md bg-[#176b46] px-5 text-sm font-semibold text-white transition hover:bg-[#12583a]"
+              href="#tracks"
+            >
+              Compare tracks
+            </a>
+            <div className="sm:min-w-48">
+              <CubidSessionControl />
             </div>
-          );
-        })}
+          </div>
+        </div>
       </section>
     </main>
   );

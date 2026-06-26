@@ -1,12 +1,12 @@
 # GlobalPayTo Site
 
-Public user-facing app/site for GlobalPayTo.
+Public marketing app/site for GlobalPayTo.
 
-This repo owns the browser-safe hosted pages used for GlobalPayTo user actions,
-including signed-in route-selection links, signed-in incoming history, and
-notification landing targets. Private resolver implementation, production
-Supabase schema, provider callbacks, audit logging, and admin tooling belong
-outside this public repo.
+This repo owns the developer-led marketing homepage for GlobalPayTo plus the
+browser-safe hosted pages used for signed-in route-selection links, signed-in
+incoming history, and notification landing targets. Private resolver
+implementation, production Supabase schema, provider callbacks, audit logging,
+and admin tooling belong outside this public repo.
 
 ## Architecture
 
@@ -36,6 +36,8 @@ or normal Cubid transaction-signing examples from those projects.
 ## What This Starter Shows
 
 - GlobalPayTo landing page with Sign in with Cubid.
+- Three marketing tracks for users, devs of sending apps, and devs of receiving
+  apps/wallets.
 - Signed-in `/actions/route-selection/[actionId]` route-selection flow.
 - Signed-in `/history` view grouped by PayingDapp, PayToDapp, token, or chain,
   with quick filters for queries, intents, transactions, and all activity.

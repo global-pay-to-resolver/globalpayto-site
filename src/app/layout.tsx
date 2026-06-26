@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GlobalPayTo Hosted Actions",
+  title: "GlobalPayTo",
   description:
-    "Browser-safe hosted action pages for GlobalPayTo receive-route selection.",
+    "A global pay-to layer for crypto apps, sending apps, receiving apps, wallets, and users.",
 };
 
 export default function RootLayout({
