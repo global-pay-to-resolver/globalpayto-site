@@ -37,6 +37,39 @@ const ecosystemSteps = [
   "User gets paid where they prefer",
 ];
 
+const solverCards = [
+  {
+    name: "NEAR Intents / 1Click",
+    bestFor: "Crypto-to-crypto swaps, cross-chain stablecoin delivery, and distribution-channel fees.",
+    text: "NEAR 1Click gives GlobalPayTo a strong default execution adapter when both sides are crypto or stablecoin. It abstracts intent creation, solver coordination, transaction execution, status tracking, retries, refunds, and quote-level fee configuration behind a REST surface.",
+  },
+  {
+    name: "LI.FI",
+    bestFor: "EVM and Solana routing, bridge/DEX aggregation, and wallet-controlled execution.",
+    text: "LI.FI is an aggregator/router with a practical developer surface for fetching quotes, executing cross-chain transfers, and tracking status. Its quote model can return an estimated result plus a transaction request that a wallet can sign, which fits payor-wallet UX well.",
+  },
+  {
+    name: "Squid",
+    bestFor: "Broad chain coverage, cross-chain swaps, bridges, contract calls, and Cosmos/Axelar-style routes.",
+    text: "Squid is useful when GlobalPayTo needs breadth across ecosystems. It covers swaps, bridges, and contract calls across many chains, and its Boost model points toward fast optimistic settlement for eligible routes.",
+  },
+  {
+    name: "0x Cross-Chain API",
+    bestFor: "Cross-chain payments, EVM/Solana routing, stablecoin settlement, fallback paths, and progress tracking.",
+    text: "0x is especially relevant because cross-chain payments are part of its positioning. It can become a high-quality execution adapter for stablecoin payment flows where quote speed, fallback behavior, and execution tracking matter.",
+  },
+  {
+    name: "Across",
+    bestFor: "Fast EVM/L2 stablecoin bridging with lower route complexity where supported.",
+    text: "Across is narrower than broad solver networks, but that can be a strength. For supported EVM and L2 stablecoin transfers, it offers a simpler bridge-focused path that can be easier to evaluate and present to sending apps.",
+  },
+  {
+    name: "LayerZero / Stargate",
+    bestFor: "Cross-chain token transfers, OFT assets, LayerZero ecosystem routes, and Stargate-supported stablecoins.",
+    text: "LayerZero Value Transfer and Stargate matter where token transfer infrastructure is already strong. GlobalPayTo should treat them as execution adapters that need careful asset canonicalization, not as recipient-resolution systems.",
+  },
+];
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#f6f7f2] text-[#121612]">
@@ -137,6 +170,40 @@ export default function Home() {
       </section>
 
       <MarketingTracks />
+
+      <section className="border-t border-[#d9dfd1] bg-[#101710] text-white">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9fd3a5]">
+                Solver-ready execution
+              </p>
+              <h2 className="mt-4 text-4xl font-semibold leading-tight">
+                Quote every viable crypto-native route when no solver is preferred.
+              </h2>
+              <p className="mt-5 text-sm leading-7 text-[#c9d7c4]">
+                GlobalPayTo resolves who should receive. Execution adapters then
+                compete or route the payment without learning the recipient&apos;s
+                broader wallet graph.
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              {solverCards.map((solver) => (
+                <article
+                  className="rounded-md border border-white/12 bg-white/[0.06] p-5 transition duration-200 hover:-translate-y-1 hover:bg-white/[0.09]"
+                  key={solver.name}
+                >
+                  <h3 className="text-lg font-semibold">{solver.name}</h3>
+                  <p className="mt-3 text-sm font-semibold leading-6 text-[#9fd3a5]">
+                    {solver.bestFor}
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-[#d7e1d2]">{solver.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="bg-[#f6f7f2]">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-[1fr_1fr] lg:px-8">
