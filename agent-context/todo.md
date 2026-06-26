@@ -431,3 +431,52 @@ Acceptance notes:
 - Post covers verified stamps as pay-to identifiers, PublicCubidPayToID, Cubid-brokered DappUserId sharing, and manual fallback identifiers.
 - Post recommends verified stamps as the likely MVP default.
 - Post frames public IDs as useful but optional rather than required for payment resolution.
+
+## Sprint 6: Solver Adapter Public Education
+
+### GPTW-S6-T1 Maintain Solver Adapter Homepage Section
+
+Status: TBD
+Feature branch: TBD
+Session log: TBD
+Depends on: globalpayto-sdk:GPTS-S5-T2
+
+Keep the homepage solver adapter section aligned with the public SDK solver ids and product positioning.
+
+Acceptance notes:
+
+- Homepage names NEAR Intents / 1Click, LI.FI, Squid, 0x Cross-Chain API, Across, and LayerZero / Stargate.
+- Copy explains that GlobalPayTo resolves recipients first and execution adapters quote or route payment execution afterward.
+- Copy avoids implying that solver adapters determine the recipient's preferred PayToDapp.
+- Section remains responsive and does not introduce horizontal overflow on mobile.
+
+### GPTW-S6-T2 Add Solver Adapter Developer Explainer
+
+Status: TBD
+Feature branch: TBD
+Session log: TBD
+Depends on: globalpayto-sdk:GPTS-S5-T1, globalpayto-sdk:GPTS-S5-T2
+
+Add public developer-facing content that explains how payor-apps should think about solver/router adapters.
+
+Acceptance notes:
+
+- Content explains preferred-solver behavior versus quote fanout when no solver is selected.
+- Content explains that solver adapters consume resolved receive requirements and do not expose recipient wallet graphs.
+- Content links to public SDK docs when quote provider helpers are available.
+- Content does not link into private `globalpayto` docs or expose backend provider credentials, private policy, or operational details.
+
+### GPTW-S6-T3 Add Solver Adapter Content Checks
+
+Status: TBD
+Feature branch: TBD
+Session log: TBD
+Depends on: globalpayto-site:GPTW-S6-T1
+
+Add lightweight checks for the public solver adapter content.
+
+Acceptance notes:
+
+- Checks verify all six solver names render on the homepage.
+- Checks verify solver copy does not include private resolver env names, service-role references, provider credentials, or private repo links.
+- Checks cover desktop and mobile layouts for the solver section.
