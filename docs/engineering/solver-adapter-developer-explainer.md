@@ -59,8 +59,7 @@ Solver adapters consume a resolved receive requirement. They should not receive:
 - raw verified identifiers,
 - wallet inventory,
 - private resolver diagnostics,
-- provider credentials,
 - server-only write credentials,
-- database credentials.
+- private execution configuration.
 
 Public pages may explain adapter behavior, tradeoffs, and examples. Private provider policy, credentials, operational routing configuration, and backend storage details stay outside this repo.

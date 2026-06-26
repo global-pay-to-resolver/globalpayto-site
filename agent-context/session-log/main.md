@@ -262,3 +262,14 @@ todo: globalpayto-site:GPTW-S6-T2
 summary: Added a public solver adapter developer explainer covering payor-app flow layering, preferred-solver behavior, quote fanout, resolved receive requirements, and privacy boundaries, then linked it from the site README.
 validation: Ran a public-content scan on docs/engineering/solver-adapter-developer-explainer.md for private repo links and private credential terms, plus pnpm typecheck and pnpm lint.
 follow-ups: Add a lightweight solver-content check for homepage solver names, private-term leakage, and responsive solver-section rendering.
+
+---
+
+## 2026-06-26-gptw-s6-t3
+
+agent: Codex
+branch: feature/globalpayto-resolver-migration
+todo: globalpayto-site:GPTW-S6-T3
+summary: Added a solver-content validation script and package command that checks the homepage for all six public solver names, private-boundary leakage, and responsive solver-section layout markers.
+validation: Ran pnpm check:solver-content, pnpm typecheck, pnpm lint, and pnpm build.
+follow-ups: Continue with SmarTrust Wallet adapter migration work against the generic GlobalPayTo SDK and backend boundaries.

@@ -468,9 +468,9 @@ Acceptance notes:
 
 ### GPTW-S6-T3 Add Solver Adapter Content Checks
 
-Status: TBD
-Feature branch: TBD
-Session log: TBD
+Status: Complete
+Feature branch: feature/globalpayto-resolver-migration
+Session log: agent-context/session-log/main.md#2026-06-26-gptw-s6-t3
 Depends on: globalpayto-site:GPTW-S6-T1
 
 Add lightweight checks for the public solver adapter content.

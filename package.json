@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "scan:browser-secrets": "node scripts/scan-browser-secrets.mjs",
+    "check:solver-content": "node scripts/check-solver-content.mjs",
     "start": "next start",
     "lint": "eslint",
     "privacy:route-selection": "node scripts/check-route-selection-privacy.mjs",
