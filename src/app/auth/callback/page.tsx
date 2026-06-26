@@ -17,8 +17,8 @@ export default function CubidCallbackPage() {
 
   if (!isConfigured) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#f6f7f4] px-6 text-[#141914]">
-        <BackButton />
+      <main className="flex min-h-screen flex-col items-center justify-center bg-[#f6f7f4] px-6 py-6 text-[#141914]">
+        <BackButton desktopPadding="0rem" maxWidth="32rem" />
         <section className="w-full max-w-lg rounded-lg border border-[#d9ddd2] bg-white p-6 shadow-sm">
           <h1 className="text-2xl font-semibold">Cubid callback</h1>
           <p className="mt-3 text-sm leading-6 text-[#596456]">
@@ -43,8 +43,8 @@ export default function CubidCallbackPage() {
       issuer={publicConfig.issuer}
       redirectUri={publicConfig.redirectUri}
     >
-      <main className="flex min-h-screen items-center justify-center bg-[#f6f7f4] px-6 text-[#141914]">
-        <BackButton />
+      <main className="flex min-h-screen flex-col items-center justify-center bg-[#f6f7f4] px-6 py-6 text-[#141914]">
+        <BackButton desktopPadding="0rem" maxWidth="32rem" />
         <section className="w-full max-w-lg rounded-lg border border-[#d9ddd2] bg-white p-6 shadow-sm">
           <h1 className="text-2xl font-semibold">Completing Cubid sign-in</h1>
           <div className="mt-4 rounded-md border border-[#dce2d6] bg-[#f8faf6] p-4 text-sm leading-6">

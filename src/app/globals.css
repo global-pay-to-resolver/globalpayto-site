@@ -25,6 +25,22 @@ body {
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
+.content-back-button-shell {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--back-max-width);
+  padding: 1rem var(--back-mobile-padding) 0;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .content-back-button-shell {
+    padding-left: var(--back-desktop-padding);
+    padding-right: var(--back-desktop-padding);
+  }
+}
+
 button,
 input,
 select {

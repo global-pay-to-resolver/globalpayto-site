@@ -34,7 +34,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <main className="min-h-screen bg-[#f7f8f4] text-[#151713]">
-      <BackButton fallbackHref="/blog" />
+      <BackButton fallbackHref="/blog" maxWidth="48rem" />
       <article className="mx-auto max-w-3xl px-6 py-10 lg:px-8">
         <Link
           className="text-sm font-semibold text-[#176b46] underline-offset-4 hover:underline"

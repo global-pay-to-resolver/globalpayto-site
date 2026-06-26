@@ -12,7 +12,7 @@ export const metadata = {
 export default function BlogIndexPage() {
   return (
     <main className="min-h-screen bg-[#f7f8f4] text-[#151713]">
-      <BackButton />
+      <BackButton maxWidth="64rem" />
       <section className="border-b border-[#d9dfd1] bg-white">
         <div className="mx-auto max-w-5xl px-6 py-12 lg:px-8">
           <Link
