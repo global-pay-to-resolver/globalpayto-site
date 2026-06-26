@@ -3,6 +3,7 @@ import {
   CheckCircle2,
   Fingerprint,
   GitBranch,
+  History,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -12,6 +13,12 @@ const actionLinks = [
     icon: GitBranch,
     title: "Choose a receive route",
     text: "Pick the PayToDapp that should receive funds for a path when more than one channel is available.",
+  },
+  {
+    href: "/history",
+    icon: History,
+    title: "View incoming history",
+    text: "Review facilitated incoming transactions by paying app, PayToDapp, token, or chain.",
   },
 ];
 
@@ -54,6 +61,12 @@ export default function Home() {
                 href="/actions/route-selection/gptr_act_route_demo"
               >
                 Open route selection
+              </Link>
+              <Link
+                className="inline-flex h-11 items-center justify-center rounded-md border border-[#cbd4c3] bg-white px-5 text-sm font-semibold text-[#2c3429] transition hover:bg-[#f1f4ec]"
+                href="/history"
+              >
+                View history
               </Link>
               <Link
                 className="inline-flex h-11 items-center justify-center rounded-md border border-[#cbd4c3] bg-white px-5 text-sm font-semibold text-[#2c3429] transition hover:bg-[#f1f4ec]"
