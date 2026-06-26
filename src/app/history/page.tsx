@@ -1,6 +1,7 @@
 import { ArrowDownToLine, ArrowUpFromLine, History } from "lucide-react";
 import Link from "next/link";
 
+import { BackButton } from "@/components/navigation/back-button";
 import {
   groupIncomingTransactions,
   type IncomingHistoryFilter,
@@ -32,6 +33,7 @@ export default async function HistoryPage({ searchParams }: HistoryPageProps) {
 
   return (
     <main className="min-h-screen bg-[#f7f8f4] text-[#151713]">
+      <BackButton />
       <section className="border-b border-[#d9dfd1] bg-white">
         <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8">
           <Link

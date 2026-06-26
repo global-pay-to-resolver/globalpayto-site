@@ -3,6 +3,7 @@
 import { CheckCircle2, Circle, GitBranch, XCircle } from "lucide-react";
 import { useMemo, useState } from "react";
 
+import { BackButton } from "@/components/navigation/back-button";
 import type {
   HostedActionState,
   ReceivePath,
@@ -113,6 +114,7 @@ export function RouteSelectionClient({ action, submitUrl }: RouteSelectionClient
 
   return (
     <main className="min-h-screen bg-[#f7f8f4] px-5 py-8 text-[#151713] sm:px-8">
+      <BackButton />
       <section className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[0.82fr_1.18fr]">
         <div className="rounded-lg border border-[#d9dfd1] bg-white p-5 shadow-sm">
           <div className="flex h-11 w-11 items-center justify-center rounded-md bg-[#e5eef8] text-[#245c8d]">
