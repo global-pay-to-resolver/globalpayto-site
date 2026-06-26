@@ -1,23 +1,11 @@
 export type HostedActionState =
   | "ready"
-  | "approved"
   | "denied"
   | "selected_route"
   | "expired"
   | "invalid"
   | "completed"
   | "restart_required";
-
-export interface SetupAction {
-  id: string;
-  state: HostedActionState;
-  dappName: string;
-  dappRole: "PayingDapp" | "PayToDapp";
-  maskedIdentifier: string;
-  requestedScope: string;
-  summary: string;
-  expiresAt: string;
-}
 
 export interface RouteOption {
   id: string;
@@ -35,29 +23,6 @@ export interface RouteSelectionAction {
   options: RouteOption[];
   expiresAt: string;
 }
-
-const setupActions: Record<string, SetupAction> = {
-  "gptr_act_setup_demo": {
-    id: "gptr_act_setup_demo",
-    state: "ready",
-    dappName: "ChainCrew Payouts",
-    dappRole: "PayingDapp",
-    maskedIdentifier: "u***@example.test",
-    requestedScope: "Create one-time payment intents for this verified pay-to identifier.",
-    summary: "Approve this request to let ChainCrew resolve payments with only the scoped details shown here.",
-    expiresAt: "2026-06-24T20:00:00Z",
-  },
-  "gptr_act_setup_expired": {
-    id: "gptr_act_setup_expired",
-    state: "expired",
-    dappName: "GlobalPayTo",
-    dappRole: "PayingDapp",
-    maskedIdentifier: "Hidden until restarted",
-    requestedScope: "This action can no longer be completed.",
-    summary: "Restart from the app that sent you here.",
-    expiresAt: "2026-06-24T20:00:00Z",
-  },
-};
 
 export const routeSelectionActions: Record<string, RouteSelectionAction> = {
   "gptr_act_route_demo": {
@@ -82,24 +47,6 @@ export const routeSelectionActions: Record<string, RouteSelectionAction> = {
     expiresAt: "2026-06-24T20:00:00Z",
   },
 };
-
-// Sprint 2 fixtures only. Sprint 3 replaces this with backend token exchange
-// after action validation and Cubid-authenticated user verification.
-
-export function getSetupAction(actionId: string): SetupAction {
-  return (
-    setupActions[actionId] ?? {
-      id: actionId,
-      state: "invalid",
-      dappName: "GlobalPayTo",
-      dappRole: "PayingDapp",
-      maskedIdentifier: "Hidden",
-      requestedScope: "This action could not be loaded.",
-      summary: "Restart from the app that sent you here.",
-      expiresAt: "Unavailable",
-    }
-  );
-}
 
 export function getRouteSelectionAction(actionId: string): RouteSelectionAction {
   return (

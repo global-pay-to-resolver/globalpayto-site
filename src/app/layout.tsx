@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "GlobalPayTo Hosted Actions",
   description:
-    "Browser-safe hosted action pages for GlobalPayTo setup, authorization, and route selection.",
+    "Browser-safe hosted action pages for GlobalPayTo receive-route selection.",
 };
 
 export default function RootLayout({

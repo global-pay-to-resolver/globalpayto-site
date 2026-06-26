@@ -231,3 +231,12 @@ head: 20006c3
 summary: Completed GPTW-S5-T11 by publishing "Four Ways to Identify a User for Payment Resolution."
 validation: Confirmed the post covers verified stamps, PublicCubidPayToID, Cubid-brokered DappUserId sharing, and manual fallback identifiers while recommending verified stamps as the likely MVP default and public IDs as optional.
 follow-ups: Sprint 5 blog publishing todos are complete; run full site validation before pushing or release review.
+
+---
+
+agent: Codex
+branch: main
+head: 30fd971
+summary: Removed the hosted setup/requesting-app approval flow from the public site and kept route selection as the only hosted action surface.
+validation: Ran pnpm typecheck, pnpm lint, pnpm build, pnpm scan:browser-secrets, and pnpm privacy:route-selection; Next no longer builds /actions/setup or /api/actions/setup routes.
+follow-ups: Update any future site acceptance work to cover route selection only, with send-to channels enabled by default for requesting apps.

@@ -6,7 +6,11 @@ Repo: `globalpayto-site`
 
 ## Scope
 
-This public site repo implements browser-safe hosted actions for GlobalPayTo setup, authorization, route selection, and Cubid comms notification landing targets. It consumes the public contracts finalized in `globalpayto-sdk/docs/engineering/mvp-api-contracts.md` and does not own private resolver behavior.
+This public site repo implements browser-safe hosted actions for GlobalPayTo route selection and Cubid comms notification landing targets. It consumes the public contracts finalized in `globalpayto-sdk/docs/engineering/mvp-api-contracts.md` and does not own private resolver behavior.
+
+Per-request setup and authorization approval pages are out of scope. Send-to
+channels are pre-authorized for requesting apps by default; users manage where
+funds land by selecting or changing receive-route preferences.
 
 ## Hosted Action Inputs
 
@@ -30,13 +34,12 @@ Pages map user and resolver outcomes to a small browser-safe state model:
 
 | Page outcome | Meaning |
 | --- | --- |
-| `approved` | User approved authorization, setup, or route choice. |
 | `denied` | User declined the requested action. |
 | `selected_route` | User selected a route/default. |
 | `expired` | Action token expired. |
 | `invalid` | Action token or action id is invalid. |
 | `completed` | Action was already completed. |
-| `restart_required` | User must restart setup or authorization. |
+| `restart_required` | User must restart the route-selection action. |
 
 The site renders friendly copy for these outcomes and does not expose private backend diagnostics.
 
@@ -58,7 +61,6 @@ Any server route added in this repo must be reviewed against this public/private
 
 Copy must cover:
 
-- setup required,
 - route selection required,
 - authorization required,
 - provider temporarily unavailable,

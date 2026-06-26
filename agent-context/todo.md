@@ -11,12 +11,12 @@ Feature branch: main
 Session log: agent-context/session-log/main.md  
 Depends on: globalpayto-sdk:GPTS-S1-T1, globalpayto-sdk:GPTS-S1-T2, globalpayto-sdk:GPTS-S1-T3, globalpayto-sdk:GPTS-S1-T7
 
-Define the browser-facing contract for hosted authorization, setup, and route-selection actions.
+Define the browser-facing contract for hosted route-selection actions.
 
 Acceptance notes:
 
 - Page inputs use opaque action identifiers or short-lived action tokens.
-- Page outputs cover user approved, user denied, selected route/default, expired action, invalid action, and restart/setup-needed states.
+- Page outputs cover user denied, selected route/default, expired action, invalid action, and restart-required states.
 - Notification-triggered visits from Cubid comms use the same safe action identifier model.
 - Contract does not require direct production Supabase access from the public site.
 
@@ -46,7 +46,7 @@ Define user-facing copy for resolver statuses and Cubid comms notifications that
 
 Acceptance notes:
 
-- Copy explains setup, route selection, expired/invalid links, authorization-required, and provider-unavailable states.
+- Copy explains route selection, expired/invalid links, authorization-required, no-route, and provider-unavailable states.
 - Copy covers the MVP `payment_intent_created` notification event.
 - Copy avoids exposing private diagnostic details.
 - Copy avoids implying a wallet graph or public profile exists.
@@ -54,37 +54,35 @@ Acceptance notes:
 
 ## Sprint 2: App Design And Implementation
 
-### GPTW-S2-T1 Design Authorization And Setup Link Flow
+### GPTW-S2-T1 Design Send-To Channel Defaults
 
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md  
 Depends on: globalpayto-site:GPTW-S1-T1
 
-Design the authorization/setup flow for enabling a verified Cubid stamp as pay-to and authorizing a PayingDapp or PayToDapp.
+Design the send-to channel model where requesting apps are enabled by default and users manage receive-route preferences.
 
 Acceptance notes:
 
-- Flow makes dapp identity, requested scope, involved pay-to stamp, and approval outcome legible.
-- Flow does not hard-code email as the only possible stamp type.
-- Flow uses Cubid identity patterns that fit the current starter baseline.
-- Production setup pages must render no dapp, stamp, or scope details until backend action validation and Cubid user authentication have succeeded.
+- Flow does not ask users to approve every requesting app.
+- Flow keeps route-selection details unavailable until backend action validation and Cubid user authentication have succeeded.
+- Flow leaves revocation and channel management to Cubid-owned or future management surfaces.
 
-### GPTW-S2-T2 Implement Authorization And Setup Pages
+### GPTW-S2-T2 Remove Authorization And Setup Pages
 
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md  
 Depends on: globalpayto-site:GPTW-S2-T1
 
-Implement the hosted authorization/setup pages in the public site.
+Remove hosted authorization/setup pages from the public site.
 
 Acceptance notes:
 
-- Pages can render action state, approval/denial controls, and safe expired/invalid states.
-- Pages do not store secrets in local storage.
-- Pages do not write directly to production Supabase.
-- Sprint 2 completion states are mock-only; Sprint 3 must replace local completion with backend-confirmed approval or denial plus action-token invalidation.
+- Public routes do not include `/actions/setup/[actionId]`.
+- The homepage does not link to setup approval actions.
+- Route-selection pages remain browser-safe and do not write directly to production Supabase.
 
 ### GPTW-S2-T3 Design Route Selection Flow
 
@@ -144,13 +142,13 @@ Feature branch: main
 Session log: agent-context/session-log/main.md
 Depends on: globalpayto:GPTR-S3-T1, globalpayto:GPTR-S3-T4, globalpayto:GPTR-S3-T7
 
-Wire hosted action pages to backend action endpoints for authorization/setup and route selection.
+Wire hosted action pages to backend action endpoints for route selection.
 
 Acceptance notes:
 
 - Site submits user decisions through backend APIs rather than direct database writes.
 - API responses are mapped to public status copy.
-- Setup, authorization, and route-selection actions are initiated from resolver responses.
+- Only route-selection actions are initiated from resolver responses.
 - Cubid-comms-driven user-action links are deferred until that event contract is explicitly added.
 - Integration preserves browser-safe configuration boundaries.
 
@@ -166,7 +164,7 @@ Implement safe handling for expired, invalid, already-used, or denied action lin
 Acceptance notes:
 
 - Expired or invalid states do not reveal whether a recipient exists.
-- Restart/setup-needed paths use public backend-provided guidance.
+- Restart-required paths use public backend-provided guidance.
 - Pages avoid leaking private diagnostics.
 - Action-token pages set a restrictive `Referrer-Policy`.
 - Action-token URLs avoid third-party analytics, redact tokens from logs, and exchange valid tokens into clean URLs after validation.
@@ -212,11 +210,11 @@ Feature branch: TBD
 Session log: TBD  
 Depends on: globalpayto-site:GPTW-S2-T2, globalpayto-site:GPTW-S2-T4
 
-Add browser acceptance coverage for authorization/setup and route-selection hosted actions.
+Add browser acceptance coverage for route-selection hosted actions.
 
 Acceptance notes:
 
-- Tests cover approval, denial, expired, invalid, and completed states.
+- Tests cover route selected, denial/no-change, expired, invalid, and completed states.
 - Tests verify required UI content is visible and does not overlap at supported viewport sizes.
 - Tests do not require production secrets.
 

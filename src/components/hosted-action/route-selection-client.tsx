@@ -15,10 +15,6 @@ const stateCopy: Record<HostedActionState, { title: string; body: string }> = {
     title: "Choose a payment route",
     body: "Pick the wallet app this paying app should use for this route.",
   },
-  approved: {
-    title: "Authorization approved",
-    body: "The requested authorization was approved.",
-  },
   denied: {
     title: "No route change made",
     body: "Your existing payment preferences were not changed.",

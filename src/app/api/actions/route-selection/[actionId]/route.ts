@@ -10,7 +10,7 @@ export async function POST(
   { params }: { params: Promise<{ actionId: string }> },
 ) {
   const { actionId } = await params;
-  if (!isValidHostedActionId(actionId, "route_selection") || !isSameOriginActionPost(request)) {
+  if (!isValidHostedActionId(actionId) || !isSameOriginActionPost(request)) {
     return invalidActionResponse();
   }
 

@@ -10,7 +10,6 @@ This public repo owns the user-facing GlobalPayTo site and the minimal hosted ac
 
 The MVP site surfaces are:
 
-- authorization/setup links for enabling a verified Cubid stamp as pay-to or authorizing a dapp,
 - route-selection links for choosing a default when multiple PayToDapps support the same route.
 - landing targets for Cubid comms `payment_intent_created` notifications when the notification links back to the current intent context.
 
@@ -32,34 +31,20 @@ The site is not a full dashboard in the MVP. It should not include:
 - arbitrary wallet connection,
 - private admin or provider operation views.
 
-The site exists to help a user safely complete an authorization or selection that an API flow could not finish without user involvement.
+The site exists to help a user safely complete receive-route selection that an API flow could not finish without user involvement.
 
 MVP notifications are limited to `payment_intent_created` through Cubid comms. Payment-received landing behavior belongs to a future provider-reported receipt phase with its own trust and disclosure rules. The site may render a linked intent-created landing target, but it should not become the notification delivery system.
 
 ## User Actions
 
-### Enable Stamp As Pay-To
+### Send-To Channel Defaults
 
-The user can enable an eligible Cubid verified stamp as a pay-to identifier.
+Send-to channels are pre-authorized for requesting apps by default. The public
+site should not ask users to approve each requesting app before it can request a
+payment intent.
 
-Copy direction:
-
-```text
-Choose which verified identifier apps can use to pay you.
-```
-
-The UI must not hard-code email as the only possible stamp. Stamp eligibility should come from Cubid-backed validation and metadata.
-
-### Authorize Dapp
-
-The user can authorize a PayingDapp or PayToDapp for scoped payment resolution.
-
-The page should make the scope legible:
-
-- which dapp is requesting access,
-- whether the request is for paying, receiving, or both,
-- which pay-to stamp is involved,
-- what action will happen after approval.
+Users should instead control receive behavior through route preferences,
+revocation paths, and future channel-management surfaces.
 
 ### Select Route Priority
 
@@ -119,11 +104,10 @@ Public URLs carry only opaque action identifiers or short-lived tokens. Dapp met
 
 Expected page outputs:
 
-- user approved,
 - user denied,
 - selected route/default,
 - expired or invalid action,
-- restart/setup-needed state.
+- restart-required state.
 
 The public SDK docs should define any response status names that integrators need to handle. The site should present user-friendly copy for those statuses without exposing private diagnostic details.
 

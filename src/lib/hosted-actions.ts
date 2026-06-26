@@ -1,13 +1,11 @@
 import {
   getRouteSelectionAction,
-  getSetupAction,
   type HostedActionState,
   type RouteSelectionAction,
-  type SetupAction,
 } from "@/lib/mock-actions";
 
-type HostedActionKind = "setup" | "route_selection";
-type HostedActionDecision = "approve" | "deny" | "select_route" | "leave_unchanged";
+type HostedActionKind = "route_selection";
+type HostedActionDecision = "select_route" | "leave_unchanged";
 
 interface HostedActionCompletion {
   state: HostedActionState;
@@ -16,10 +14,6 @@ interface HostedActionCompletion {
 
 const resolverBaseUrl = process.env.GLOBALPAYTO_RESOLVER_BASE_URL;
 const devCubidUserId = process.env.GLOBALPAYTO_DEV_CUBID_USER_ID;
-
-export async function getHostedSetupAction(actionId: string): Promise<SetupAction> {
-  return await getHostedAction(actionId, "setup", () => getSetupAction(actionId));
-}
 
 export async function getHostedRouteSelectionAction(actionId: string): Promise<RouteSelectionAction> {
   return await getHostedAction(actionId, "route_selection", () => getRouteSelectionAction(actionId));
@@ -32,19 +26,17 @@ export async function submitHostedAction(input: {
   selectedRouteId?: string;
 }): Promise<HostedActionCompletion> {
   if (!resolverBaseUrl) {
-    const action = input.kind === "setup" ? getSetupAction(input.actionId) : getRouteSelectionAction(input.actionId);
+    const action = getRouteSelectionAction(input.actionId);
     if (action.state !== "ready") return { state: "restart_required" };
-    if (input.kind === "route_selection" && input.decision === "select_route") {
-      const routeAction = action as RouteSelectionAction;
-      if (!routeAction.options.some((option) => option.id === input.selectedRouteId)) {
-        return { state: "restart_required" };
-      }
+    if (
+      input.decision === "select_route" &&
+      !action.options.some((option) => option.id === input.selectedRouteId)
+    ) {
+      return { state: "restart_required" };
     }
 
     return {
-      state: input.kind === "setup"
-        ? input.decision === "approve" ? "approved" : "denied"
-        : input.decision === "select_route" ? "selected_route" : "denied",
+      state: input.decision === "select_route" ? "selected_route" : "denied",
       selectedRouteId: input.selectedRouteId,
     };
   }
@@ -61,7 +53,7 @@ export async function submitHostedAction(input: {
 }
 
 export function redactActionUrlForLogs(url: string): string {
-  return url.replace(/\/actions\/(setup|route-selection)\/[^/?#]+/g, "/actions/$1/[redacted]");
+  return url.replace(/\/actions\/route-selection\/[^/?#]+/g, "/actions/route-selection/[redacted]");
 }
 
 async function getHostedAction<T>(

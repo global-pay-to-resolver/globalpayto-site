@@ -1,8 +1,7 @@
-const setupActionPattern = /^gptr_act_setup_[a-z0-9_-]{3,80}$/;
 const routeActionPattern = /^gptr_act_route_[a-z0-9_-]{3,80}$/;
 
-export function isValidHostedActionId(actionId: string, kind: "setup" | "route_selection"): boolean {
-  return kind === "setup" ? setupActionPattern.test(actionId) : routeActionPattern.test(actionId);
+export function isValidHostedActionId(actionId: string): boolean {
+  return routeActionPattern.test(actionId);
 }
 
 export function isSameOriginActionPost(request: Request): boolean {

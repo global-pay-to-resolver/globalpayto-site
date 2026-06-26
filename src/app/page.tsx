@@ -3,22 +3,15 @@ import {
   CheckCircle2,
   Fingerprint,
   GitBranch,
-  ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
 
 const actionLinks = [
   {
-    href: "/actions/setup/gptr_act_setup_demo",
-    icon: ShieldCheck,
-    title: "Review setup authorization",
-    text: "Approve a scoped payment-resolution grant while showing only the current action details.",
-  },
-  {
     href: "/actions/route-selection/gptr_act_route_demo",
     icon: GitBranch,
-    title: "Choose a route default",
-    text: "Pick one eligible PayToDapp for a single app, identifier, chain, network, and asset tuple.",
+    title: "Choose a receive route",
+    text: "Pick the PayToDapp that should receive funds for a path when more than one channel is available.",
   },
 ];
 
@@ -31,7 +24,7 @@ const principles = [
   {
     icon: CheckCircle2,
     title: "Scoped consent",
-    text: "Every action is limited to the requesting app and the current payment-resolution purpose.",
+    text: "Send-to channels are enabled by default for requesting apps while users control receive-route preferences.",
   },
   {
     icon: BellRing,
@@ -50,20 +43,14 @@ export default function Home() {
               GlobalPayTo hosted actions
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[#4f5a49]">
-              Users approve payment-resolution setup and route choices in a
-              browser-safe flow. The site receives opaque action identifiers,
-              hydrates only the current action, and avoids private resolver
-              state.
+              Users manage receive-route choices in a browser-safe flow. Send-to
+              channels are pre-authorized for requesting apps by default; hosted
+              actions are for choosing where funds should land when a route
+              preference is needed.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 className="inline-flex h-11 items-center justify-center rounded-md bg-[#176b46] px-5 text-sm font-semibold text-white transition hover:bg-[#12583a]"
-                href="/actions/setup/gptr_act_setup_demo"
-              >
-                Open setup action
-              </Link>
-              <Link
-                className="inline-flex h-11 items-center justify-center rounded-md border border-[#cbd4c3] bg-white px-5 text-sm font-semibold text-[#2c3429] transition hover:bg-[#f1f4ec]"
                 href="/actions/route-selection/gptr_act_route_demo"
               >
                 Open route selection

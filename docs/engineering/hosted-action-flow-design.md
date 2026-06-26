@@ -4,33 +4,22 @@ Date: 2026-06-24
 Status: Sprint 2 design  
 Repo: `globalpayto-site`
 
-## Authorization And Setup Flow
+## Setup And Authorization Flow
 
-Route family: `/actions/setup/[actionId]`
+The public site no longer hosts per-request setup or authorization approval pages.
+Send-to is modeled as pre-authorized incoming payment channels: requesting apps
+are enabled by default, while users retain control over which receive route or
+PayToDapp should be preferred for a supported path.
 
-Purpose:
+Deleted route family:
 
-- let a signed-in user approve enabling a Cubid verified stamp as pay-to,
-- let a signed-in user approve scoped PayingDapp or PayToDapp authorization,
-- show safe expired, invalid, completed, denied, and restart-required states.
+- `/actions/setup/[actionId]`
 
-Unauthenticated URL rule:
-
-- the URL contains only an opaque `actionId`,
-- Sprint 2 mock pages use local fixtures only,
-- production dapp metadata, masked stamp display, requested scope, and action copy are hydrated only after backend action-token exchange and Cubid-authenticated user validation,
-- the public site renders only the browser-safe view model returned by the backend,
-- no wallet address, route graph, route count, provider internal detail, raw identifier, or private diagnostic appears in the URL.
-
-Visible states:
-
-- `ready`: show dapp display name, masked identifier, requested scope, and approve/deny controls,
-- `approved`: confirm the authorization/setup action was approved,
-- `denied`: confirm the user declined,
-- `expired`: show restart-safe copy without saying whether the recipient exists,
-- `invalid`: show restart-safe copy without private diagnostics,
-- `completed`: show already-completed copy,
-- `restart_required`: show generic restart/setup-needed copy.
+The resolver must not emit setup or authorization action URLs for ordinary
+requesting-app access. Status-only outcomes such as `no_route` and
+`authorization_required` may still exist for API handling, revocation, invalid
+state, or future management flows, but they do not route to this site for
+per-request approval.
 
 ## Route Selection Flow
 
@@ -71,9 +60,9 @@ Interaction behavior:
 - declining stores only local Sprint 2 UI state and shows `denied`,
 - expired, invalid, completed, and restart-required states disable route controls.
 
-Sprint 3 production transition criteria:
+Production transition criteria:
 
-- approve, deny, save, and leave-unchanged states are shown only after backend confirmation,
+- save and leave-unchanged states are shown only after backend confirmation,
 - the backend must complete or invalidate the action token before the site renders success,
 - the backend must create the required audit event before the site renders success,
 - expired, replayed, or unauthorized submissions render safe restart-required or expired states without private diagnostics.
@@ -86,7 +75,8 @@ Displayed route details:
 
 ## Mock Data Boundary
 
-Sprint 2 uses local mock action state only. Sprint 3 will replace mock hydration and submit handlers with backend action endpoints. Mock state must preserve the privacy contract:
+Local development uses mock action state when a resolver backend URL is not
+configured. Mock state must preserve the privacy contract:
 
 - action IDs are opaque,
 - hydrated details are fixture-only,

@@ -3,7 +3,7 @@
 Public user-facing app/site for GlobalPayTo.
 
 This repo owns the browser-safe hosted pages used for GlobalPayTo user actions,
-including authorization/setup links and route-selection links. Private resolver
+including route-selection links and notification landing targets. Private resolver
 implementation, production Supabase schema, provider callbacks, audit logging,
 and admin tooling belong outside this public repo.
 
