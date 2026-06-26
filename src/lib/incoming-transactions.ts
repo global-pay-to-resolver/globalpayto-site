@@ -1,7 +1,9 @@
 export type IncomingHistoryFilter = "paying-app" | "payto-app" | "token" | "chain";
+export type IncomingHistoryType = "queries" | "intents" | "transactions";
 
 export interface IncomingTransaction {
   id: string;
+  type: IncomingHistoryType;
   sent: {
     timestamp: string;
     payingApp: string;
@@ -20,7 +22,44 @@ export interface IncomingTransaction {
 
 export const incomingTransactions: IncomingTransaction[] = [
   {
+    id: "qry_001",
+    type: "queries",
+    sent: {
+      timestamp: "2026-06-24 15:02 UTC",
+      payingApp: "ChainCrew Payouts",
+      value: "Route availability query",
+      token: "Any supported",
+      chain: "Any supported",
+    },
+    received: {
+      timestamp: "2026-06-24 15:02 UTC",
+      payToApp: "Available routes only",
+      value: "No intent created",
+      token: "USDC, USDT",
+      chain: "Base mainnet, Solana",
+    },
+  },
+  {
+    id: "int_001",
+    type: "intents",
+    sent: {
+      timestamp: "2026-06-24 14:50 UTC",
+      payingApp: "TreasuryDesk",
+      value: "125.00",
+      token: "USDT",
+      chain: "Base mainnet",
+    },
+    received: {
+      timestamp: "2026-06-24 14:50 UTC",
+      payToApp: "Options returned",
+      value: "Awaiting route selection",
+      token: "USDT",
+      chain: "Base mainnet",
+    },
+  },
+  {
     id: "txn_001",
+    type: "transactions",
     sent: {
       timestamp: "2026-06-24 14:18 UTC",
       payingApp: "ChainCrew Payouts",
@@ -38,6 +77,7 @@ export const incomingTransactions: IncomingTransaction[] = [
   },
   {
     id: "txn_002",
+    type: "transactions",
     sent: {
       timestamp: "2026-06-23 18:42 UTC",
       payingApp: "GrantFlow",
@@ -54,7 +94,44 @@ export const incomingTransactions: IncomingTransaction[] = [
     },
   },
   {
+    id: "qry_002",
+    type: "queries",
+    sent: {
+      timestamp: "2026-06-23 20:11 UTC",
+      payingApp: "GrantFlow",
+      value: "Route availability query",
+      token: "USDC",
+      chain: "Base mainnet",
+    },
+    received: {
+      timestamp: "2026-06-23 20:11 UTC",
+      payToApp: "Available routes only",
+      value: "No intent created",
+      token: "USDC",
+      chain: "Base mainnet",
+    },
+  },
+  {
+    id: "int_002",
+    type: "intents",
+    sent: {
+      timestamp: "2026-06-23 19:08 UTC",
+      payingApp: "MarketBursar",
+      value: "60.00",
+      token: "USDC",
+      chain: "Solana",
+    },
+    received: {
+      timestamp: "2026-06-23 19:08 UTC",
+      payToApp: "Options returned",
+      value: "Awaiting route selection",
+      token: "USDC",
+      chain: "Solana",
+    },
+  },
+  {
     id: "txn_003",
+    type: "transactions",
     sent: {
       timestamp: "2026-06-22 10:05 UTC",
       payingApp: "MarketBursar",
@@ -72,6 +149,7 @@ export const incomingTransactions: IncomingTransaction[] = [
   },
   {
     id: "txn_004",
+    type: "transactions",
     sent: {
       timestamp: "2026-06-21 21:30 UTC",
       payingApp: "CreatorPool",
@@ -89,6 +167,7 @@ export const incomingTransactions: IncomingTransaction[] = [
   },
   {
     id: "txn_005",
+    type: "transactions",
     sent: {
       timestamp: "2026-06-20 16:12 UTC",
       payingApp: "EscrowLine",
@@ -106,8 +185,15 @@ export const incomingTransactions: IncomingTransaction[] = [
   },
 ];
 
-export function groupIncomingTransactions(filter: IncomingHistoryFilter) {
-  return Map.groupBy(incomingTransactions, (transaction) => {
+export function groupIncomingTransactions(
+  filter: IncomingHistoryFilter,
+  type?: IncomingHistoryType,
+) {
+  const filteredTransactions = type
+    ? incomingTransactions.filter((transaction) => transaction.type === type)
+    : incomingTransactions;
+
+  return Map.groupBy(filteredTransactions, (transaction) => {
     if (filter === "paying-app") return transaction.sent.payingApp;
     if (filter === "payto-app") return transaction.received.payToApp;
     if (filter === "token") return transaction.received.token;

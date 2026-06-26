@@ -8,21 +8,30 @@ import { BackButton } from "@/components/navigation/back-button";
 import {
   groupIncomingTransactions,
   type IncomingHistoryFilter,
+  type IncomingHistoryType,
 } from "@/lib/incoming-transactions";
 
-const filterLabels: Array<{ id: IncomingHistoryFilter; label: string }> = [
+const groupLabels: Array<{ id: IncomingHistoryFilter; label: string }> = [
   { id: "paying-app", label: "Paying app" },
   { id: "payto-app", label: "PayToDapp" },
   { id: "token", label: "Token" },
   { id: "chain", label: "Chain" },
 ];
 
+const typeLabels: Array<{ id?: IncomingHistoryType; label: string }> = [
+  { id: "queries", label: "Queries" },
+  { id: "transactions", label: "Transactions" },
+  { id: "intents", label: "Intents" },
+  { label: "All" },
+];
+
 interface ProtectedHistoryPageProps {
+  type?: IncomingHistoryType;
   view: IncomingHistoryFilter;
 }
 
-export function ProtectedHistoryPage({ view }: ProtectedHistoryPageProps) {
-  const groups = groupIncomingTransactions(view);
+export function ProtectedHistoryPage({ type, view }: ProtectedHistoryPageProps) {
+  const groups = groupIncomingTransactions(view, type);
 
   return (
     <SignedInOnly
@@ -54,25 +63,46 @@ export function ProtectedHistoryPage({ view }: ProtectedHistoryPageProps) {
               </div>
             </div>
 
-            <nav className="mt-7 flex flex-wrap gap-2" aria-label="History views">
-              {filterLabels.map((filter) => {
-                const active = filter.id === view;
+            <div className="mt-7 flex flex-wrap gap-4">
+              <nav className="flex flex-wrap gap-2" aria-label="History group by">
+                {groupLabels.map((filter) => {
+                  const active = filter.id === view;
 
-                return (
-                  <Link
-                    className={`inline-flex h-10 items-center justify-center rounded-md border px-4 text-sm font-semibold transition ${
-                      active
-                        ? "border-[#176b46] bg-[#176b46] text-white"
-                        : "border-[#cbd4c3] bg-white text-[#2c3429] hover:bg-[#f1f4ec]"
-                    }`}
-                    href={`/history?view=${filter.id}`}
-                    key={filter.id}
-                  >
-                    {filter.label}
-                  </Link>
-                );
-              })}
-            </nav>
+                  return (
+                    <Link
+                      className={`inline-flex h-10 items-center justify-center rounded-md border px-4 text-sm font-semibold transition ${
+                        active
+                          ? "border-[#176b46] bg-[#176b46] text-white"
+                          : "border-[#cbd4c3] bg-white text-[#2c3429] hover:bg-[#f1f4ec]"
+                      }`}
+                      href={historyHref(filter.id, type)}
+                      key={filter.id}
+                    >
+                      {filter.label}
+                    </Link>
+                  );
+                })}
+              </nav>
+              <nav className="flex flex-wrap gap-2" aria-label="History type">
+                {typeLabels.map((filter) => {
+                  const active = filter.id === type || (!filter.id && !type);
+
+                  return (
+                    <Link
+                      className={`inline-flex h-10 items-center justify-center rounded-md border px-4 text-sm font-semibold transition ${
+                        active
+                          ? "border-[#245c8d] bg-[#245c8d] text-white"
+                          : "border-[#cbd4c3] bg-white text-[#2c3429] hover:bg-[#f1f4ec]"
+                      }`}
+                      href={historyHref(view, filter.id)}
+                      key={filter.label}
+                    >
+                      {filter.label}
+                    </Link>
+                  );
+                })}
+              </nav>
+            </div>
           </div>
         </section>
 
@@ -89,6 +119,11 @@ export function ProtectedHistoryPage({ view }: ProtectedHistoryPageProps) {
                     className="grid gap-4 rounded-md border border-[#dfe5d7] bg-[#fbfcf8] p-4 lg:grid-cols-2"
                     key={transaction.id}
                   >
+                    <div className="lg:col-span-2">
+                      <span className="inline-flex rounded-md bg-[#e5eef8] px-2 py-1 text-xs font-semibold capitalize text-[#245c8d]">
+                        {transaction.type}
+                      </span>
+                    </div>
                     <div className="grid gap-3">
                       <div className="flex items-center gap-2 text-sm font-semibold text-[#245c8d]">
                         <ArrowUpFromLine size={17} aria-hidden="true" />
@@ -124,6 +159,12 @@ export function ProtectedHistoryPage({ view }: ProtectedHistoryPageProps) {
       </main>
     </SignedInOnly>
   );
+}
+
+function historyHref(view: IncomingHistoryFilter, type?: IncomingHistoryType) {
+  const params = new URLSearchParams({ view });
+  if (type) params.set("type", type);
+  return `/history?${params.toString()}`;
 }
 
 function TransactionRow({ label, value }: { label: string; value: string }) {

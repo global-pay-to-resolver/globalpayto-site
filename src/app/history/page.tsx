@@ -1,8 +1,12 @@
 import { ProtectedHistoryPage } from "@/components/history/protected-history-page";
-import type { IncomingHistoryFilter } from "@/lib/incoming-transactions";
+import type {
+  IncomingHistoryFilter,
+  IncomingHistoryType,
+} from "@/lib/incoming-transactions";
 
 interface HistoryPageProps {
   searchParams: Promise<{
+    type?: string;
     view?: string;
   }>;
 }
@@ -15,9 +19,10 @@ export const metadata = {
 
 export default async function HistoryPage({ searchParams }: HistoryPageProps) {
   const params = await searchParams;
+  const type = normalizeType(params.type);
   const view = normalizeFilter(params.view);
 
-  return <ProtectedHistoryPage view={view} />;
+  return <ProtectedHistoryPage type={type} view={view} />;
 }
 
 function normalizeFilter(value: string | undefined): IncomingHistoryFilter {
@@ -31,4 +36,12 @@ function normalizeFilter(value: string | undefined): IncomingHistoryFilter {
   }
 
   return "paying-app";
+}
+
+function normalizeType(value: string | undefined): IncomingHistoryType | undefined {
+  if (value === "queries" || value === "intents" || value === "transactions") {
+    return value;
+  }
+
+  return undefined;
 }
