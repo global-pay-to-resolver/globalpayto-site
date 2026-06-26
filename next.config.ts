@@ -4,8 +4,8 @@ import path from "node:path";
 const nextConfig: NextConfig = {
   async headers() {
     return [
-      {
-        source: "/actions/:path*",
+      ...["/actions/:path*", "/history", "/history/:path*"].map((source) => ({
+        source,
         headers: [
           {
             key: "Cache-Control",
@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
             value: "noindex, noarchive",
           },
         ],
-      },
+      })),
     ];
   },
   turbopack: {

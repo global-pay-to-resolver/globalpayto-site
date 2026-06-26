@@ -3,7 +3,25 @@ import {
   isSameOriginActionPost,
   isValidHostedActionId,
 } from "@/lib/action-request-security";
-import { submitHostedAction } from "@/lib/hosted-actions";
+import { getHostedRouteSelectionAction, submitHostedAction } from "@/lib/hosted-actions";
+
+export async function GET(
+  _request: Request,
+  { params }: { params: Promise<{ actionId: string }> },
+) {
+  const { actionId } = await params;
+  if (!isValidHostedActionId(actionId)) {
+    return invalidActionResponse();
+  }
+
+  const result = await getHostedRouteSelectionAction(actionId);
+
+  return Response.json(result, {
+    headers: {
+      "cache-control": "no-store",
+    },
+  });
+}
 
 export async function POST(
   request: Request,

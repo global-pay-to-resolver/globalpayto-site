@@ -7,6 +7,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+import { CubidSessionControl } from "@/components/cubid/session-control";
+
 const actionLinks = [
   {
     href: "/actions/route-selection/gptr_act_route_demo",
@@ -46,6 +48,9 @@ export default function Home() {
       <section className="border-b border-[#d9dfd1] bg-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-16">
           <div className="flex flex-col justify-center">
+            <div className="mb-8">
+              <CubidSessionControl />
+            </div>
             <h1 className="max-w-4xl text-5xl font-semibold leading-[1.04] tracking-normal text-[#111611] sm:text-6xl">
               GlobalPayTo hosted actions
             </h1>

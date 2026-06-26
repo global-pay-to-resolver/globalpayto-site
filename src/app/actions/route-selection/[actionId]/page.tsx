@@ -1,5 +1,4 @@
-import { RouteSelectionClient } from "@/components/hosted-action/route-selection-client";
-import { getHostedRouteSelectionAction } from "@/lib/hosted-actions";
+import { ProtectedRouteSelectionPage } from "@/components/hosted-action/protected-route-selection-page";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -18,7 +17,6 @@ interface RouteSelectionPageProps {
 
 export default async function RouteSelectionPage({ params }: RouteSelectionPageProps) {
   const { actionId } = await params;
-  const action = await getHostedRouteSelectionAction(actionId);
 
-  return <RouteSelectionClient action={action} submitUrl={`/api/actions/route-selection/${actionId}`} />;
+  return <ProtectedRouteSelectionPage actionId={actionId} />;
 }
