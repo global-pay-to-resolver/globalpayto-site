@@ -32,7 +32,7 @@ const introPoints = [
 
 const ecosystemSteps = [
   "Paying app asks for a route",
-  "GlobalPayTo resolves options",
+  "MyPayTag resolves options",
   "Receiving app creates the intent",
   "User gets paid where they prefer",
 ];
@@ -41,7 +41,7 @@ const solverCards = [
   {
     name: "NEAR Intents / 1Click",
     bestFor: "Crypto-to-crypto swaps, cross-chain stablecoin delivery, and distribution-channel fees.",
-    text: "NEAR 1Click gives GlobalPayTo a strong default execution adapter when both sides are crypto or stablecoin. It abstracts intent creation, solver coordination, transaction execution, status tracking, retries, refunds, and quote-level fee configuration behind a REST surface.",
+    text: "NEAR 1Click gives MyPayTag a strong default execution adapter when both sides are crypto or stablecoin. It abstracts intent creation, solver coordination, transaction execution, status tracking, retries, refunds, and quote-level fee configuration behind a REST surface.",
   },
   {
     name: "LI.FI",
@@ -51,7 +51,7 @@ const solverCards = [
   {
     name: "Squid",
     bestFor: "Broad chain coverage, cross-chain swaps, bridges, contract calls, and Cosmos/Axelar-style routes.",
-    text: "Squid is useful when GlobalPayTo needs breadth across ecosystems. It covers swaps, bridges, and contract calls across many chains, and its Boost model points toward fast optimistic settlement for eligible routes.",
+    text: "Squid is useful when MyPayTag needs breadth across ecosystems. It covers swaps, bridges, and contract calls across many chains, and its Boost model points toward fast optimistic settlement for eligible routes.",
   },
   {
     name: "0x Cross-Chain API",
@@ -66,7 +66,7 @@ const solverCards = [
   {
     name: "LayerZero / Stargate",
     bestFor: "Cross-chain token transfers, OFT assets, LayerZero ecosystem routes, and Stargate-supported stablecoins.",
-    text: "LayerZero Value Transfer and Stargate matter where token transfer infrastructure is already strong. GlobalPayTo should treat them as execution adapters that need careful asset canonicalization, not as recipient-resolution systems.",
+    text: "LayerZero Value Transfer and Stargate matter where token transfer infrastructure is already strong. MyPayTag should treat them as execution adapters that need careful asset canonicalization, not as recipient-resolution systems.",
   },
 ];
 
@@ -88,7 +88,7 @@ export default function Home() {
               A global pay-to layer for crypto apps.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[#d6dfd1]">
-              GlobalPayTo lets sending apps reach any user through a simple tag
+              MyPayTag lets sending apps reach any user through a simple tag
               while receiving apps and wallets stay in control of where funds
               land.
             </p>
@@ -186,7 +186,7 @@ export default function Home() {
                 Quote every viable crypto-native route when no solver is preferred.
               </h2>
               <p className="mt-5 text-sm leading-7 text-[#c9d7c4]">
-                GlobalPayTo resolves who should receive. Execution adapters then
+                MyPayTag resolves who should receive. Execution adapters then
                 compete or route the payment without learning the recipient&apos;s
                 broader wallet graph.
               </p>

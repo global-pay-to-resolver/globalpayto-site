@@ -49,7 +49,7 @@ export default function CubidCallbackPage() {
                   className="mt-3 inline-flex font-semibold text-[#1f6f50] underline-offset-4 hover:underline"
                   href="/"
                 >
-                  Return to GlobalPayTo
+                  Return to MyPayTag
                 </Link>
               </div>
             }

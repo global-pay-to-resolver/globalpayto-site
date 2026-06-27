@@ -5,7 +5,7 @@ branch: main
 head: 91003ef
 summary: Added and README-linked a public hosted user-actions architecture doc for authorization, setup, and route-selection pages while keeping private resolver implementation out of the site boundary.
 validation: Reviewed the MVP PRD split and confirmed the site doc references only public architecture docs.
-follow-ups: Replace starter content with GlobalPayTo app/site behavior and make dependency setup portable for CI.
+follow-ups: Replace starter content with MyPayTag app/site behavior and make dependency setup portable for CI.
 
 ---
 
@@ -77,14 +77,14 @@ branch: main
 head: cb38fcd
 summary: Completed GPTW-S2-T4 by implementing the route-selection hosted action page with mock action hydration, explicit route choice, current-default display, safe non-ready states, and local selected/denied outcomes.
 validation: Ran pnpm typecheck, pnpm lint, and pnpm build; Next built both dynamic hosted action route families successfully.
-follow-ups: Remove or reframe starter-only UI that conflicts with the GlobalPayTo MVP boundary.
+follow-ups: Remove or reframe starter-only UI that conflicts with the MyPayTag MVP boundary.
 
 ---
 
 agent: Codex
 branch: main
 head: a11b194
-summary: Completed GPTW-S2-T5 by replacing the Cubid starter-centered homepage with a GlobalPayTo hosted-action entry screen and updating app metadata to the GlobalPayTo product boundary.
+summary: Completed GPTW-S2-T5 by replacing the Cubid starter-centered homepage with a MyPayTag hosted-action entry screen and updating app metadata to the MyPayTag product boundary.
 validation: Ran pnpm typecheck, pnpm lint, and pnpm build. Browser-smoked the homepage plus setup and route-selection action routes on desktop, and checked route-selection at mobile width for non-overlap.
 follow-ups: Site Sprint 3 can wire hosted action pages to backend action endpoints and add privacy hardening checks.
 
@@ -138,7 +138,7 @@ follow-ups: Site Sprint 3 is complete; keep using privacy and browser-secret sca
 agent: Codex
 branch: main
 head: 7e63f74
-summary: Completed GPTW-S5-T1 by adding the public blog publishing surface and publishing the launch post, "Introducing GlobalPayToResolver: Pay Users, Not Wallet Addresses."
+summary: Completed GPTW-S5-T1 by adding the public blog publishing surface and publishing the launch post, "Introducing MyPayTag: Pay Users, Not Wallet Addresses."
 validation: Added typed blog content, index/detail routes, homepage blog navigation, and confirmed the post explains address-centric UX, approved pay-to identifiers, Cubid separation, consented payment intents, and early integration CTAs.
 follow-ups: Continue Sprint 5 with the pay-to layer ecosystem thesis post.
 
@@ -157,7 +157,7 @@ agent: Codex
 branch: main
 head: a6bd97c
 summary: Completed GPTW-S5-T3 by publishing "From Wallet Addresses to Payment Intents" as the resolver-output abstraction post.
-validation: Confirmed the post contrasts static addresses with scoped expiring intents, covers references, expiry, one-time behavior, provider-specific instructions, and frames the GlobalPayTo response as a normalized resolver envelope.
+validation: Confirmed the post contrasts static addresses with scoped expiring intents, covers references, expiry, one-time behavior, provider-specific instructions, and frames the MyPayTag response as a normalized resolver envelope.
 follow-ups: Continue Sprint 5 with the five-roles developer education post.
 
 ---
@@ -165,8 +165,8 @@ follow-ups: Continue Sprint 5 with the five-roles developer education post.
 agent: Codex
 branch: main
 head: 4427389
-summary: Completed GPTW-S5-T4 by publishing "How GlobalPayToResolver Works: The Five Roles."
-validation: Confirmed the post separates User, Cubid, GlobalPayToResolver, PayToDapp, and PayingDapp responsibilities while emphasizing user consent and receive-route preferences.
+summary: Completed GPTW-S5-T4 by publishing "How MyPayTag Works: The Five Roles."
+validation: Confirmed the post separates User, Cubid, MyPayTag, PayToDapp, and PayingDapp responsibilities while emphasizing user consent and receive-route preferences.
 follow-ups: Continue Sprint 5 with the PayToDapp versus PayingDapp practical integration post.
 
 ---
@@ -246,8 +246,8 @@ follow-ups: Update any future site acceptance work to cover route selection only
 ## 2026-06-26-gptw-s6-t1
 
 agent: Codex
-branch: feature/globalpayto-resolver-migration
-todo: globalpayto-site:GPTW-S6-T1
+branch: feature/mypaytag-resolver-migration
+todo: mypaytag-site:GPTW-S6-T1
 summary: Kept the homepage solver-adapter section aligned with the public six-solver set and added a stable solver-adapters anchor/test hook for ongoing content checks.
 validation: Ran pnpm typecheck, pnpm lint, and pnpm build.
 follow-ups: Add a public developer explainer for preferred-solver behavior, quote fanout, and receive-requirement boundaries.
@@ -257,8 +257,8 @@ follow-ups: Add a public developer explainer for preferred-solver behavior, quot
 ## 2026-06-26-gptw-s6-t2
 
 agent: Codex
-branch: feature/globalpayto-resolver-migration
-todo: globalpayto-site:GPTW-S6-T2
+branch: feature/mypaytag-resolver-migration
+todo: mypaytag-site:GPTW-S6-T2
 summary: Added a public solver adapter developer explainer covering payor-app flow layering, preferred-solver behavior, quote fanout, resolved receive requirements, and privacy boundaries, then linked it from the site README.
 validation: Ran a public-content scan on docs/engineering/solver-adapter-developer-explainer.md for private repo links and private credential terms, plus pnpm typecheck and pnpm lint.
 follow-ups: Add a lightweight solver-content check for homepage solver names, private-term leakage, and responsive solver-section rendering.
@@ -268,8 +268,8 @@ follow-ups: Add a lightweight solver-content check for homepage solver names, pr
 ## 2026-06-26-gptw-s6-t3
 
 agent: Codex
-branch: feature/globalpayto-resolver-migration
-todo: globalpayto-site:GPTW-S6-T3
+branch: feature/mypaytag-resolver-migration
+todo: mypaytag-site:GPTW-S6-T3
 summary: Added a solver-content validation script and package command that checks the homepage for all six public solver names, private-boundary leakage, and responsive solver-section layout markers.
 validation: Ran pnpm check:solver-content, pnpm typecheck, pnpm lint, and pnpm build.
-follow-ups: Continue with SmarTrust Wallet adapter migration work against the generic GlobalPayTo SDK and backend boundaries.
+follow-ups: Continue with SmarTrust Wallet adapter migration work against the generic MyPayTag SDK and backend boundaries.

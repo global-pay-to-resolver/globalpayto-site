@@ -46,7 +46,7 @@ export function ProtectedHistoryPage({ type, view }: ProtectedHistoryPageProps) 
               className="text-sm font-semibold text-[#176b46] underline-offset-4 hover:underline"
               href="/"
             >
-              GlobalPayTo
+              MyPayTag
             </Link>
             <div className="mt-5 flex max-w-4xl items-start gap-4">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#e5eef8] text-[#245c8d]">
@@ -57,7 +57,7 @@ export function ProtectedHistoryPage({ type, view }: ProtectedHistoryPageProps) 
                   Incoming transaction history
                 </h1>
                 <p className="mt-4 max-w-3xl text-base leading-7 text-[#586250]">
-                  Review payment intents GlobalPayTo has facilitated, grouped by
+                  Review payment intents MyPayTag has facilitated, grouped by
                   paying app, PayToDapp, token, or chain.
                 </p>
               </div>

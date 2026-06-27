@@ -2,7 +2,7 @@
 
 Date: 2026-06-24  
 Status: Sprint 2 design  
-Repo: `globalpayto-site`
+Repo: `mypaytag-site`
 
 ## Setup And Authorization Flow
 
@@ -84,7 +84,7 @@ Route family: `/history`
 
 Purpose:
 
-- let a signed-in user review incoming GlobalPayTo resolver activity,
+- let a signed-in user review incoming MyPayTag resolver activity,
 - group activity by PayingDapp, PayToDapp, token, or chain,
 - quick-filter by queries, intents, transactions, or all activity.
 

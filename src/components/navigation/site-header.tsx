@@ -20,7 +20,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-[#d9dfd1] bg-[#fbfcf8]/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4 lg:px-8">
         <Link className="text-base font-semibold text-[#121612]" href="/">
-          GlobalPayTo
+          MyPayTag
         </Link>
         <nav className="flex flex-wrap items-center gap-3 text-sm font-semibold text-[#4f5a49]">
           <Link className="hover:text-[#176b46]" href="/#tracks">

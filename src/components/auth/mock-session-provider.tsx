@@ -22,7 +22,7 @@ interface MockSessionContextValue {
 }
 
 const MockSessionContext = createContext<MockSessionContextValue | null>(null);
-const mockSessionEventName = "globalpayto:mock-session";
+const mockSessionEventName = "mypaytag:mock-session";
 
 export function MockSessionProvider({ children }: { children: ReactNode }) {
   const credential = useSyncExternalStore(

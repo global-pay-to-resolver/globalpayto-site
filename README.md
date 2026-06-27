@@ -1,8 +1,8 @@
-# GlobalPayTo Site
+# MyPayTag Site
 
-Public marketing app/site for GlobalPayTo.
+Public marketing app/site for MyPayTag.
 
-This repo owns the developer-led marketing homepage for GlobalPayTo plus the
+This repo owns the developer-led marketing homepage for MyPayTag plus the
 browser-safe hosted pages used for signed-in route-selection links, signed-in
 incoming history, and notification landing targets. Private resolver
 implementation, production Supabase schema, provider callbacks, audit logging,
@@ -12,10 +12,10 @@ and admin tooling belong outside this public repo.
 
 - [Hosted user actions architecture](docs/engineering/hosted-user-actions-architecture.md)
 - [Solver adapter developer explainer](docs/engineering/solver-adapter-developer-explainer.md)
-- Public protocol and SDK architecture lives in the sibling `globalpayto-sdk`
+- Public protocol and SDK architecture lives in the sibling `mypaytag-sdk`
   repo.
 
-This repo is forked from [`Cubid-Me/cubid-starter-v3`](https://github.com/Cubid-Me/cubid-starter-v3) so it can continue to receive useful upstream starter updates while the GlobalPayTo experience is built out.
+This repo is forked from [`Cubid-Me/cubid-starter-v3`](https://github.com/Cubid-Me/cubid-starter-v3) so it can continue to receive useful upstream starter updates while the MyPayTag experience is built out.
 
 The current codebase is still the canonical full-stack Next.js starter for the
 modern Cubid public SDK package family from
@@ -36,7 +36,7 @@ or normal Cubid transaction-signing examples from those projects.
 
 ## What This Starter Shows
 
-- GlobalPayTo landing page with a persistent mock Sign In / Sign Out header
+- MyPayTag landing page with a persistent mock Sign In / Sign Out header
   until SIWC is connected.
 - Three marketing tracks for users, devs of sending apps, and devs of receiving
   apps/wallets.
@@ -61,7 +61,7 @@ team invites, and recent app history.
 ## Copy-Paste Local Setup
 
 ```sh
-cd /Users/botmaster/src/global-pay-to-resolver/globalpayto-site
+cd /Users/botmaster/src/myPayTag/mypaytag-site
 cp .env.example .env.local
 pnpm install
 pnpm dev

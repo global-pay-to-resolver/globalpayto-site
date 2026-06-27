@@ -18,7 +18,7 @@ const requiredSolverNames = [
 ];
 
 const forbiddenPatterns = [
-  /globalpayto\/docs/i,
+  /mypaytag\/docs/i,
   /service[- ]role/i,
   /SUPABASE_SERVICE/i,
   /PROVIDER_CALLBACK/i,
