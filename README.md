@@ -43,8 +43,10 @@ or normal Cubid transaction-signing examples from those projects.
 - Public `/api-docs` page for sending-app and receiving-app developers,
   including endpoint summaries, request examples, statuses, hosted actions,
   notifications, and solver quote ids.
-- Public OpenAPI 3.1 YAML at `/openapi.yaml` for API tooling and generated
-  client experiments.
+- Public OpenAPI 3.1 YAML at `/openapi.yaml`, copied from the canonical
+  `mypaytag-sdk/openapi/openapi.yaml` contract source.
+- Interactive Scalar API reference at `/reference`, rendered from
+  `/openapi.yaml`.
 - Signed-in `/actions/route-selection/[actionId]` route-selection flow.
 - Signed-in `/history` view grouped by PayingDapp, PayToDapp, token, or chain,
   with quick filters for queries, intents, transactions, and all activity.
@@ -63,9 +65,10 @@ header session until SIWC is connected. The header supports logging in as a user
 or as a developer; developer mode exposes mock API provisioning, key rotation,
 team invites, and recent app history.
 
-`/api-docs`, `/blog`, and the homepage are public developer-facing surfaces.
-They should describe only public protocol behavior and should link developers
-toward the SDK contracts rather than private resolver implementation details.
+`/api-docs`, `/reference`, `/blog`, and the homepage are public
+developer-facing surfaces. They should describe only public protocol behavior
+and should link developers toward the SDK contracts rather than private resolver
+implementation details.
 
 ## Copy-Paste Local Setup
 

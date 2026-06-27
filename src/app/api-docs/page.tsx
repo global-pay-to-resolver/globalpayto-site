@@ -172,6 +172,12 @@ export default function ApiDocsPage() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 className="inline-flex h-11 items-center justify-center rounded-md bg-[#176b46] px-5 text-sm font-semibold text-white transition hover:bg-[#12583a]"
+                href="/reference"
+              >
+                Open Scalar reference
+              </a>
+              <a
+                className="inline-flex h-11 items-center justify-center rounded-md border border-[#c8d4bf] bg-white px-5 text-sm font-semibold text-[#1e2b1d] transition hover:bg-[#f1f4ec]"
                 href="/openapi.yaml"
               >
                 Download OpenAPI YAML

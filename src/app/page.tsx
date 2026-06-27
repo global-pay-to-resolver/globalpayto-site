@@ -269,9 +269,9 @@ export default function Home() {
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
               className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#176b46] px-5 text-sm font-semibold text-white transition hover:bg-[#12583a]"
-              href="/api-docs"
+              href="/reference"
             >
-              Read API docs
+              Open API reference
               <ArrowRight size={17} aria-hidden="true" />
             </Link>
             <a
