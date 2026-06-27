@@ -40,6 +40,11 @@ or normal Cubid transaction-signing examples from those projects.
   until SIWC is connected.
 - Three marketing tracks for users, devs of sending apps, and devs of receiving
   apps/wallets.
+- Public `/api-docs` page for sending-app and receiving-app developers,
+  including endpoint summaries, request examples, statuses, hosted actions,
+  notifications, and solver quote ids.
+- Public OpenAPI 3.1 YAML at `/openapi.yaml` for API tooling and generated
+  client experiments.
 - Signed-in `/actions/route-selection/[actionId]` route-selection flow.
 - Signed-in `/history` view grouped by PayingDapp, PayToDapp, token, or chain,
   with quick filters for queries, intents, transactions, and all activity.
@@ -57,6 +62,10 @@ out of browser env vars and client bundles.
 header session until SIWC is connected. The header supports logging in as a user
 or as a developer; developer mode exposes mock API provisioning, key rotation,
 team invites, and recent app history.
+
+`/api-docs`, `/blog`, and the homepage are public developer-facing surfaces.
+They should describe only public protocol behavior and should link developers
+toward the SDK contracts rather than private resolver implementation details.
 
 ## Copy-Paste Local Setup
 

@@ -29,6 +29,9 @@ export function SiteHeader() {
           <Link className="hover:text-[#176b46]" href="/blog">
             Blog
           </Link>
+          <Link className="hover:text-[#176b46]" href="/api-docs">
+            API Docs
+          </Link>
           <Link className="hover:text-[#176b46]" href="/history">
             History
           </Link>

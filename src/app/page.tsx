@@ -102,9 +102,9 @@ export default function Home() {
               </a>
               <Link
                 className="inline-flex h-11 items-center justify-center rounded-md border border-[#6f806f] px-5 text-sm font-semibold text-white transition hover:bg-white/10"
-                href="/blog"
+                href="/api-docs"
               >
-                Read the blog
+                Read API docs
               </Link>
             </div>
           </div>
@@ -267,8 +267,15 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
+            <Link
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#176b46] px-5 text-sm font-semibold text-white transition hover:bg-[#12583a]"
+              href="/api-docs"
+            >
+              Read API docs
+              <ArrowRight size={17} aria-hidden="true" />
+            </Link>
             <a
-              className="inline-flex h-11 items-center justify-center rounded-md bg-[#176b46] px-5 text-sm font-semibold text-white transition hover:bg-[#12583a]"
+              className="inline-flex h-11 items-center justify-center rounded-md border border-[#c8d4bf] bg-white px-5 text-sm font-semibold text-[#1e2b1d] transition hover:bg-[#f1f4ec]"
               href="#tracks"
             >
               Compare tracks
