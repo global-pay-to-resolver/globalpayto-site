@@ -43,10 +43,10 @@ or normal Cubid transaction-signing examples from those projects.
 - Public `/api-docs` page for sending-app and receiving-app developers,
   including endpoint summaries, request examples, statuses, hosted actions,
   notifications, and solver quote ids.
-- Public OpenAPI 3.1 YAML at `/openapi.yaml`, copied from the canonical
-  `mypaytag-sdk/openapi/openapi.yaml` contract source.
+- Public OpenAPI 3.1 YAML at `/api/openapi.yaml`, copied from the canonical
+  `mypaytag-sdk/api/openapi.yaml` contract source.
 - Interactive Scalar API reference at `/reference`, rendered from
-  `/openapi.yaml`.
+  `/api/openapi.yaml`.
 - Signed-in `/actions/route-selection/[actionId]` route-selection flow.
 - Signed-in `/history` view grouped by PayingDapp, PayToDapp, token, or chain,
   with quick filters for queries, intents, transactions, and all activity.
@@ -141,9 +141,21 @@ publishing catches up, especially for `@cubid/comms`.
 ```sh
 pnpm lint
 pnpm typecheck
+pnpm api:validate
 pnpm build
 ```
 
 The browser demo can render without server credentials. The server demo returns
 a non-secret setup message until server-only Cubid credentials are present in
 `.env.local`.
+
+API documentation workflow:
+
+- Edit the canonical OpenAPI source in `../mypaytag-sdk/api/openapi.yaml`.
+- Copy the spec into this repo as `public/api/openapi.yaml` when publishing site docs.
+- Run `pnpm api:validate` to confirm the site copy still matches the SDK source.
+- Run `pnpm api:postman` to regenerate and copy the public API artifacts from the SDK repo.
+- Run `pnpm dev` or `pnpm api:docs` and open `/reference` for the Scalar docs.
+- The Postman collection is generated in the SDK repo at
+  `api/postman_collection.json` from `api/openapi.yaml` and served by this site
+  at `/api/postman_collection.json`; do not edit the collection by hand.

@@ -178,7 +178,7 @@ export default function ApiDocsPage() {
               </a>
               <a
                 className="inline-flex h-11 items-center justify-center rounded-md border border-[#c8d4bf] bg-white px-5 text-sm font-semibold text-[#1e2b1d] transition hover:bg-[#f1f4ec]"
-                href="/openapi.yaml"
+                href="/api/openapi.yaml"
               >
                 Download OpenAPI YAML
               </a>

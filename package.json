@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "api:validate": "pnpm --dir ../mypaytag-sdk api:validate && pnpm check:openapi-sync",
+    "api:docs": "next dev",
+    "api:postman": "node scripts/sync-api-artifacts.mjs",
     "scan:browser-secrets": "node scripts/scan-browser-secrets.mjs",
     "check:solver-content": "node scripts/check-solver-content.mjs",
     "check:openapi-sync": "node scripts/check-openapi-sync.mjs",
