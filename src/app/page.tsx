@@ -2,6 +2,7 @@ import {
   ArrowRight,
   CircleDollarSign,
   Code2,
+  ExternalLink,
   GitBranch,
   Link2,
   Route,
@@ -68,6 +69,15 @@ const solverCards = [
     bestFor: "Cross-chain token transfers, OFT assets, LayerZero ecosystem routes, and Stargate-supported stablecoins.",
     text: "LayerZero Value Transfer and Stargate matter where token transfer infrastructure is already strong. MyPayTag should treat them as execution adapters that need careful asset canonicalization, not as recipient-resolution systems.",
   },
+];
+
+const cubidPassportUrl = "https://passport.cubid.me";
+
+const cubidIdentityTasks = [
+  "Elevate a verified stamp into a Paytag",
+  "Create or select an opaque Cubid-backed Paytag",
+  "Choose explicit raw-stamp Paytag exposure",
+  "Grant or revoke MyPayTag paytag validation consent",
 ];
 
 export default function Home() {
@@ -258,6 +268,41 @@ export default function Home() {
       </section>
 
       <section className="border-t border-[#d9dfd1] bg-white">
+        <div className="mx-auto grid max-w-7xl gap-8 border-b border-[#d9dfd1] px-6 py-14 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#176b46]">
+              Cubid-owned identity
+            </p>
+            <h2 className="mt-4 text-4xl font-semibold leading-tight">
+              Paytag identity work starts in Cubid Passport.
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-[#586250]">
+              MyPayTag owns payment route preference and provider intent
+              orchestration. Cubid Passport owns verified stamps, opaque
+              aliases, raw-stamp exposure choices, and Paytag validation
+              consent.
+            </p>
+            <a
+              className="mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-md border border-[#c8d4bf] bg-white px-5 text-sm font-semibold text-[#1e2b1d] transition hover:bg-[#f1f4ec]"
+              href={cubidPassportUrl}
+              rel="noreferrer"
+              target="_blank"
+            >
+              Open Cubid Passport
+              <ExternalLink size={16} aria-hidden="true" />
+            </a>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {cubidIdentityTasks.map((task) => (
+              <div className="rounded-md border border-[#d9dfd1] bg-[#fbfcf8] p-4" key={task}>
+                <p className="text-sm font-semibold leading-6 text-[#151713]">{task}</p>
+                <p className="mt-2 text-sm leading-6 text-[#586250]">
+                  Cubid issues a short-lived hosted action link for this task.
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold">Ready to build on Paytags?</h2>

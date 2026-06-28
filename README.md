@@ -72,6 +72,13 @@ developer-facing surfaces. They should describe only public protocol behavior
 and should link developers toward the SDK contracts rather than private resolver
 implementation details.
 
+Paytag identity management belongs to Cubid Passport, not this site. Stamp
+elevation, opaque Paytag creation or selection, explicit raw-stamp exposure, and
+Paytag grant/revoke ceremonies are launched through Cubid-owned hosted action
+links such as `https://passport.cubid.me/pay-to/actions/complete?action_token=...`.
+MyPayTag pages should link users toward Cubid Passport for those ceremonies and
+should not implement stamp or grant management directly.
+
 ## Copy-Paste Local Setup
 
 ```sh

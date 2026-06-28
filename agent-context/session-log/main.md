@@ -317,3 +317,14 @@ todo: mypaytag-site:GPTW-S7-T4
 summary: Hardened hosted route selection by accepting the corrected opaque mpt_act action shape, encoding action IDs before client fetch/submit URLs, removing prior transaction/account fixture details from hydrated route options, adding safe mock terminal states, and stripping identifiers/routes from non-ready action responses.
 validation: Ran pnpm privacy:route-selection, pnpm typecheck, pnpm lint, targeted rg scans for prior transaction/account/provider-internal/wallet-graph leakage in route-selection files, and pnpm build.
 follow-ups: Link Cubid-owned Paytag identity work out to Cubid.
+
+---
+
+## 2026-06-28-gptw-s7-t5
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S7-T5
+summary: Added homepage, API docs, playground, and README guidance that sends stamp elevation, opaque Paytag creation/selection, raw-stamp exposure, and Paytag grant/revoke ceremonies to Cubid Passport hosted actions instead of implementing identity management in MyPayTag.
+validation: Ran pnpm typecheck, pnpm lint, targeted rg scans for direct-management wording and Cubid Passport hosted-action links, and pnpm build.
+follow-ups: Harden playground wording and document launch-readiness smoke.

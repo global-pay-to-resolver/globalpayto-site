@@ -33,7 +33,7 @@ export const receivingExamples: PlaygroundExample[] = [
     },
     notes: [
       "MyPayTag is the caller of Cubid identity validation; PayingDapps should call MyPayTag, not Cubid directly.",
-      "Raw identifiers are not meant to become durable resolver records.",
+      "Stamp elevation, opaque Paytag creation, raw-stamp exposure, and grant/revoke ceremonies belong in Cubid Passport hosted actions.",
     ],
   },
   {

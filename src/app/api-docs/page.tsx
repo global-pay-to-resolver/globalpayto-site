@@ -11,6 +11,7 @@ import {
 import Link from "next/link";
 
 const baseUrl = "https://api.mypaytag.com/functions/v1";
+const cubidPassportUrl = "https://passport.cubid.me";
 
 const endpoints = [
   {
@@ -441,6 +442,44 @@ export default function ApiDocsPage() {
               adapters. The MVP resolve flow does not require solver readiness.
             </p>
           </article>
+        </div>
+      </section>
+
+      <section className="border-b border-[#d9dfd1] bg-white">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-[0.75fr_1.25fr] lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#176b46]">
+              Cubid Identity Boundary
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-normal">
+              Paytag identity actions are Cubid-hosted.
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-[#586250]">
+              MyPayTag APIs accept Paytags and route preferences, but they do
+              not create opaque aliases, elevate stamps, expose raw stamps, or
+              manage Cubid grants. Those user ceremonies use Cubid Passport
+              hosted action links such as
+              <span className="font-mono"> /pay-to/actions/complete?action_token=...</span>.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {[
+              "Stamp to Paytag elevation",
+              "Opaque Paytag creation or selection",
+              "Explicit raw-stamp exposure",
+              "Paytag grant and revoke ceremonies",
+            ].map((task) => (
+              <a
+                className="rounded-md border border-[#d9dfd1] bg-[#fbfcf8] p-4 text-sm font-semibold leading-6 text-[#151713] transition hover:border-[#b9c7ad] hover:bg-white"
+                href={cubidPassportUrl}
+                key={task}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {task}
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
