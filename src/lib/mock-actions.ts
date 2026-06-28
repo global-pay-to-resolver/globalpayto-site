@@ -29,6 +29,7 @@ export interface RouteSelectionAction {
   maskedIdentifier: string;
   paths: ReceivePath[];
   expiresAt: string;
+  mockMode?: boolean;
 }
 
 export const routeSelectionActions: Record<string, RouteSelectionAction> = {

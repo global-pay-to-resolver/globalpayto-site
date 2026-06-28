@@ -73,6 +73,18 @@ if (!hostedActions.includes('maskedIdentifier: "Hidden"') || !hostedActions.incl
   findings.push("Non-ready hosted-action states are not sanitized before rendering.");
 }
 
+if (!hostedActions.includes("MYPAYTAG_HOSTED_ACTION_MOCK_MODE")) {
+  findings.push("Hosted action mock fallback is not gated by an explicit local mock-mode environment variable.");
+}
+
+if (!hostedActions.includes("canUseMockHostedActions") || !hostedActions.includes("restartRequiredAction")) {
+  findings.push("Hosted action backend failures must fail closed outside explicit local mock mode.");
+}
+
+if (!client.includes("Local mock mode is on")) {
+  findings.push("Route selection UI does not visibly label local mock-mode fixtures.");
+}
+
 if (/CUBID_API_KEY|SUPABASE_SERVICE|PROVIDER_CALLBACK|DATABASE_URL/.test(`${client}\n${loader}\n${mockActions}\n${hostedActions}`)) {
   findings.push("Hosted action code references server-only secret names.");
 }

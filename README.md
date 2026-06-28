@@ -124,6 +124,7 @@ Local MyPayTag API playground values are server-only and used by
 ```sh
 MYPAYTAG_PLAYGROUND_ENABLED=true
 MYPAYTAG_RESOLVER_BASE_URL=http://127.0.0.1:54321
+MYPAYTAG_HOSTED_ACTION_MOCK_MODE=false
 MYPAYTAG_PLAYGROUND_DAPP_SECRETS_JSON='{"chaincrew":{"id":"chaincrew","role":"paying_dapp","status":"active","secret":"local-chaincrew-secret"},"smartrust-wallet":{"id":"smartrust-wallet","role":"both","status":"active","secret":"local-smartrust-secret"}}'
 ```
 
@@ -179,7 +180,8 @@ a non-secret setup message until server-only Cubid credentials are present in
 
 Hosted route-selection pages use signed-in user context and backend-provided
 action data. Local mock actions are for development and acceptance checks only;
-staging smoke must use real MyPayTag backend action hydration and completion.
+set `MYPAYTAG_HOSTED_ACTION_MOCK_MODE=true` only for local fixture work. Staging
+smoke must use real MyPayTag backend action hydration and completion.
 
 The public site owns browser-safe hosted action UX, public API docs, marketing
 copy, and the local playground. Protocol details live in `../mypaytag-sdk`, and

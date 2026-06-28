@@ -634,9 +634,9 @@ Acceptance notes:
 
 ### GPTW-S8-T4 Harden Hosted Action Fallback Behavior
 
-Status: Todo
+Status: Complete
 Feature branch: codex/mypaytag-mvp-realignment-20260628
-Gap note: agent-context/2026-06-28-mypaytag-site-mvp-gap-review.md
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s8-t4
 Depends on: mypaytag:GPTR-S7-T4, mypaytag-site:GPTW-S7-T4
 
 Prevent static route-selection fixtures from masking staging and production failures.

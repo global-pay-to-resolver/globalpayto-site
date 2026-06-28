@@ -125,6 +125,12 @@ export function RouteSelectionClient({ action, submitUrl }: RouteSelectionClient
           </h1>
           <p className="mt-3 text-base leading-7 text-[#586250]">{copy.body}</p>
 
+          {action.mockMode ? (
+            <div className="mt-5 rounded-md border border-[#d7b45a] bg-[#fff8e3] p-3 text-sm font-semibold leading-6 text-[#6d4a00]">
+              Local mock mode is on. This route-selection data is a development fixture, not hosted staging data.
+            </div>
+          ) : null}
+
           <div className="mt-6 rounded-md border border-[#dfe5d7] bg-[#fbfcf8] p-4 text-sm leading-6 text-[#586250]">
             <span className="font-semibold text-[#151713]">{action.maskedIdentifier}</span>
             <span className="mx-2 text-[#9aa493]">/</span>

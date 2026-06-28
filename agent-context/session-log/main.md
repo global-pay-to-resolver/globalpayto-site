@@ -416,3 +416,14 @@ todo: mypaytag-site:GPTW-S8-T3
 summary: Synced public OpenAPI/Postman artifacts from the SDK, updated hand-authored API docs with the canonical notification example, and added a NEAR 1Click selected-quote provider_json example that separates the Phase 1 SmarTrust path from Phase 2 adapter fanout.
 validation: Ran pnpm check:openapi-sync, pnpm api:validate, pnpm scan:public-docs, pnpm typecheck, pnpm lint, pnpm build, and a targeted stale-field scan on src/app/api-docs/page.tsx. Generated public/api artifacts still match the SDK source and retain SDK-owned notification OpenAPI fields until the upstream contract removes them.
 follow-ups: Harden hosted action fallback behavior so static fixtures cannot mask staging or production failures.
+
+---
+
+## 2026-06-28-gptw-s8-t4
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S8-T4
+summary: Gated hosted route-selection fixtures behind explicit local/test mock mode, made backend hydration and completion failures fail closed outside that mode, added visible mock-mode UI copy, and documented the mock-mode boundary.
+validation: Ran pnpm check:hosted-actions, pnpm privacy:route-selection, pnpm scan:browser-secrets, pnpm typecheck, pnpm lint, pnpm scan:public-docs, and pnpm build.
+follow-ups: Update launch smoke guidance for the SmarTrust and NEAR 1Click MVP path.
