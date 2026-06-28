@@ -350,3 +350,14 @@ todo: mypaytag-site:GPTW-S4-T1
 summary: Added a hosted-action acceptance check covering route selected, leave-unchanged/denied, expired, invalid, completed, and restart-required states, signed-in loading, safe terminal-state copy, sanitized hidden-state details, and constrained route-selection decisions.
 validation: Ran pnpm check:hosted-actions, pnpm privacy:route-selection, pnpm typecheck, and pnpm lint.
 follow-ups: Close Sprint 4 responsive and accessibility coverage for hosted action pages.
+
+---
+
+## 2026-06-28-gptw-s4-t2
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S4-T2
+summary: Added a hosted-action accessibility and responsive-layout check for mobile/desktop classes, semantic button controls, disabled submit states, icon aria-hidden flags, readable line heights, and visible loading/unavailable states.
+validation: Ran pnpm check:hosted-action-a11y, pnpm typecheck, pnpm lint, and pnpm build.
+follow-ups: Close Sprint 4 public README and setup documentation.

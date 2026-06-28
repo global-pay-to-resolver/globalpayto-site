@@ -8,6 +8,7 @@
     "api:validate": "pnpm --dir ../mypaytag-sdk api:validate && pnpm check:openapi-sync",
     "api:docs": "next dev",
     "api:postman": "node scripts/sync-api-artifacts.mjs",
+    "check:hosted-action-a11y": "node scripts/check-hosted-action-a11y-responsive.mjs",
     "check:hosted-actions": "node scripts/check-hosted-action-acceptance.mjs",
     "scan:browser-secrets": "node scripts/scan-browser-secrets.mjs",
     "check:solver-content": "node scripts/check-solver-content.mjs",
