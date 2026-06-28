@@ -43,6 +43,8 @@ or normal Cubid transaction-signing examples from those projects.
 - Public `/api-docs` page for sending-app and receiving-app developers,
   including endpoint summaries, request examples, statuses, hosted actions,
   notifications, and solver quote ids.
+- Public `/api-playground` page with server-signed local demo calls for
+  receiving-app route registration and sending-app resolve flows.
 - Public OpenAPI 3.1 YAML at `/api/openapi.yaml`, copied from the canonical
   `mypaytag-sdk/api/openapi.yaml` contract source.
 - Interactive Scalar API reference at `/reference`, rendered from
@@ -107,6 +109,19 @@ CUBID_DAPP_ID=your-dapp-id
 Never rename server credentials to `NEXT_PUBLIC_*`. The starter intentionally
 fails the server demo with a safe setup response when `CUBID_API_BASE_URL` or
 `CUBID_API_KEY` is missing.
+
+Local MyPayTag API playground values are server-only and used by
+`src/app/api/playground/call/route.ts`:
+
+```sh
+MYPAYTAG_PLAYGROUND_ENABLED=true
+MYPAYTAG_RESOLVER_BASE_URL=http://127.0.0.1:54321
+MYPAYTAG_PLAYGROUND_DAPP_SECRETS_JSON='{"chaincrew":{"id":"chaincrew","role":"paying_dapp","status":"active","secret":"local-chaincrew-secret"},"smartrust-wallet":{"id":"smartrust-wallet","role":"both","status":"active","secret":"local-smartrust-secret"}}'
+```
+
+The playground signs demo MyPayTag requests on the server. Do not expose these
+demo secrets through `NEXT_PUBLIC_*` variables. Start local Supabase from the
+private backend repo before running live playground calls.
 
 ## Cubid Console Setup
 
