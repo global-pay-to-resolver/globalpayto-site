@@ -165,12 +165,26 @@ publishing catches up, especially for `@cubid/comms`.
 pnpm lint
 pnpm typecheck
 pnpm api:validate
+pnpm check:hosted-actions
+pnpm check:hosted-action-a11y
+pnpm privacy:route-selection
+pnpm scan:browser-secrets
+pnpm check:solver-content
 pnpm build
 ```
 
 The browser demo can render without server credentials. The server demo returns
 a non-secret setup message until server-only Cubid credentials are present in
 `.env.local`.
+
+Hosted route-selection pages use signed-in user context and backend-provided
+action data. Local mock actions are for development and acceptance checks only;
+staging smoke must use real MyPayTag backend action hydration and completion.
+
+The public site owns browser-safe hosted action UX, public API docs, marketing
+copy, and the local playground. Protocol details live in `../mypaytag-sdk`, and
+private resolver storage, service-role access, provider callbacks, and admin
+operations stay out of this repo.
 
 API documentation workflow:
 

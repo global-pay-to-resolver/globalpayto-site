@@ -361,3 +361,14 @@ todo: mypaytag-site:GPTW-S4-T2
 summary: Added a hosted-action accessibility and responsive-layout check for mobile/desktop classes, semantic button controls, disabled submit states, icon aria-hidden flags, readable line heights, and visible loading/unavailable states.
 validation: Ran pnpm check:hosted-action-a11y, pnpm typecheck, pnpm lint, and pnpm build.
 follow-ups: Close Sprint 4 public README and setup documentation.
+
+---
+
+## 2026-06-28-gptw-s4-t3
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S4-T3
+summary: Updated README validation and setup guidance to document hosted-action checks, route-selection privacy checks, browser-secret scanning, local mock-action boundaries, and the split between public site UX, SDK protocol docs, and private resolver/backend operations.
+validation: Ran pnpm check:hosted-actions, pnpm check:hosted-action-a11y, pnpm scan:browser-secrets, pnpm typecheck, and pnpm lint.
+follow-ups: Close Sprint 4 public-doc private-link and implementation-leakage validation.

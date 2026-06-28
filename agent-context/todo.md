@@ -235,9 +235,9 @@ Acceptance notes:
 
 ### GPTW-S4-T3 Update Public README And Setup Docs
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s4-t3
 Depends on: mypaytag-site:GPTW-S2-T2, mypaytag-site:GPTW-S2-T4
 
 Update public README and setup docs to describe the MyPayTag hosted-action app rather than only the Cubid starter baseline.
