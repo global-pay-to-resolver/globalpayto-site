@@ -37,12 +37,25 @@ This repo does not own:
 - Private resolver logic, provider credentials, Supabase schema, service-role writes, provider callbacks, or wallet/payment execution.
 - Cubid paytag identity management, stamp elevation, opaque paytag creation, or Cubid grant UX except as links/redirects to Cubid-owned flows.
 
+## Product Decisions To Preserve
+
+- A paytag is a MyPayTag-branded payment identity powered by Cubid identity and consent primitives.
+- Paytags should feel universal and global to PayingDapps. PayingDapps pay a paytag through MyPayTag, not a Cubid identity or wallet address.
+- Implementation may initially default to PayToDapp-scoped identifiers behind the scenes.
+- Opaque paytags are the default, for example `abd123@cubid.mypaytag`.
+- Raw stamp-based paytags, for example `+1234569999@phone.cubid.mypaytag`, are allowed only when the user explicitly chooses that exposure.
+- MyPayTag validates paytag uniqueness and availability before issuance so future non-Cubid identity providers can fit the model.
+- MVP supports multiple paytags per user, each initially mapped to one Cubid stamp or opaque Cubid-backed alias.
+- Signed-in history is useful but secondary to route registration, resolve, provider callback, consent, and negative-disclosure hardening.
+- Launch readiness requires local tests first, then hosted staging smoke across Cubid, MyPayTag, one test PayingDapp, and one test PayToDapp.
+
 ## Site Work Required
 
 1. Keep the broader story but label MVP vs future.
    - Solver, bridge, swap, quote fanout, and preferred solver content may remain.
    - Mark those sections as execution-adapter/future capability where they appear.
    - Ensure the primary developer path teaches the MVP: paytag -> MyPayTag route selection -> PayToDapp provider intent.
+   - Present solver and bridge material as future positioning, not part of core MVP flow.
 
 2. Align API docs with the corrected SDK contract.
    - Sync `public/api/openapi.yaml` and Postman artifacts from `mypaytag-sdk`.
@@ -58,11 +71,13 @@ This repo does not own:
    - If the user must elevate a stamp to a paytag or create an opaque paytag, send them to a Cubid-owned flow.
    - Do not implement Cubid grant/stamp management inside MyPayTag.
    - MyPayTag copy should say Cubid owns identity and consent; MyPayTag owns payment route preference and provider intent orchestration.
+   - Keep user-facing "Paytag" branding primarily in MyPayTag. Describe Cubid as powering verified identity, consent, and aliases.
 
 5. Harden playground wording.
    - MVP calls should use real MyPayTag API contracts.
    - Solver quote simulation may remain, but it must be visibly a simulation/non-MVP extension.
    - Do not imply Cubid receives wallet/payment details.
+   - Ensure PayingDapp examples call MyPayTag rather than Cubid directly.
 
 6. Validation target.
    - Run lint/typecheck/test/build as available.
