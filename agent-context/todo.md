@@ -617,9 +617,9 @@ Acceptance notes:
 
 ### GPTW-S8-T3 Update Public API Docs For Revised MVP Contracts
 
-Status: Todo
+Status: Complete
 Feature branch: codex/mypaytag-mvp-realignment-20260628
-Gap note: agent-context/2026-06-28-mypaytag-site-mvp-gap-review.md
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s8-t3
 Depends on: mypaytag-sdk:GPTS-S7-T3, mypaytag:GPTR-S7-T3
 
 Refresh public API docs after the SDK and backend contracts are corrected.

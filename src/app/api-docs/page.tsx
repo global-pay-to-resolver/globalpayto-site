@@ -154,15 +154,58 @@ const routeRegistration = `{
   "authorizationToken": "mpt_auth_123"
 }`;
 
+const nearOneClickInstruction = `{
+  "status": "resolved",
+  "intent": {
+    "id": "mpt_pi_near_1click_001",
+    "schema": "mypaytag.intent.v1",
+    "status": "ready",
+    "modality": "provider_intent",
+    "selectedRoute": {
+      "payToDappId": "smartrust-wallet",
+      "chain": "base",
+      "network": "mainnet",
+      "asset": "USDC"
+    },
+    "paymentInstruction": {
+      "type": "provider_json",
+      "provider": "smartrust-wallet",
+      "payload": {
+        "providerIntentId": "st_near_1click_intent_001",
+        "chain": "base",
+        "network": "mainnet",
+        "asset": "USDC",
+        "destination": {
+          "kind": "near_1click_payable_instruction",
+          "quoteId": "near_1click_quote_mvp_001"
+        },
+        "amount": "25.00",
+        "reference": "smartrust:send_001",
+        "expiresAt": "2026-06-28T20:00:00Z"
+      }
+    }
+  }
+}`;
+
 const notificationPayload = `{
-  "event": "payment_intent_created",
-  "recipientDisplay": "r***@example.com",
+  "eventType": "payment_intent_created",
+  "schema": "mypaytag.notification.v1",
+  "recipient": {
+    "identifierType": "paytag",
+    "maskedDisplay": "a***@cubid.mypaytag"
+  },
   "amount": {
     "value": "25.00",
     "currency": "USDC"
   },
-  "resolverRequestId": "mpt_req_123",
-  "payingDappReference": "sender:payout_987"
+  "references": {
+    "resolverReference": "mpt_pi_123",
+    "providerReference": "provider_pi_456",
+    "payingDappReference": "sender:payout_987"
+  },
+  "action": {
+    "type": "none"
+  }
 }`;
 
 function CodeBlock({ code }: { code: string }) {
@@ -436,12 +479,33 @@ export default function ApiDocsPage() {
           </article>
           <article className="rounded-md border border-white/12 bg-white/[0.06] p-5">
             <CheckCircle2 className="text-[#9fd3a5]" size={24} aria-hidden="true" />
-            <h2 className="mt-4 text-xl font-semibold">Solver quotes</h2>
+            <h2 className="mt-4 text-xl font-semibold">NEAR 1Click quotes</h2>
             <p className="mt-3 text-sm leading-7 text-[#d7e1d2]">
-              Future SDK helpers can request quotes from configured execution
-              adapters. The MVP resolve flow does not require solver readiness.
+              NEAR 1Click is the Phase 1 MVP swap and bridge adapter for the
+              initial SmarTrust path. Broader quote fanout remains Phase 2.
             </p>
           </article>
+        </div>
+      </section>
+
+      <section className="border-b border-[#d9dfd1] bg-white">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#176b46]">
+              MVP Execution
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-normal">
+              NEAR 1Click selected quote
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-[#586250]">
+              After MyPayTag resolves the Paytag and SmarTrust route, SmarTrust
+              can use NEAR 1Click for MVP swap or bridge execution. The payable
+              instruction still returns inside the MyPayTag provider_json
+              envelope, and Cubid does not receive quote, wallet, bridge, swap,
+              or payment details.
+            </p>
+          </div>
+          <CodeBlock code={nearOneClickInstruction} />
         </div>
       </section>
 
@@ -508,10 +572,10 @@ export default function ApiDocsPage() {
             </p>
             <h2 className="mt-4 text-3xl font-semibold tracking-normal">Execution solver ids</h2>
             <p className="mt-4 text-sm leading-7 text-[#586250]">
-              These ids are for future execution-adapter quote helpers. Passing
-              a preferred id limits the simulation to one provider; omitting one
-              fans out across configured adapters after the MVP provider intent
-              step.
+              <span className="font-mono">near_intents_1click</span> is the
+              Phase 1 MVP adapter for SmarTrust swap and bridge paths. LI.FI,
+              Squid, 0x, Across, LayerZero / Stargate, broad fanout, and generic
+              external adapters are Phase 2 surfaces.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

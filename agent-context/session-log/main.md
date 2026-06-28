@@ -405,3 +405,14 @@ todo: mypaytag-site:GPTW-S8-T2
 summary: Added playground examples and local simulated responses for an MVP NEAR 1Click quote request and selected-quote payable instruction, using SmarTrust as the initial PayingDapp/PayToDapp while keeping broad solver fanout labeled Phase 2.
 validation: Ran pnpm typecheck, pnpm lint, pnpm build, and a targeted rg scan to ensure old future-only quote wording was removed from playground surfaces.
 follow-ups: Update public API docs for revised MVP quote and selected-quote paths.
+
+---
+
+## 2026-06-28-gptw-s8-t3
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S8-T3
+summary: Synced public OpenAPI/Postman artifacts from the SDK, updated hand-authored API docs with the canonical notification example, and added a NEAR 1Click selected-quote provider_json example that separates the Phase 1 SmarTrust path from Phase 2 adapter fanout.
+validation: Ran pnpm check:openapi-sync, pnpm api:validate, pnpm scan:public-docs, pnpm typecheck, pnpm lint, pnpm build, and a targeted stale-field scan on src/app/api-docs/page.tsx. Generated public/api artifacts still match the SDK source and retain SDK-owned notification OpenAPI fields until the upstream contract removes them.
+follow-ups: Harden hosted action fallback behavior so static fixtures cannot mask staging or production failures.
