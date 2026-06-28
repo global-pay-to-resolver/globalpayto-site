@@ -328,3 +328,14 @@ todo: mypaytag-site:GPTW-S7-T5
 summary: Added homepage, API docs, playground, and README guidance that sends stamp elevation, opaque Paytag creation/selection, raw-stamp exposure, and Paytag grant/revoke ceremonies to Cubid Passport hosted actions instead of implementing identity management in MyPayTag.
 validation: Ran pnpm typecheck, pnpm lint, targeted rg scans for direct-management wording and Cubid Passport hosted-action links, and pnpm build.
 follow-ups: Harden playground wording and document launch-readiness smoke.
+
+---
+
+## 2026-06-28-gptw-s7-t6
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S7-T6
+summary: Hardened the playground around real MyPayTag MVP contracts by removing the non-public Cubid validation call, updating route registration and resolve payloads to Paytag/authorizationToken shapes, keeping solver quotes labeled as future SDK simulation, and adding a launch-readiness smoke checklist.
+validation: Ran pnpm lint, pnpm typecheck, pnpm scan:browser-secrets, pnpm check:openapi-sync, pnpm api:validate, pnpm privacy:route-selection, pnpm check:solver-content, pnpm build, targeted playground stale-field rg scans, and confirmed package.json has no pnpm test script.
+follow-ups: Sprint 7 site realignment todos are complete; hosted staging smoke still must be run before launch readiness is claimed.

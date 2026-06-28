@@ -22,7 +22,6 @@ const operationConfig: Record<
   Exclude<PlaygroundOperation, "simulateQuotes">,
   { method: "GET" | "POST"; path: string; dappId?: DemoAppId }
 > = {
-  validatePayToTag: { method: "POST", path: "/validate-payto-identifier" },
   registerRoutes: { method: "POST", path: "/payto-routes", dappId: "smartrust-wallet" },
   resolvePayment: { method: "POST", path: "/resolve", dappId: "chaincrew" },
   hydrateRouteSelection: { method: "GET", path: "/hosted-actions" },

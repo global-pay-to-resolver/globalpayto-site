@@ -60,8 +60,8 @@ export function ApiPlayground() {
           </div>
           <div className="grid gap-3 rounded-md border border-[#d9dfd1] bg-[#fbfcf8] p-5">
             {[
-              "PayToDapps register supported paths, never wallet addresses.",
-              "PayingDapps resolve a Paytag into a safe status or one-time provider intent.",
+              "PayToDapps call /payto-routes with supported paths, never wallet addresses.",
+              "PayingDapps call /resolve with a Paytag and receive a safe status or one-time provider intent.",
               "Execution quotes are visibly a future SDK simulation, not part of the MVP core call.",
             ].map((item) => (
               <div className="flex gap-3 text-sm leading-6 text-[#3f493a]" key={item}>

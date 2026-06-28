@@ -1,5 +1,4 @@
 export type PlaygroundOperation =
-  | "validatePayToTag"
   | "registerRoutes"
   | "resolvePayment"
   | "hydrateRouteSelection"
@@ -20,23 +19,6 @@ export interface PlaygroundExample {
 
 export const receivingExamples: PlaygroundExample[] = [
   {
-    operation: "validatePayToTag",
-    label: "Get a consented Paytag",
-    eyebrow: "Cubid identity validation",
-    description:
-      "The live MVP stand-in validates a Cubid verified stamp and returns only alias/hash/display metadata. In production this depends on Cubid-owned identity, consent, and Paytag enablement contracts.",
-    method: "POST",
-    endpoint: "/validate-payto-identifier",
-    body: {
-      identifierType: "verified_stamp",
-      identifier: "fixture:user:payto:primary",
-    },
-    notes: [
-      "MyPayTag is the caller of Cubid identity validation; PayingDapps should call MyPayTag, not Cubid directly.",
-      "Stamp elevation, opaque Paytag creation, raw-stamp exposure, and grant/revoke ceremonies belong in Cubid Passport hosted actions.",
-    ],
-  },
-  {
     operation: "registerRoutes",
     label: "Register the Paytag receive paths",
     eyebrow: "MyPayTag route registration",
@@ -47,8 +29,8 @@ export const receivingExamples: PlaygroundExample[] = [
     appId: "smartrust-wallet",
     body: {
       recipient: {
-        identifierType: "verified_stamp",
-        identifier: "fixture:user:payto:primary",
+        identifierType: "paytag",
+        identifier: "abd123@cubid.mypaytag",
       },
       payToDappId: "smartrust-wallet",
       supportedRoutes: [
@@ -68,11 +50,12 @@ export const receivingExamples: PlaygroundExample[] = [
           asset: "USDC",
         },
       ],
-      consentToken: "cubid_consent_fixture_primary",
+      authorizationToken: "mpt_auth_fixture_primary",
     },
     notes: [
       "The server signs this request as the local SmarTrust Wallet demo app.",
       "Add an address-like field to see the backend reject unsafe route registration.",
+      "Stamp elevation, opaque Paytag creation, raw-stamp exposure, and grant/revoke ceremonies belong in Cubid Passport hosted actions.",
     ],
   },
 ];
@@ -89,8 +72,8 @@ export const sendingExamples: PlaygroundExample[] = [
     appId: "chaincrew",
     body: {
       recipient: {
-        identifierType: "verified_stamp",
-        identifier: "fixture:user:payto:primary",
+        identifierType: "paytag",
+        identifier: "abd123@cubid.mypaytag",
       },
       supportedPaths: [
         {
@@ -110,6 +93,7 @@ export const sendingExamples: PlaygroundExample[] = [
     notes: [
       "Change the identifier to include no-route or overlap to see safe no-route or route-selection behavior.",
       "The response must not expose unrelated PayToDapps or a wallet graph.",
+      "PayingDapps call MyPayTag resolve; they should not call Cubid directly for Paytag state.",
     ],
   },
   {

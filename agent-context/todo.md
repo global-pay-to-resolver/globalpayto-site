@@ -565,9 +565,9 @@ Acceptance notes:
 
 ### GPTW-S7-T6 Harden Playground And Launch Smoke
 
-Status: TBD
-Feature branch: TBD
-Session log: TBD
+Status: Done 2026-06-28
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s7-t6
 Depends on: mypaytag-site:GPTW-S7-T3, mypaytag-site:GPTW-S7-T4, mypaytag:GPTR-S6-T8
 
 Make the playground demonstrate the MVP accurately and document launch-readiness smoke.

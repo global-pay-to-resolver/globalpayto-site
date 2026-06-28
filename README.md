@@ -12,6 +12,7 @@ and admin tooling belong outside this public repo.
 
 - [Hosted user actions architecture](docs/engineering/hosted-user-actions-architecture.md)
 - [Solver adapter developer explainer](docs/engineering/solver-adapter-developer-explainer.md)
+- [Launch readiness smoke checklist](docs/engineering/launch-readiness-smoke.md)
 - Public protocol and SDK architecture lives in the sibling `mypaytag-sdk`
   repo.
 
