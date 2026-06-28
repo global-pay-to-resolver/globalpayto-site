@@ -372,3 +372,14 @@ todo: mypaytag-site:GPTW-S4-T3
 summary: Updated README validation and setup guidance to document hosted-action checks, route-selection privacy checks, browser-secret scanning, local mock-action boundaries, and the split between public site UX, SDK protocol docs, and private resolver/backend operations.
 validation: Ran pnpm check:hosted-actions, pnpm check:hosted-action-a11y, pnpm scan:browser-secrets, pnpm typecheck, and pnpm lint.
 follow-ups: Close Sprint 4 public-doc private-link and implementation-leakage validation.
+
+---
+
+## 2026-06-28-gptw-s4-t4
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S4-T4
+summary: Added a public-doc scanner that blocks private backend paths, backend repo references, SQL/RLS snippets, service-role env names, provider callback secret details, database credentials, private audit details, and admin tool details while allowing explicit public boundary guidance.
+validation: Ran pnpm scan:public-docs, pnpm scan:browser-secrets, pnpm lint, and pnpm typecheck.
+follow-ups: Sprint 4 is complete; continue with Sprint 8 NEAR 1Click MVP site correction.
