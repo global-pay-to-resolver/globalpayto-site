@@ -480,3 +480,101 @@ Acceptance notes:
 - Checks verify all six solver names render on the homepage.
 - Checks verify solver copy does not include private resolver env names, service-role references, provider credentials, or private repo links.
 - Checks cover desktop and mobile layouts for the solver section.
+
+## Sprint 7: MyPayTag MVP Messaging And Hosted Flow Realignment
+
+### GPTW-S7-T1 Rename Public GlobalPayTo Site Surfaces To MyPayTag
+
+Status: TBD
+Feature branch: TBD
+Session log: TBD
+Depends on: mypaytag-sdk:GPTS-S6-T1
+
+Implement the site-facing rename requested in `agent-context/2026-06-28-mypaytag-mvp-realignment.md`.
+
+Acceptance notes:
+
+- Site copy, routes, links, examples, generated API artifacts, docs, metadata, browser-visible IDs, test names, and public repo links use `MyPayTag`, `mypaytag`, and `Paytag`.
+- Stale GitHub org/repo URLs and old GlobalPayTo references are fixed or explicitly marked as compatibility history.
+- User-facing "Paytag" branding lives primarily in MyPayTag copy.
+- The other four realignment docs are checked before implementation.
+
+### GPTW-S7-T2 Reframe Public Copy Around MVP Versus Future Capabilities
+
+Status: TBD
+Feature branch: TBD
+Session log: TBD
+Depends on: mypaytag-site:GPTW-S6-T1, mypaytag-site:GPTW-S6-T2
+
+Keep the broader MyPayTag story while preventing non-MVP solver/execution promises from becoming launch requirements.
+
+Acceptance notes:
+
+- Primary developer path teaches paytag to MyPayTag route selection to PayToDapp provider intent.
+- Solver, bridge, swap, quote fanout, and preferred solver content is visibly labeled as future execution-adapter capability.
+- Copy avoids implying settlement, payment execution, or solver readiness is part of the MVP core flow.
+- Cubid is described as powering verified identity, consent, and aliases, not payment routing or wallets.
+
+### GPTW-S7-T3 Sync Public API Docs From Corrected SDK Artifacts
+
+Status: TBD
+Feature branch: TBD
+Session log: TBD
+Depends on: mypaytag-sdk:GPTS-S6-T2
+
+Refresh public API documentation views from the corrected SDK contract.
+
+Acceptance notes:
+
+- `public/api/openapi.yaml` and Postman artifacts are synced from `mypaytag-sdk` through repo scripts.
+- Generated API artifacts are not hand-edited.
+- Examples show opaque/default paytags and raw-explicit paytags correctly.
+- API docs do not show weak intent payloads or imply MyPayTag has already executed settlement.
+
+### GPTW-S7-T4 Harden Hosted Route-Selection UX
+
+Status: TBD
+Feature branch: TBD
+Session log: TBD
+Depends on: mypaytag:GPTR-S6-T2, mypaytag-site:GPTW-S3-T1, mypaytag-site:GPTW-S3-T2
+
+Make hosted route selection browser-safe and aligned with the corrected backend action model.
+
+Acceptance notes:
+
+- Route-selection pages hydrate browser-safe action data only after action validation and user sign-in.
+- Pages show only route options relevant to the current action and current user.
+- Pages do not show wallet graph data, unrelated PayToDapps, raw Cubid identifiers, or provider internals.
+- Expired, invalid, denied, completed, and already-used states preserve negative-disclosure guarantees.
+
+### GPTW-S7-T5 Link Cubid-Owned Identity Work Out To Cubid
+
+Status: TBD
+Feature branch: TBD
+Session log: TBD
+Depends on: cubid-monorepo:CUBID-PAYTAG-03, cubid-sdk-v2:S18.2
+
+Ensure MyPayTag does not implement Cubid-owned paytag identity management.
+
+Acceptance notes:
+
+- Stamp elevation, opaque paytag creation, raw-stamp exposure, and Cubid grant/revoke flows link to Cubid-owned hosted flows.
+- MyPayTag copy says Cubid owns identity and consent while MyPayTag owns payment route preference and provider intent orchestration.
+- MyPayTag pages do not implement Cubid stamp/grant management directly.
+- PayingDapp examples call MyPayTag rather than Cubid directly.
+
+### GPTW-S7-T6 Harden Playground And Launch Smoke
+
+Status: TBD
+Feature branch: TBD
+Session log: TBD
+Depends on: mypaytag-site:GPTW-S7-T3, mypaytag-site:GPTW-S7-T4, mypaytag:GPTR-S6-T8
+
+Make the playground demonstrate the MVP accurately and document launch-readiness smoke.
+
+Acceptance notes:
+
+- MVP playground calls use real MyPayTag API contracts.
+- Solver quote simulation remains clearly labeled as simulation or non-MVP extension.
+- Playground copy does not imply Cubid receives wallet/payment details.
+- Local lint/typecheck/test/build, browser secret scan, OpenAPI sync checks, and hosted staging smoke are documented before launch readiness is claimed.
