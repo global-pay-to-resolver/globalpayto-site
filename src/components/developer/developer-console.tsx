@@ -39,7 +39,7 @@ export function DeveloperConsole() {
   const [email, setEmail] = useState("");
 
   const apiKey = useMemo(
-    () => `gptr_dev_${String(apiKeyVersion).padStart(2, "0")}_••••_mock_key`,
+    () => `mpt_dev_${String(apiKeyVersion).padStart(2, "0")}_••••_mock_key`,
     [apiKeyVersion],
   );
 

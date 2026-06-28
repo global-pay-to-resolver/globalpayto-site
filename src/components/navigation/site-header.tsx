@@ -43,7 +43,7 @@ export function SiteHeader() {
           </Link>
           <a
             className="inline-flex items-center gap-1.5 hover:text-[#176b46]"
-            href="https://github.com/global-pay-to-resolver"
+            href="https://github.com/myPayTag"
             rel="noreferrer"
             target="_blank"
           >

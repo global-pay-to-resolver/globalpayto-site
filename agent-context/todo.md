@@ -485,9 +485,9 @@ Acceptance notes:
 
 ### GPTW-S7-T1 Rename Public GlobalPayTo Site Surfaces To MyPayTag
 
-Status: TBD
-Feature branch: TBD
-Session log: TBD
+Status: Done 2026-06-28
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s7-t1
 Depends on: mypaytag-sdk:GPTS-S6-T1
 
 Implement the site-facing rename requested in `agent-context/2026-06-28-mypaytag-mvp-realignment.md`.

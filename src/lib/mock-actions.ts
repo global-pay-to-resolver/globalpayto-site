@@ -38,8 +38,8 @@ export interface RouteSelectionAction {
 }
 
 export const routeSelectionActions: Record<string, RouteSelectionAction> = {
-  "gptr_act_route_demo": {
-    id: "gptr_act_route_demo",
+  "mpt_act_route_demo": {
+    id: "mpt_act_route_demo",
     state: "ready",
     maskedIdentifier: "u***@example.test",
     paths: [

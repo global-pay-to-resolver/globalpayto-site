@@ -113,7 +113,7 @@ function buildFunctionUrl(resolverBaseUrl: string, path: string, body: unknown) 
   const url = new URL(`/functions/v1${path}`, resolverBaseUrl);
 
   if (path === "/hosted-actions") {
-    const actionId = hasStringProperty(body, "actionId") ? body.actionId : "gptr_act_route";
+    const actionId = hasStringProperty(body, "actionId") ? body.actionId : "mpt_act_route_demo";
     url.searchParams.set("actionId", actionId);
     url.searchParams.set("kind", "route_selection");
   }

@@ -119,13 +119,13 @@ export const sendingExamples: PlaygroundExample[] = [
     description:
       "When multiple receive apps can handle a route, the site hydrates an opaque route-selection action without putting route details in the URL.",
     method: "GET",
-    endpoint: "/hosted-actions?actionId=gptr_act_route",
+    endpoint: "/hosted-actions?actionId=mpt_act_route_demo",
     body: {
-      actionId: "gptr_act_route",
+      actionId: "mpt_act_route_demo",
     },
     notes: [
       "This call is browser-safe and does not require a paying-app signature.",
-      "Try gptr_act_expired or gptr_act_invalid to see safe action states.",
+      "Try mpt_act_expired or mpt_act_invalid to see safe action states.",
     ],
   },
   {
@@ -137,7 +137,7 @@ export const sendingExamples: PlaygroundExample[] = [
     method: "POST",
     endpoint: "/route-selection",
     body: {
-      actionId: "gptr_act_route",
+      actionId: "mpt_act_route_demo",
       kind: "route_selection",
       decision: "select_route",
       selectedRouteId: "smartrust",

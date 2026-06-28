@@ -273,3 +273,14 @@ todo: mypaytag-site:GPTW-S6-T3
 summary: Added a solver-content validation script and package command that checks the homepage for all six public solver names, private-boundary leakage, and responsive solver-section layout markers.
 validation: Ran pnpm check:solver-content, pnpm typecheck, pnpm lint, and pnpm build.
 follow-ups: Continue with SmarTrust Wallet adapter migration work against the generic MyPayTag SDK and backend boundaries.
+
+---
+
+## 2026-06-28-gptw-s7-t1
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S7-T1
+summary: Renamed remaining browser-visible GlobalPayTo-era demo identifiers from gptr to mpt, updated the mock developer key prefix, and replaced the stale public GitHub org link with the MyPayTag org link after checking the sibling realignment docs.
+validation: Ran pnpm typecheck, pnpm lint, pnpm privacy:route-selection, and an rg scan for stale public GlobalPayTo/gptr/globalpayto terms.
+follow-ups: Continue Sprint 7 with MVP-versus-future public copy framing.
