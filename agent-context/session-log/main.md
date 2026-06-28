@@ -438,3 +438,14 @@ todo: mypaytag-site:GPTW-S8-T5
 summary: Revised launch-readiness smoke guidance so local gates include hosted-action, public-doc, and solver-content checks, and hosted staging smoke covers SmarTrust as the first PayingDapp/PayToDapp plus NEAR 1Click quote, selected-quote, and payable-instruction paths.
 validation: Ran pnpm scan:public-docs, pnpm check:solver-content, pnpm typecheck, and pnpm lint.
 follow-ups: Replace broad solver content guardrails with the revised Phase 1/Phase 2 enforcement.
+
+---
+
+## 2026-06-28-gptw-s8-t6
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S8-T6
+summary: Replaced broad solver homepage-name assertions with guardrails that require NEAR Intents / 1Click as Phase 1 MVP execution content, require Phase 2 labeling for LI.FI, Squid, 0x, Across, LayerZero/Stargate, broad fanout, and generic adapters, and fail if public copy frames NEAR as future-only or non-MVP.
+validation: Ran pnpm check:solver-content, pnpm typecheck, pnpm lint, and pnpm build.
+follow-ups: Hosted staging smoke is still required before launch readiness can be claimed.
