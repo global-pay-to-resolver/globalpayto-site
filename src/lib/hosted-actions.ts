@@ -12,8 +12,8 @@ interface HostedActionCompletion {
   selectedRouteId?: string;
 }
 
-const resolverBaseUrl = process.env.GLOBALPAYTO_RESOLVER_BASE_URL;
-const devCubidUserId = process.env.GLOBALPAYTO_DEV_CUBID_USER_ID;
+const resolverBaseUrl = process.env.MYPAYTAG_RESOLVER_BASE_URL;
+const devCubidUserId = process.env.MYPAYTAG_DEV_CUBID_USER_ID;
 
 export async function getHostedRouteSelectionAction(actionId: string): Promise<RouteSelectionAction> {
   return await getHostedAction(actionId, "route_selection", () => getRouteSelectionAction(actionId));
@@ -83,7 +83,7 @@ function backendHeaders(): HeadersInit {
   };
 
   if (devCubidUserId && isLocalOrTestRuntime()) {
-    headers["x-globalpayto-dev-cubid-user-id"] = devCubidUserId;
+    headers["x-mypaytag-dev-cubid-user-id"] = devCubidUserId;
   }
 
   return headers;

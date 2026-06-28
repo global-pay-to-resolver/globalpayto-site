@@ -191,7 +191,7 @@ export function RouteSelectionClient({ action, submitUrl }: RouteSelectionClient
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-[#586250]">
                   {needsDefault
-                    ? "More than one PayToDapp can receive this channel. Choose the default GlobalPayTo should use."
+                    ? "More than one PayToDapp can receive this channel. Choose the default MyPayTag should use."
                     : "This channel has one active PayToDapp. No default selection is needed."}
                 </p>
               </div>

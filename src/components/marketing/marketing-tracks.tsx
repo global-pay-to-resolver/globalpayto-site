@@ -57,7 +57,7 @@ const tracks: Record<
       {
         icon: BanknoteArrowDown,
         title: "Fee control",
-        text: "You set your own fees. If you use our exchange service, GlobalPayTo takes a percentage of your fees.",
+        text: "You set your own fees. If you use our exchange service, MyPayTag takes a percentage of your fees.",
       },
     ],
     features: [
@@ -124,7 +124,7 @@ const tracks: Record<
       {
         icon: Sparkles,
         title: "No routing hassle",
-        text: "GlobalPayTo handles chain, token, exchange, and route complexity behind the scenes.",
+        text: "MyPayTag handles chain, token, exchange, and route complexity behind the scenes.",
       },
       {
         icon: BadgeCheck,
@@ -158,7 +158,7 @@ export function MarketingTracks() {
             What role do you play?
           </h2>
           <p className="mt-4 text-base leading-7 text-[#586250]">
-            GlobalPayTo connects three groups. All benefits are visible until
+            MyPayTag connects three groups. All benefits are visible until
             you pick the role that matches your product.
           </p>
         </div>

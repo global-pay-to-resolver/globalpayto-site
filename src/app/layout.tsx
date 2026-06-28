@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GlobalPayTo",
+  title: "MyPayTag",
   description:
     "A global pay-to layer for crypto apps, sending apps, receiving apps, wallets, and users.",
 };

@@ -1,4 +1,4 @@
-# GlobalPayTo Site TODO
+# MyPayTag Site TODO
 
 This document tracks MVP implementation work for the public user-facing site and hosted action flows.
 
@@ -9,7 +9,7 @@ This document tracks MVP implementation work for the public user-facing site and
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md  
-Depends on: globalpayto-sdk:GPTS-S1-T1, globalpayto-sdk:GPTS-S1-T2, globalpayto-sdk:GPTS-S1-T3, globalpayto-sdk:GPTS-S1-T7
+Depends on: mypaytag-sdk:GPTS-S1-T1, mypaytag-sdk:GPTS-S1-T2, mypaytag-sdk:GPTS-S1-T3, mypaytag-sdk:GPTS-S1-T7
 
 Define the browser-facing contract for hosted route-selection actions.
 
@@ -33,14 +33,14 @@ Acceptance notes:
 
 - Browser-safe values use `NEXT_PUBLIC_*`.
 - Resolver secrets, Cubid dapp API keys, service-role keys, provider callback credentials, and database credentials stay out of browser env vars and client bundles.
-- README setup guidance reflects the GlobalPayTo hosted-action role rather than only the Cubid starter baseline.
+- README setup guidance reflects the MyPayTag hosted-action role rather than only the Cubid starter baseline.
 
 ### GPTW-S1-T3 Define Public Copy For Resolver Statuses And Notifications
 
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md  
-Depends on: globalpayto-sdk:GPTS-S1-T1, globalpayto-sdk:GPTS-S1-T7
+Depends on: mypaytag-sdk:GPTS-S1-T1, mypaytag-sdk:GPTS-S1-T7
 
 Define user-facing copy for resolver statuses and Cubid comms notifications that may appear in hosted action flows.
 
@@ -59,7 +59,7 @@ Acceptance notes:
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md  
-Depends on: globalpayto-site:GPTW-S1-T1
+Depends on: mypaytag-site:GPTW-S1-T1
 
 Design the send-to channel model where requesting apps are enabled by default and users manage receive-route preferences.
 
@@ -74,7 +74,7 @@ Acceptance notes:
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md  
-Depends on: globalpayto-site:GPTW-S2-T1
+Depends on: mypaytag-site:GPTW-S2-T1
 
 Remove hosted authorization/setup pages from the public site.
 
@@ -89,7 +89,7 @@ Acceptance notes:
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md  
-Depends on: globalpayto-site:GPTW-S1-T1
+Depends on: mypaytag-site:GPTW-S1-T1
 
 Design the route-selection flow for choosing a default when multiple PayToDapps support the same route.
 
@@ -106,7 +106,7 @@ Acceptance notes:
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md  
-Depends on: globalpayto-site:GPTW-S2-T3
+Depends on: mypaytag-site:GPTW-S2-T3
 
 Implement hosted route-selection pages in the public site.
 
@@ -117,14 +117,14 @@ Acceptance notes:
 - Pages keep route details limited to the current user action.
 - Sprint 3 save must post to the backend and re-check selected PayToDapp eligibility and default tuple state before showing `selected_route`.
 
-### GPTW-S2-T5 Remove Starter-Only UI That Conflicts With GlobalPayTo MVP
+### GPTW-S2-T5 Remove Starter-Only UI That Conflicts With MyPayTag MVP
 
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md  
-Depends on: globalpayto-site:GPTW-S2-T1
+Depends on: mypaytag-site:GPTW-S2-T1
 
-Remove, hide, or reframe starter UI that conflicts with the GlobalPayTo MVP product boundary.
+Remove, hide, or reframe starter UI that conflicts with the MyPayTag MVP product boundary.
 
 Acceptance notes:
 
@@ -140,7 +140,7 @@ Acceptance notes:
 Status: Complete
 Feature branch: main
 Session log: agent-context/session-log/main.md
-Depends on: globalpayto:GPTR-S3-T1, globalpayto:GPTR-S3-T4, globalpayto:GPTR-S3-T7
+Depends on: mypaytag:GPTR-S3-T1, mypaytag:GPTR-S3-T4, mypaytag:GPTR-S3-T7
 
 Wire hosted action pages to backend action endpoints for route selection.
 
@@ -157,7 +157,7 @@ Acceptance notes:
 Status: Complete
 Feature branch: main
 Session log: agent-context/session-log/main.md
-Depends on: globalpayto-site:GPTW-S2-T2, globalpayto-site:GPTW-S2-T4
+Depends on: mypaytag-site:GPTW-S2-T2, mypaytag-site:GPTW-S2-T4
 
 Implement safe handling for expired, invalid, already-used, or denied action links.
 
@@ -174,7 +174,7 @@ Acceptance notes:
 Status: Complete
 Feature branch: main
 Session log: agent-context/session-log/main.md
-Depends on: globalpayto-site:GPTW-S1-T2
+Depends on: mypaytag-site:GPTW-S1-T2
 
 Add verification that the browser bundle contains no resolver secrets or server-only credentials.
 
@@ -190,7 +190,7 @@ Acceptance notes:
 Status: Complete
 Feature branch: main
 Session log: agent-context/session-log/main.md
-Depends on: globalpayto-site:GPTW-S2-T4
+Depends on: mypaytag-site:GPTW-S2-T4
 
 Review and test the route-selection UX for wallet graph and preference leakage.
 
@@ -208,7 +208,7 @@ Acceptance notes:
 Status: TBD  
 Feature branch: TBD  
 Session log: TBD  
-Depends on: globalpayto-site:GPTW-S2-T2, globalpayto-site:GPTW-S2-T4
+Depends on: mypaytag-site:GPTW-S2-T2, mypaytag-site:GPTW-S2-T4
 
 Add browser acceptance coverage for route-selection hosted actions.
 
@@ -223,7 +223,7 @@ Acceptance notes:
 Status: TBD  
 Feature branch: TBD  
 Session log: TBD  
-Depends on: globalpayto-site:GPTW-S2-T2, globalpayto-site:GPTW-S2-T4
+Depends on: mypaytag-site:GPTW-S2-T2, mypaytag-site:GPTW-S2-T4
 
 Add responsive and accessibility checks for hosted action pages.
 
@@ -238,9 +238,9 @@ Acceptance notes:
 Status: TBD  
 Feature branch: TBD  
 Session log: TBD  
-Depends on: globalpayto-site:GPTW-S2-T2, globalpayto-site:GPTW-S2-T4
+Depends on: mypaytag-site:GPTW-S2-T2, mypaytag-site:GPTW-S2-T4
 
-Update public README and setup docs to describe the GlobalPayTo hosted-action app rather than only the Cubid starter baseline.
+Update public README and setup docs to describe the MyPayTag hosted-action app rather than only the Cubid starter baseline.
 
 Acceptance notes:
 
@@ -253,32 +253,32 @@ Acceptance notes:
 Status: TBD  
 Feature branch: TBD  
 Session log: TBD  
-Depends on: globalpayto-site:GPTW-S4-T3
+Depends on: mypaytag-site:GPTW-S4-T3
 
 Review public site docs for private-repo links and private implementation leakage.
 
 Acceptance notes:
 
-- Public docs do not link into private `globalpayto` files.
+- Public docs do not link into private `mypaytag` files.
 - Public docs avoid Supabase schema details, provider callback internals, audit internals, service-role usage, and admin processes.
 - Cross-repo references point only to public SDK docs or stable dependency IDs.
 
 ## Sprint 5: Blog Post Writing And Publishing
 
-### GPTW-S5-T1 Write And Publish Introducing GlobalPayToResolver: Pay Users, Not Wallet Addresses
+### GPTW-S5-T1 Write And Publish Introducing MyPayTag: Pay Users, Not Wallet Addresses
 
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t1  
-Depends on: globalpayto-site:GPTW-S4-T3
+Depends on: mypaytag-site:GPTW-S4-T3
 
-Write and publish the core launch post introducing GlobalPayToResolver as a way to pay users by approved identity rather than wallet address.
+Write and publish the core launch post introducing MyPayTag as a way to pay users by approved identity rather than wallet address.
 
 Acceptance notes:
 
 - Post explains the address-centric UX and privacy problem.
 - Post introduces user-approved pay-to identifiers and consented payment intents.
-- Post explains that GlobalPayToResolver is powered by Cubid but separate from Cubid.
+- Post explains that MyPayTag is powered by Cubid but separate from Cubid.
 - Post includes a CTA for early PayToDapp and PayingDapp integrations.
 
 ### GPTW-S5-T2 Write And Publish Why Crypto Needs A Pay-To Layer
@@ -286,7 +286,7 @@ Acceptance notes:
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t2  
-Depends on: globalpayto-site:GPTW-S5-T1
+Depends on: mypaytag-site:GPTW-S5-T1
 
 Write and publish the ecosystem thesis post explaining why payment resolution is the missing layer between identity, wallets, chains, and apps.
 
@@ -301,7 +301,7 @@ Acceptance notes:
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t3  
-Depends on: globalpayto-sdk:GPTS-S1-T5, globalpayto-site:GPTW-S5-T1
+Depends on: mypaytag-sdk:GPTS-S1-T5, mypaytag-site:GPTW-S5-T1
 
 Write and publish the product abstraction post explaining why the resolver returns payment intents rather than static addresses.
 
@@ -309,16 +309,16 @@ Acceptance notes:
 
 - Post contrasts static addresses with structured, scoped, expiring payment intents.
 - Post covers memos, expiry, one-time routes, provider-specific logic, and auditability.
-- Post aligns with the GlobalPayTo JSON intent schema and avoids external protocol promises beyond MVP.
+- Post aligns with the MyPayTag JSON intent schema and avoids external protocol promises beyond MVP.
 
-### GPTW-S5-T4 Write And Publish How GlobalPayToResolver Works: The Five Roles
+### GPTW-S5-T4 Write And Publish How MyPayTag Works: The Five Roles
 
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t4  
-Depends on: globalpayto-site:GPTW-S5-T1
+Depends on: mypaytag-site:GPTW-S5-T1
 
-Write and publish a developer education post explaining the five MVP roles: User, GlobalPayToResolver, Cubid, PayToDapp, and PayingDapp.
+Write and publish a developer education post explaining the five MVP roles: User, MyPayTag, Cubid, PayToDapp, and PayingDapp.
 
 Acceptance notes:
 
@@ -331,7 +331,7 @@ Acceptance notes:
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t5  
-Depends on: globalpayto-site:GPTW-S5-T4
+Depends on: mypaytag-site:GPTW-S5-T4
 
 Write and publish a practical integration post helping builders identify whether their app is a PayToDapp, PayingDapp, or both.
 
@@ -346,7 +346,7 @@ Acceptance notes:
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t6  
-Depends on: globalpayto-sdk:GPTS-S1-T2, globalpayto-site:GPTW-S5-T3
+Depends on: mypaytag-sdk:GPTS-S1-T2, mypaytag-site:GPTW-S5-T3
 
 Write and publish the wallet integration post comparing Modality A and Modality B while making clear that MVP implementation uses Modality B only.
 
@@ -362,7 +362,7 @@ Acceptance notes:
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t7  
-Depends on: globalpayto-sdk:GPTS-S1-T3, globalpayto-site:GPTW-S5-T3
+Depends on: mypaytag-sdk:GPTS-S1-T3, mypaytag-site:GPTW-S5-T3
 
 Write and publish a developer-facing API post with example resolve requests and a CTA to try the SDK.
 
@@ -377,7 +377,7 @@ Acceptance notes:
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t8  
-Depends on: globalpayto-sdk:GPTS-S1-T2, globalpayto-sdk:GPTS-S1-T4, globalpayto-site:GPTW-S5-T5
+Depends on: mypaytag-sdk:GPTS-S1-T2, mypaytag-sdk:GPTS-S1-T4, mypaytag-site:GPTW-S5-T5
 
 Write and publish a wallet-focused integration walkthrough for PayToDapps.
 
@@ -392,7 +392,7 @@ Acceptance notes:
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t9  
-Depends on: globalpayto-sdk:GPTS-S1-T1, globalpayto-sdk:GPTS-S1-T3, globalpayto-site:GPTW-S5-T5
+Depends on: mypaytag-sdk:GPTS-S1-T1, mypaytag-sdk:GPTS-S1-T3, mypaytag-site:GPTW-S5-T5
 
 Write and publish an app-focused integration walkthrough for PayingDapps.
 
@@ -407,9 +407,9 @@ Acceptance notes:
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t10  
-Depends on: globalpayto-site:GPTW-S5-T4
+Depends on: mypaytag-site:GPTW-S5-T4
 
-Write and publish the identity and privacy post explaining why GlobalPayToResolver does not rely on a universal CubidID.
+Write and publish the identity and privacy post explaining why MyPayTag does not rely on a universal CubidID.
 
 Acceptance notes:
 
@@ -422,7 +422,7 @@ Acceptance notes:
 Status: Complete  
 Feature branch: main  
 Session log: agent-context/session-log/main.md#2026-06-24-gptw-s5-t11  
-Depends on: globalpayto-site:GPTW-S5-T10
+Depends on: mypaytag-site:GPTW-S5-T10
 
 Write and publish the identity model post explaining the main options for identifying a user for payment resolution.
 
@@ -436,26 +436,26 @@ Acceptance notes:
 
 ### GPTW-S6-T1 Maintain Solver Adapter Homepage Section
 
-Status: TBD
-Feature branch: TBD
-Session log: TBD
-Depends on: globalpayto-sdk:GPTS-S5-T2
+Status: Complete
+Feature branch: feature/mypaytag-resolver-migration
+Session log: agent-context/session-log/main.md#2026-06-26-gptw-s6-t1
+Depends on: mypaytag-sdk:GPTS-S5-T2
 
 Keep the homepage solver adapter section aligned with the public SDK solver ids and product positioning.
 
 Acceptance notes:
 
 - Homepage names NEAR Intents / 1Click, LI.FI, Squid, 0x Cross-Chain API, Across, and LayerZero / Stargate.
-- Copy explains that GlobalPayTo resolves recipients first and execution adapters quote or route payment execution afterward.
+- Copy explains that MyPayTag resolves recipients first and execution adapters quote or route payment execution afterward.
 - Copy avoids implying that solver adapters determine the recipient's preferred PayToDapp.
 - Section remains responsive and does not introduce horizontal overflow on mobile.
 
 ### GPTW-S6-T2 Add Solver Adapter Developer Explainer
 
-Status: TBD
-Feature branch: TBD
-Session log: TBD
-Depends on: globalpayto-sdk:GPTS-S5-T1, globalpayto-sdk:GPTS-S5-T2
+Status: Complete
+Feature branch: feature/mypaytag-resolver-migration
+Session log: agent-context/session-log/main.md#2026-06-26-gptw-s6-t2
+Depends on: mypaytag-sdk:GPTS-S5-T1, mypaytag-sdk:GPTS-S5-T2
 
 Add public developer-facing content that explains how payor-apps should think about solver/router adapters.
 
@@ -464,14 +464,14 @@ Acceptance notes:
 - Content explains preferred-solver behavior versus quote fanout when no solver is selected.
 - Content explains that solver adapters consume resolved receive requirements and do not expose recipient wallet graphs.
 - Content links to public SDK docs when quote provider helpers are available.
-- Content does not link into private `globalpayto` docs or expose backend provider credentials, private policy, or operational details.
+- Content does not link into private `mypaytag` docs or expose backend provider credentials, private policy, or operational details.
 
 ### GPTW-S6-T3 Add Solver Adapter Content Checks
 
-Status: TBD
-Feature branch: TBD
-Session log: TBD
-Depends on: globalpayto-site:GPTW-S6-T1
+Status: Complete
+Feature branch: feature/mypaytag-resolver-migration
+Session log: agent-context/session-log/main.md#2026-06-26-gptw-s6-t3
+Depends on: mypaytag-site:GPTW-S6-T1
 
 Add lightweight checks for the public solver adapter content.
 

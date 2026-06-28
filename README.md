@@ -1,8 +1,8 @@
-# GlobalPayTo Site
+# MyPayTag Site
 
-Public marketing app/site for GlobalPayTo.
+Public marketing app/site for MyPayTag.
 
-This repo owns the developer-led marketing homepage for GlobalPayTo plus the
+This repo owns the developer-led marketing homepage for MyPayTag plus the
 browser-safe hosted pages used for signed-in route-selection links, signed-in
 incoming history, and notification landing targets. Private resolver
 implementation, production Supabase schema, provider callbacks, audit logging,
@@ -11,10 +11,11 @@ and admin tooling belong outside this public repo.
 ## Architecture
 
 - [Hosted user actions architecture](docs/engineering/hosted-user-actions-architecture.md)
-- Public protocol and SDK architecture lives in the sibling `globalpayto-sdk`
+- [Solver adapter developer explainer](docs/engineering/solver-adapter-developer-explainer.md)
+- Public protocol and SDK architecture lives in the sibling `mypaytag-sdk`
   repo.
 
-This repo is forked from [`Cubid-Me/cubid-starter-v3`](https://github.com/Cubid-Me/cubid-starter-v3) so it can continue to receive useful upstream starter updates while the GlobalPayTo experience is built out.
+This repo is forked from [`Cubid-Me/cubid-starter-v3`](https://github.com/Cubid-Me/cubid-starter-v3) so it can continue to receive useful upstream starter updates while the MyPayTag experience is built out.
 
 The current codebase is still the canonical full-stack Next.js starter for the
 modern Cubid public SDK package family from
@@ -35,10 +36,17 @@ or normal Cubid transaction-signing examples from those projects.
 
 ## What This Starter Shows
 
-- GlobalPayTo landing page with a persistent mock Sign In / Sign Out header
+- MyPayTag landing page with a persistent mock Sign In / Sign Out header
   until SIWC is connected.
 - Three marketing tracks for users, devs of sending apps, and devs of receiving
   apps/wallets.
+- Public `/api-docs` page for sending-app and receiving-app developers,
+  including endpoint summaries, request examples, statuses, hosted actions,
+  notifications, and solver quote ids.
+- Public OpenAPI 3.1 YAML at `/api/openapi.yaml`, copied from the canonical
+  `mypaytag-sdk/api/openapi.yaml` contract source.
+- Interactive Scalar API reference at `/reference`, rendered from
+  `/api/openapi.yaml`.
 - Signed-in `/actions/route-selection/[actionId]` route-selection flow.
 - Signed-in `/history` view grouped by PayingDapp, PayToDapp, token, or chain,
   with quick filters for queries, intents, transactions, and all activity.
@@ -57,10 +65,15 @@ header session until SIWC is connected. The header supports logging in as a user
 or as a developer; developer mode exposes mock API provisioning, key rotation,
 team invites, and recent app history.
 
+`/api-docs`, `/reference`, `/blog`, and the homepage are public
+developer-facing surfaces. They should describe only public protocol behavior
+and should link developers toward the SDK contracts rather than private resolver
+implementation details.
+
 ## Copy-Paste Local Setup
 
 ```sh
-cd /Users/botmaster/src/global-pay-to-resolver/globalpayto-site
+cd /Users/botmaster/src/myPayTag/mypaytag-site
 cp .env.example .env.local
 pnpm install
 pnpm dev
@@ -128,9 +141,21 @@ publishing catches up, especially for `@cubid/comms`.
 ```sh
 pnpm lint
 pnpm typecheck
+pnpm api:validate
 pnpm build
 ```
 
 The browser demo can render without server credentials. The server demo returns
 a non-secret setup message until server-only Cubid credentials are present in
 `.env.local`.
+
+API documentation workflow:
+
+- Edit the canonical OpenAPI source in `../mypaytag-sdk/api/openapi.yaml`.
+- Copy the spec into this repo as `public/api/openapi.yaml` when publishing site docs.
+- Run `pnpm api:validate` to confirm the site copy still matches the SDK source.
+- Run `pnpm api:postman` to regenerate and copy the public API artifacts from the SDK repo.
+- Run `pnpm dev` or `pnpm api:docs` and open `/reference` for the Scalar docs.
+- The Postman collection is generated in the SDK repo at
+  `api/postman_collection.json` from `api/openapi.yaml` and served by this site
+  at `/api/postman_collection.json`; do not edit the collection by hand.
