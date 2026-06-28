@@ -583,9 +583,9 @@ Acceptance notes:
 
 ### GPTW-S8-T1 Reframe Execution Copy Around NEAR 1Click MVP
 
-Status: Todo
+Status: Complete
 Feature branch: codex/mypaytag-mvp-realignment-20260628
-Gap note: agent-context/2026-06-28-mypaytag-site-mvp-gap-review.md
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s8-t1
 Depends on: mypaytag:GPTR-S7-T1, mypaytag-sdk:GPTS-S7-T1, smartrust-wallet:SMTW-S1-T1
 
 Correct public execution messaging for the updated Phase 1 scope.

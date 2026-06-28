@@ -383,3 +383,14 @@ todo: mypaytag-site:GPTW-S4-T4
 summary: Added a public-doc scanner that blocks private backend paths, backend repo references, SQL/RLS snippets, service-role env names, provider callback secret details, database credentials, private audit details, and admin tool details while allowing explicit public boundary guidance.
 validation: Ran pnpm scan:public-docs, pnpm scan:browser-secrets, pnpm lint, and pnpm typecheck.
 follow-ups: Sprint 4 is complete; continue with Sprint 8 NEAR 1Click MVP site correction.
+
+---
+
+## 2026-06-28-gptw-s8-t1
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S8-T1
+summary: Reframed homepage, marketing track, and solver explainer copy so NEAR Intents / 1Click is the Phase 1 MVP swap and bridge adapter for the initial SmarTrust path, while LI.FI, Squid, 0x, Across, LayerZero/Stargate, broad fanout, and generic adapters remain Phase 2.
+validation: Ran pnpm check:solver-content, pnpm typecheck, and pnpm lint.
+follow-ups: Add NEAR 1Click MVP playground quote and selected-quote flows.

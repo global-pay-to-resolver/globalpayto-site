@@ -124,7 +124,7 @@ const tracks: Record<
       {
         icon: Sparkles,
         title: "No routing hassle",
-        text: "MyPayTag handles approved route selection, while future execution adapters can handle exchange and bridge complexity.",
+        text: "MyPayTag handles approved route selection, with NEAR 1Click covering MVP swap and bridge execution for the first SmarTrust path.",
       },
       {
         icon: BadgeCheck,

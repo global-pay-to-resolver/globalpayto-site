@@ -41,31 +41,37 @@ const ecosystemSteps = [
 const solverCards = [
   {
     name: "NEAR Intents / 1Click",
+    phase: "Phase 1 MVP adapter",
     bestFor: "Crypto-to-crypto swaps, cross-chain stablecoin delivery, and distribution-channel fees.",
-    text: "NEAR 1Click gives MyPayTag a strong default execution adapter when both sides are crypto or stablecoin. It abstracts intent creation, solver coordination, transaction execution, status tracking, retries, refunds, and quote-level fee configuration behind a REST surface.",
+    text: "NEAR 1Click is the MVP swap and bridge execution adapter for the first SmarTrust launch path. MyPayTag resolves the Paytag and route first; SmarTrust can then use NEAR 1Click when the selected payment requires swap or bridge execution.",
   },
   {
     name: "LI.FI",
+    phase: "Phase 2 adapter",
     bestFor: "EVM and Solana routing, bridge/DEX aggregation, and wallet-controlled execution.",
     text: "LI.FI is an aggregator/router with a practical developer surface for fetching quotes, executing cross-chain transfers, and tracking status. Its quote model can return an estimated result plus a transaction request that a wallet can sign, which fits payor-wallet UX well.",
   },
   {
     name: "Squid",
+    phase: "Phase 2 adapter",
     bestFor: "Broad chain coverage, cross-chain swaps, bridges, contract calls, and Cosmos/Axelar-style routes.",
     text: "Squid is useful when MyPayTag needs breadth across ecosystems. It covers swaps, bridges, and contract calls across many chains, and its Boost model points toward fast optimistic settlement for eligible routes.",
   },
   {
     name: "0x Cross-Chain API",
+    phase: "Phase 2 adapter",
     bestFor: "Cross-chain payments, EVM/Solana routing, stablecoin settlement, fallback paths, and progress tracking.",
     text: "0x is especially relevant because cross-chain payments are part of its positioning. It can become a high-quality execution adapter for stablecoin payment flows where quote speed, fallback behavior, and execution tracking matter.",
   },
   {
     name: "Across",
+    phase: "Phase 2 adapter",
     bestFor: "Fast EVM/L2 stablecoin bridging with lower route complexity where supported.",
     text: "Across is narrower than broad solver networks, but that can be a strength. For supported EVM and L2 stablecoin transfers, it offers a simpler bridge-focused path that can be easier to evaluate and present to PayingDapps.",
   },
   {
     name: "LayerZero / Stargate",
+    phase: "Phase 2 adapter",
     bestFor: "Cross-chain token transfers, OFT assets, LayerZero ecosystem routes, and Stargate-supported stablecoins.",
     text: "LayerZero Value Transfer and Stargate matter where token transfer infrastructure is already strong. MyPayTag should treat them as execution adapters that need careful asset canonicalization, not as recipient-resolution systems.",
   },
@@ -189,16 +195,18 @@ export default function Home() {
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9fd3a5]">
-                Future execution adapters
+                Phase 1 execution adapter
               </p>
               <h2 className="mt-4 text-4xl font-semibold leading-tight">
-                Solver, bridge, and swap support stays outside the MVP core path.
+                NEAR 1Click is the MVP swap and bridge path for SmarTrust.
               </h2>
               <p className="mt-5 text-sm leading-7 text-[#c9d7c4]">
-                The MVP path is paytag to MyPayTag route selection to PayToDapp
-                provider intent. Execution adapters can later quote or route the
-                payment after the provider intent exists, without becoming a
-                launch requirement.
+                Phase 1 is paytag to MyPayTag route selection to SmarTrust as
+                the first PayingDapp and PayToDapp. Same-chain same-token
+                transfers can go through MyPayTag or be handled locally by the
+                PayingDapp, while swap and bridge paths use NEAR 1Click as the
+                MVP execution adapter. Broader fanout and generic adapters stay
+                Phase 2.
               </p>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
@@ -207,6 +215,9 @@ export default function Home() {
                   className="rounded-md border border-white/12 bg-white/[0.06] p-5 transition duration-200 hover:-translate-y-1 hover:bg-white/[0.09]"
                   key={solver.name}
                 >
+                  <p className="text-xs font-semibold uppercase tracking-normal text-[#9fd3a5]">
+                    {solver.phase}
+                  </p>
                   <h3 className="text-lg font-semibold">{solver.name}</h3>
                   <p className="mt-3 text-sm font-semibold leading-6 text-[#9fd3a5]">
                     {solver.bestFor}
@@ -249,8 +260,8 @@ export default function Home() {
               },
               {
                 icon: CircleDollarSign,
-                title: "Future optimization",
-                text: "Solver, bridge, swap, and fee optimization can layer on as execution-adapter capabilities.",
+                title: "MVP NEAR execution",
+                text: "SmarTrust swap and bridge paths use NEAR 1Click first; broad solver fanout remains Phase 2.",
               },
             ].map((item) => {
               const Icon = item.icon;
