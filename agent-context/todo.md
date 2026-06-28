@@ -205,9 +205,9 @@ Acceptance notes:
 
 ### GPTW-S4-T1 Add Browser Acceptance Coverage For Hosted Actions
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s4-t1
 Depends on: mypaytag-site:GPTW-S2-T2, mypaytag-site:GPTW-S2-T4
 
 Add browser acceptance coverage for route-selection hosted actions.

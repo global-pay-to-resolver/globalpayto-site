@@ -339,3 +339,14 @@ todo: mypaytag-site:GPTW-S7-T6
 summary: Hardened the playground around real MyPayTag MVP contracts by removing the non-public Cubid validation call, updating route registration and resolve payloads to Paytag/authorizationToken shapes, keeping solver quotes labeled as future SDK simulation, and adding a launch-readiness smoke checklist.
 validation: Ran pnpm lint, pnpm typecheck, pnpm scan:browser-secrets, pnpm check:openapi-sync, pnpm api:validate, pnpm privacy:route-selection, pnpm check:solver-content, pnpm build, targeted playground stale-field rg scans, and confirmed package.json has no pnpm test script.
 follow-ups: Sprint 7 site realignment todos are complete; hosted staging smoke still must be run before launch readiness is claimed.
+
+---
+
+## 2026-06-28-gptw-s4-t1
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S4-T1
+summary: Added a hosted-action acceptance check covering route selected, leave-unchanged/denied, expired, invalid, completed, and restart-required states, signed-in loading, safe terminal-state copy, sanitized hidden-state details, and constrained route-selection decisions.
+validation: Ran pnpm check:hosted-actions, pnpm privacy:route-selection, pnpm typecheck, and pnpm lint.
+follow-ups: Close Sprint 4 responsive and accessibility coverage for hosted action pages.
