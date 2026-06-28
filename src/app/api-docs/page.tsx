@@ -70,8 +70,8 @@ const solverIds = [
 
 const resolveRequest = `{
   "recipient": {
-    "identifierType": "verified_stamp",
-    "identifier": "email:recipient@example.com"
+    "identifierType": "paytag",
+    "identifier": "abd123@cubid.mypaytag"
   },
   "supportedPaths": [
     {
@@ -92,29 +92,55 @@ const resolveRequest = `{
 const resolveResponse = `{
   "status": "resolved",
   "intent": {
-    "type": "mypaytag.intent.v1",
-    "resolverRequestId": "mpt_req_123",
-    "selectedPath": {
+    "id": "mpt_pi_123",
+    "schema": "mypaytag.intent.v1",
+    "status": "ready",
+    "modality": "provider_intent",
+    "recipient": {
+      "identifierType": "paytag",
+      "identifierHash": "sha256:example"
+    },
+    "selectedRoute": {
+      "payToDappId": "example-wallet",
       "chain": "base",
       "network": "mainnet",
       "asset": "USDC"
     },
+    "amount": {
+      "value": "25.00",
+      "currency": "USDC"
+    },
+    "expiresAt": "2026-06-24T20:00:00Z",
+    "singleUse": true,
     "paymentInstruction": {
-      "kind": "provider_json",
+      "type": "provider_json",
+      "provider": "example-wallet",
       "payload": {
+        "providerIntentId": "provider_pi_456",
+        "chain": "base",
+        "network": "mainnet",
+        "asset": "USDC",
         "destination": {
           "kind": "blockchain_address",
-          "recipientAddress": "0xabc..."
-        }
+          "recipientAddress": "0xabc0000000000000000000000000000000000000"
+        },
+        "amount": "25.00",
+        "reference": "example-wallet:provider_pi_456",
+        "expiresAt": "2026-06-24T20:00:00Z"
       }
+    },
+    "references": {
+      "resolverReference": "mpt_pi_123",
+      "providerReference": "provider_pi_456",
+      "payingDappReference": "sender:payout_987"
     }
   }
 }`;
 
 const routeRegistration = `{
   "recipient": {
-    "identifierType": "verified_stamp",
-    "identifier": "email:recipient@example.com"
+    "identifierType": "paytag",
+    "identifier": "+1234569999@phone.cubid.mypaytag"
   },
   "payToDappId": "example-wallet",
   "supportedRoutes": [
@@ -124,7 +150,7 @@ const routeRegistration = `{
       "asset": "USDC"
     }
   ],
-  "consentToken": "cubid_consent_token"
+  "authorizationToken": "mpt_auth_123"
 }`;
 
 const notificationPayload = `{
@@ -356,7 +382,9 @@ export default function ApiDocsPage() {
               PayToDapps register availability, not static destination
               accounts. Addresses, memos, payment links, and chain-specific
               instructions belong in the provider response after a one-time
-              selection.
+              selection. Opaque paytags are the default; raw stamp-based
+              paytags, such as the phone example here, require explicit user
+              exposure choice before registration.
             </p>
           </div>
           <CodeBlock code={routeRegistration} />

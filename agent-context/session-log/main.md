@@ -295,3 +295,14 @@ todo: mypaytag-site:GPTW-S7-T2
 summary: Reframed homepage, track, API docs, and playground copy so the MVP path is Paytag to MyPayTag route selection to PayToDapp provider intent, with Cubid described as identity/consent only and solver/bridge/swap quote material labeled as future execution-adapter capability.
 validation: Ran pnpm typecheck, pnpm lint, pnpm check:solver-content, and a targeted rg scan for stale pay-to-tag/sending-app/receiving-app and MVP execution-implying phrases on edited surfaces.
 follow-ups: Sync public API docs from the corrected SDK artifacts.
+
+---
+
+## 2026-06-28-gptw-s7-t3
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S7-T3
+summary: Synced public OpenAPI and Postman artifacts from the corrected mypaytag-sdk output through pnpm api:postman, then updated the hand-authored API docs examples to show opaque/default and raw-explicit paytags plus the full MyPayTag intent/provider_json schema.
+validation: Ran pnpm api:postman, pnpm api:validate, pnpm check:openapi-sync, pnpm scan:browser-secrets, pnpm typecheck, pnpm lint, a targeted stale-example rg scan, and SHA-256 comparison confirming site OpenAPI/Postman artifacts match the SDK files.
+follow-ups: Harden hosted route-selection UX against the corrected backend action model.

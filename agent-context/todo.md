@@ -517,9 +517,9 @@ Acceptance notes:
 
 ### GPTW-S7-T3 Sync Public API Docs From Corrected SDK Artifacts
 
-Status: TBD
-Feature branch: TBD
-Session log: TBD
+Status: Done 2026-06-28
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s7-t3
 Depends on: mypaytag-sdk:GPTS-S6-T2
 
 Refresh public API documentation views from the corrected SDK contract.
