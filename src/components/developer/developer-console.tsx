@@ -73,7 +73,7 @@ export function DeveloperConsole() {
               Developer console
             </p>
             <h1 className="mt-4 text-4xl font-semibold leading-tight tracking-normal sm:text-5xl">
-              API access for sending and receiving apps
+              API access for PayingDapps and PayToDapps
             </h1>
             <p className="mt-4 max-w-3xl text-base leading-7 text-[#586250]">
               Mock developer account controls for API provisioning, key rotation,

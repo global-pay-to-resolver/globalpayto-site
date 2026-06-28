@@ -60,9 +60,9 @@ export function ApiPlayground() {
           </div>
           <div className="grid gap-3 rounded-md border border-[#d9dfd1] bg-[#fbfcf8] p-5">
             {[
-              "Receiving apps register supported paths, never wallet addresses.",
-              "Sending apps resolve a tag into a safe status or one-time intent.",
-              "Execution quotes are shown as an SDK simulation until a public quote endpoint lands.",
+              "PayToDapps register supported paths, never wallet addresses.",
+              "PayingDapps resolve a Paytag into a safe status or one-time provider intent.",
+              "Execution quotes are visibly a future SDK simulation, not part of the MVP core call.",
             ].map((item) => (
               <div className="flex gap-3 text-sm leading-6 text-[#3f493a]" key={item}>
                 <CheckCircle2 className="mt-1 shrink-0 text-[#176b46]" size={17} aria-hidden="true" />

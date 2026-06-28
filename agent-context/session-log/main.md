@@ -284,3 +284,14 @@ todo: mypaytag-site:GPTW-S7-T1
 summary: Renamed remaining browser-visible GlobalPayTo-era demo identifiers from gptr to mpt, updated the mock developer key prefix, and replaced the stale public GitHub org link with the MyPayTag org link after checking the sibling realignment docs.
 validation: Ran pnpm typecheck, pnpm lint, pnpm privacy:route-selection, and an rg scan for stale public GlobalPayTo/gptr/globalpayto terms.
 follow-ups: Continue Sprint 7 with MVP-versus-future public copy framing.
+
+---
+
+## 2026-06-28-gptw-s7-t2
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S7-T2
+summary: Reframed homepage, track, API docs, and playground copy so the MVP path is Paytag to MyPayTag route selection to PayToDapp provider intent, with Cubid described as identity/consent only and solver/bridge/swap quote material labeled as future execution-adapter capability.
+validation: Ran pnpm typecheck, pnpm lint, pnpm check:solver-content, and a targeted rg scan for stale pay-to-tag/sending-app/receiving-app and MVP execution-implying phrases on edited surfaces.
+follow-ups: Sync public API docs from the corrected SDK artifacts.

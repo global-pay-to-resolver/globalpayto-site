@@ -38,9 +38,9 @@ or normal Cubid transaction-signing examples from those projects.
 
 - MyPayTag landing page with a persistent mock Sign In / Sign Out header
   until SIWC is connected.
-- Three marketing tracks for users, devs of sending apps, and devs of receiving
-  apps/wallets.
-- Public `/api-docs` page for sending-app and receiving-app developers,
+- Three marketing tracks for users, PayingDapp developers, and PayToDapp
+  wallet developers.
+- Public `/api-docs` page for PayingDapp and PayToDapp developers,
   including endpoint summaries, request examples, statuses, hosted actions,
   notifications, and solver quote ids.
 - Public `/api-playground` page with server-signed local demo calls for

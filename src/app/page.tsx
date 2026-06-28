@@ -15,26 +15,26 @@ import { MarketingTracks } from "@/components/marketing/marketing-tracks";
 const introPoints = [
   {
     icon: Link2,
-    title: "One pay-to tag",
-    text: "A globally recognized tag becomes the bridge between apps, wallets, users, chains, and assets.",
+    title: "One Paytag",
+    text: "A MyPayTag-branded payment identity gives paying apps one user-approved handle to start from.",
   },
   {
     icon: Route,
-    title: "Optimized routing",
-    text: "The sender can send from where they are; the recipient receives only through approved routes.",
+    title: "MVP route selection",
+    text: "MyPayTag selects an approved PayToDapp route for the current paytag, asset, network, and paying app.",
   },
   {
     icon: ShieldCheck,
-    title: "No wallet graph",
-    text: "Apps resolve a payment flow, not a permanent address book of a user's wallets.",
+    title: "Cubid stays identity-only",
+    text: "Cubid powers verified identity, consent, and aliases without receiving wallet, route, or payment details.",
   },
 ];
 
 const ecosystemSteps = [
-  "Paying app asks for a route",
-  "MyPayTag resolves options",
-  "Receiving app creates the intent",
-  "User gets paid where they prefer",
+  "PayingDapp submits a Paytag",
+  "MyPayTag selects a route",
+  "PayToDapp creates the intent",
+  "PayingDapp receives one-time instructions",
 ];
 
 const solverCards = [
@@ -61,7 +61,7 @@ const solverCards = [
   {
     name: "Across",
     bestFor: "Fast EVM/L2 stablecoin bridging with lower route complexity where supported.",
-    text: "Across is narrower than broad solver networks, but that can be a strength. For supported EVM and L2 stablecoin transfers, it offers a simpler bridge-focused path that can be easier to evaluate and present to sending apps.",
+    text: "Across is narrower than broad solver networks, but that can be a strength. For supported EVM and L2 stablecoin transfers, it offers a simpler bridge-focused path that can be easier to evaluate and present to PayingDapps.",
   },
   {
     name: "LayerZero / Stargate",
@@ -85,12 +85,11 @@ export default function Home() {
               Pay users, not wallet addresses
             </p>
             <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-[1.02] tracking-normal sm:text-7xl">
-              A global pay-to layer for crypto apps.
+              A Paytag layer for crypto apps.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[#d6dfd1]">
-              MyPayTag lets sending apps reach any user through a simple tag
-              while receiving apps and wallets stay in control of where funds
-              land.
+              MyPayTag lets PayingDapps reach any user through a Paytag while
+              PayToDapps stay in control of the provider intent they create.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
@@ -115,9 +114,9 @@ export default function Home() {
               <div className="absolute inset-20 rounded-full border border-[#d6e5d0]/25" />
               <div className="absolute left-1/2 top-1/2 flex h-32 w-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#9fd3a5]/40 bg-[#f6f7f2] text-[#121612] shadow-2xl">
                 <span className="text-center text-sm font-bold leading-5">
-                  pay-to
+                  Paytag
                   <br />
-                  tag
+                  ID
                 </span>
               </div>
               {ecosystemSteps.map((step, index) => (
@@ -150,7 +149,7 @@ export default function Home() {
               The network layer
             </p>
             <h2 className="mt-4 text-4xl font-semibold leading-tight">
-              Three audiences. One payment primitive.
+              Three audiences. One MVP payment path.
             </h2>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
@@ -180,15 +179,16 @@ export default function Home() {
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#9fd3a5]">
-                Solver-ready execution
+                Future execution adapters
               </p>
               <h2 className="mt-4 text-4xl font-semibold leading-tight">
-                Quote every viable crypto-native route when no solver is preferred.
+                Solver, bridge, and swap support stays outside the MVP core path.
               </h2>
               <p className="mt-5 text-sm leading-7 text-[#c9d7c4]">
-                MyPayTag resolves who should receive. Execution adapters then
-                compete or route the payment without learning the recipient&apos;s
-                broader wallet graph.
+                The MVP path is paytag to MyPayTag route selection to PayToDapp
+                provider intent. Execution adapters can later quote or route the
+                payment after the provider intent exists, without becoming a
+                launch requirement.
               </p>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
@@ -216,31 +216,31 @@ export default function Home() {
               Developer-led, user-safe
             </p>
             <h2 className="mt-4 text-4xl font-semibold leading-tight">
-              Built to reduce integration surface area without taking control
-              away from apps.
+              Built to reduce integration surface area while keeping identity,
+              routing, and execution boundaries clear.
             </h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {[
               {
                 icon: Code2,
-                title: "Simple API",
-                text: "Sending apps ask for a payment route by tag instead of collecting wallet details.",
+                title: "MVP resolve API",
+                text: "PayingDapps ask MyPayTag to resolve a Paytag into a safe status or provider intent.",
               },
               {
                 icon: WalletCards,
-                title: "Wallet-native setup",
-                text: "Receiving apps can own setup inside their existing wallet experience.",
+                title: "Provider-built intents",
+                text: "PayToDapps register receive capabilities, then build the provider intent only when selected.",
               },
               {
                 icon: GitBranch,
-                title: "Route choice",
-                text: "Users approve what they can receive; routing handles the rest.",
+                title: "Cubid-owned identity",
+                text: "Cubid owns verified stamps, consent, and aliases; MyPayTag owns route preference and intent orchestration.",
               },
               {
                 icon: CircleDollarSign,
-                title: "Fee control",
-                text: "Sender apps set and pay their fees; receiving users pay nothing to receive.",
+                title: "Future optimization",
+                text: "Solver, bridge, swap, and fee optimization can layer on as execution-adapter capabilities.",
               },
             ].map((item) => {
               const Icon = item.icon;
@@ -260,7 +260,7 @@ export default function Home() {
       <section className="border-t border-[#d9dfd1] bg-white">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
-            <h2 className="text-2xl font-semibold">Ready to build on pay-to tags?</h2>
+            <h2 className="text-2xl font-semibold">Ready to build on Paytags?</h2>
             <p className="mt-2 text-sm leading-6 text-[#586250]">
               Start with the track that matches your app, then wire the SDK
               contracts into your product flow.

@@ -16,25 +16,25 @@ const endpoints = [
   {
     method: "POST",
     path: "/resolve",
-    audience: "Sending apps",
-    summary: "Resolve a pay-to tag, amount, and supported paths into an executable intent or safe next action.",
+    audience: "PayingDapps",
+    summary: "Resolve a Paytag, amount, and supported paths into a provider intent or safe next action.",
   },
   {
     method: "POST",
     path: "/payto-routes",
-    audience: "Receiving apps",
+    audience: "PayToDapps",
     summary: "Register the routes a wallet or receiving app can support for a signed-in user.",
   },
   {
     method: "GET/PATCH/DELETE",
     path: "/payto-routes/{routeId}",
-    audience: "Receiving apps",
+    audience: "PayToDapps",
     summary: "Read, update, or revoke only the routes scoped to the authenticated app and current user context.",
   },
   {
     method: "POST",
     path: "{payToDapp.intentEndpoint}/payment-intents",
-    audience: "Receiving apps",
+    audience: "PayToDapps",
     summary: "Create a dynamic provider intent after MyPayTag selects the receiving app for one payment.",
   },
   {
@@ -46,7 +46,7 @@ const endpoints = [
 ];
 
 const statuses = [
-  ["resolved", "A one-time MyPayTag intent is ready to execute or hand off."],
+  ["resolved", "A one-time MyPayTag intent is ready for the PayingDapp to present or hand off."],
   ["no_route", "No compatible authorized receive route is available. Do not infer recipient existence."],
   ["user_action_required", "Send the signed-in user to the opaque hosted action URL when present."],
   ["authorization_required", "The app needs a user grant or renewed consent before continuing."],
@@ -148,7 +148,7 @@ function CodeBlock({ code }: { code: string }) {
 
 export const metadata = {
   title: "API Documentation",
-  description: "Public MyPayTag API documentation for sending apps and receiving apps.",
+  description: "Public MyPayTag API documentation for PayingDapps and PayToDapps.",
 };
 
 export default function ApiDocsPage() {
@@ -161,13 +161,14 @@ export default function ApiDocsPage() {
               API Documentation
             </p>
             <h1 className="mt-4 max-w-3xl text-5xl font-semibold leading-tight tracking-normal">
-              Build pay-to-tag payments without collecting wallet addresses.
+              Build Paytag payments without collecting wallet addresses.
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-8 text-[#586250]">
-              MyPayTag gives sending apps a small resolver API and gives
-              receiving apps a route-registration plus provider-intent contract.
-              The public surface returns payment outcomes, hosted actions, and
-              typed intents without exposing a user&apos;s broader wallet graph.
+              MyPayTag gives PayingDapps a small resolver API and gives
+              PayToDapps a route-registration plus provider-intent contract.
+              Cubid powers verified identity, consent, and aliases; the public
+              MyPayTag surface returns statuses, hosted actions, and typed
+              intents without exposing a user&apos;s broader wallet graph.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
@@ -201,12 +202,12 @@ export default function ApiDocsPage() {
             {[
               {
                 icon: Code2,
-                title: "Sending apps",
-                text: "Ask for a route using a verified recipient, amount, and supported paths.",
+                title: "PayingDapps",
+                text: "Ask MyPayTag for a route using a Paytag, amount, and supported paths.",
               },
               {
                 icon: Route,
-                title: "Receiving apps",
+                title: "PayToDapps",
                 text: "Register supported routes and create a dynamic intent only when selected.",
               },
               {
@@ -314,13 +315,14 @@ export default function ApiDocsPage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-2 lg:px-8">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#176b46]">
-              Sending Apps
+              PayingDapps
             </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-normal">Resolve a payment</h2>
+            <h2 className="mt-4 text-3xl font-semibold tracking-normal">Resolve a Paytag</h2>
             <p className="mt-4 text-sm leading-7 text-[#586250]">
-              A sending app submits the recipient tag, supported payment paths,
-              amount, purpose, and reconciliation reference. MyPayTag returns a
-              resolved one-time intent, a hosted action, or a safe status.
+              A PayingDapp submits the recipient Paytag, supported payment
+              paths, amount, purpose, and reconciliation reference. MyPayTag
+              returns a resolved one-time provider intent, a hosted action, or
+              a safe status.
             </p>
             <div className="mt-6">
               <CodeBlock code={resolveRequest} />
@@ -332,9 +334,9 @@ export default function ApiDocsPage() {
             </p>
             <h3 className="mt-4 text-3xl font-semibold tracking-normal">Resolved intent</h3>
             <p className="mt-4 text-sm leading-7 text-[#586250]">
-              The payment instruction is provider JSON, but the envelope and
-              destination are typed. Apps should not store the destination as a
-              reusable wallet address.
+              The payment instruction is provider JSON created by the selected
+              PayToDapp. Apps should not treat the destination as a reusable
+              wallet address or settlement proof.
             </p>
             <div className="mt-6">
               <CodeBlock code={resolveResponse} />
@@ -347,11 +349,11 @@ export default function ApiDocsPage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-[0.75fr_1.25fr] lg:px-8">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#176b46]">
-              Receiving Apps And Wallets
+              PayToDapps And Wallets
             </p>
             <h2 className="mt-4 text-3xl font-semibold tracking-normal">Register receive routes</h2>
             <p className="mt-4 text-sm leading-7 text-[#586250]">
-              Receiving apps register availability, not static destination
+              PayToDapps register availability, not static destination
               accounts. Addresses, memos, payment links, and chain-specific
               instructions belong in the provider response after a one-time
               selection.
@@ -407,8 +409,8 @@ export default function ApiDocsPage() {
             <CheckCircle2 className="text-[#9fd3a5]" size={24} aria-hidden="true" />
             <h2 className="mt-4 text-xl font-semibold">Solver quotes</h2>
             <p className="mt-3 text-sm leading-7 text-[#d7e1d2]">
-              If no preferred solver is selected, SDK helpers can request
-              quotes from every configured execution adapter.
+              Future SDK helpers can request quotes from configured execution
+              adapters. The MVP resolve flow does not require solver readiness.
             </p>
           </article>
         </div>
@@ -439,9 +441,10 @@ export default function ApiDocsPage() {
             </p>
             <h2 className="mt-4 text-3xl font-semibold tracking-normal">Execution solver ids</h2>
             <p className="mt-4 text-sm leading-7 text-[#586250]">
-              These ids are used by the public SDK quote helper surface. Passing
-              a preferred id limits the request to one provider; omitting one
-              fans out to all configured providers.
+              These ids are for future execution-adapter quote helpers. Passing
+              a preferred id limits the simulation to one provider; omitting one
+              fans out across configured adapters after the MVP provider intent
+              step.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

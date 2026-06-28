@@ -21,10 +21,10 @@ export interface PlaygroundExample {
 export const receivingExamples: PlaygroundExample[] = [
   {
     operation: "validatePayToTag",
-    label: "Get a consented pay-to tag",
-    eyebrow: "Cubid validation",
+    label: "Get a consented Paytag",
+    eyebrow: "Cubid identity validation",
     description:
-      "The live MVP stand-in validates a Cubid verified stamp and returns only alias/hash/display metadata. In production this depends on Cubid consent and pay-to enablement contracts.",
+      "The live MVP stand-in validates a Cubid verified stamp and returns only alias/hash/display metadata. In production this depends on Cubid-owned identity, consent, and Paytag enablement contracts.",
     method: "POST",
     endpoint: "/validate-payto-identifier",
     body: {
@@ -32,16 +32,16 @@ export const receivingExamples: PlaygroundExample[] = [
       identifier: "fixture:user:payto:primary",
     },
     notes: [
-      "This is the current local Cubid adapter surface, not a direct browser-to-Cubid call.",
+      "MyPayTag is the caller of Cubid identity validation; PayingDapps should call MyPayTag, not Cubid directly.",
       "Raw identifiers are not meant to become durable resolver records.",
     ],
   },
   {
     operation: "registerRoutes",
-    label: "Register the tag and receive paths",
+    label: "Register the Paytag receive paths",
     eyebrow: "MyPayTag route registration",
     description:
-      "A receiving app registers supported chain/token paths for the user. It must not submit wallet addresses, memos, account ids, or payment instructions.",
+      "A PayToDapp registers supported chain/token paths for the user. It must not submit wallet addresses, memos, account ids, or payment instructions.",
     method: "POST",
     endpoint: "/payto-routes",
     appId: "smartrust-wallet",
@@ -80,10 +80,10 @@ export const receivingExamples: PlaygroundExample[] = [
 export const sendingExamples: PlaygroundExample[] = [
   {
     operation: "resolvePayment",
-    label: "Resolve routes for a tag",
+    label: "Resolve routes for a Paytag",
     eyebrow: "MyPayTag resolve",
     description:
-      "A sending app asks MyPayTag for a user-approved receive path. The current local resolver returns a normalized one-time intent or a safe public status.",
+      "A PayingDapp asks MyPayTag for a user-approved receive path. The current local resolver returns a normalized one-time provider intent or a safe public status.",
     method: "POST",
     endpoint: "/resolve",
     appId: "chaincrew",
@@ -144,15 +144,15 @@ export const sendingExamples: PlaygroundExample[] = [
     },
     notes: [
       "This is not a NEAR call; it is the MyPayTag route preference action.",
-      "The payment execution quote step is separate and shown below as an SDK simulation.",
+      "Any execution quote step is separate and shown below as a future SDK simulation.",
     ],
   },
   {
     operation: "simulateQuotes",
-    label: "Get execution quotes",
-    eyebrow: "SDK simulation",
+    label: "Simulate future execution quotes",
+    eyebrow: "Future SDK simulation",
     description:
-      "There is no public quote Edge Function yet. This panel simulates the current SDK behavior: prefer NEAR 1Click when selected, otherwise fan out across configured solvers.",
+      "There is no public quote Edge Function yet, and quote fanout is not part of the MVP core flow. This panel simulates a future execution-adapter helper: prefer NEAR 1Click when selected, otherwise fan out across configured solvers.",
     method: "POST",
     endpoint: "SDK quote simulation",
     body: {
@@ -167,8 +167,8 @@ export const sendingExamples: PlaygroundExample[] = [
       preferredSolverId: "near_intents_1click",
     },
     notes: [
-      "The last execution steps are facilitated by NEAR 1Click or another solver; MyPayTag acts as a middle layer after recipient route resolution.",
-      "Remove preferredSolverId to see quote fanout across every configured demo solver.",
+      "These execution steps happen after MyPayTag route selection and provider-intent creation; they are not required for MVP resolve.",
+      "Remove preferredSolverId to see future quote fanout across every configured demo solver.",
     ],
   },
 ];
