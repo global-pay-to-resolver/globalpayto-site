@@ -277,22 +277,10 @@ function PayToAppDetails({ option }: { option: RouteOption }) {
           <dt className="font-semibold text-[#151713]">Added</dt>
           <dd className="mt-1 text-[#586250]">{option.addedAt}</dd>
         </div>
-        <div>
-          <dt className="font-semibold text-[#151713]">Last facilitated</dt>
-          <dd className="mt-1 text-[#586250]">{option.lastTransaction.date}</dd>
-        </div>
-        <div>
-          <dt className="font-semibold text-[#151713]">Paying app</dt>
-          <dd className="mt-1 text-[#586250]">{option.lastTransaction.payingApp}</dd>
-        </div>
-        <div>
-          <dt className="font-semibold text-[#151713]">Amount</dt>
-          <dd className="mt-1 text-[#586250]">{option.lastTransaction.amount}</dd>
-        </div>
         <div className="sm:col-span-2">
-          <dt className="font-semibold text-[#151713]">From account</dt>
-          <dd className="mt-1 break-words text-[#586250]">
-            {option.lastTransaction.fromAccount}
+          <dt className="font-semibold text-[#151713]">Visible scope</dt>
+          <dd className="mt-1 text-[#586250]">
+            Eligible only for this action&apos;s chain, token, Paytag, and signed-in user context.
           </dd>
         </div>
       </dl>

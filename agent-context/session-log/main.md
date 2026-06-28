@@ -306,3 +306,14 @@ todo: mypaytag-site:GPTW-S7-T3
 summary: Synced public OpenAPI and Postman artifacts from the corrected mypaytag-sdk output through pnpm api:postman, then updated the hand-authored API docs examples to show opaque/default and raw-explicit paytags plus the full MyPayTag intent/provider_json schema.
 validation: Ran pnpm api:postman, pnpm api:validate, pnpm check:openapi-sync, pnpm scan:browser-secrets, pnpm typecheck, pnpm lint, a targeted stale-example rg scan, and SHA-256 comparison confirming site OpenAPI/Postman artifacts match the SDK files.
 follow-ups: Harden hosted route-selection UX against the corrected backend action model.
+
+---
+
+## 2026-06-28-gptw-s7-t4
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S7-T4
+summary: Hardened hosted route selection by accepting the corrected opaque mpt_act action shape, encoding action IDs before client fetch/submit URLs, removing prior transaction/account fixture details from hydrated route options, adding safe mock terminal states, and stripping identifiers/routes from non-ready action responses.
+validation: Ran pnpm privacy:route-selection, pnpm typecheck, pnpm lint, targeted rg scans for prior transaction/account/provider-internal/wallet-graph leakage in route-selection files, and pnpm build.
+follow-ups: Link Cubid-owned Paytag identity work out to Cubid.

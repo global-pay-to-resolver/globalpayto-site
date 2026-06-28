@@ -125,7 +125,7 @@ export const sendingExamples: PlaygroundExample[] = [
     },
     notes: [
       "This call is browser-safe and does not require a paying-app signature.",
-      "Try mpt_act_expired or mpt_act_invalid to see safe action states.",
+      "Try mpt_act_expired, mpt_act_completed, or mpt_act_invalid to see safe action states.",
     ],
   },
   {

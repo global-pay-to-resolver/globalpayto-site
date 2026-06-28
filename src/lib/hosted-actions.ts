@@ -16,7 +16,11 @@ const resolverBaseUrl = process.env.MYPAYTAG_RESOLVER_BASE_URL;
 const devCubidUserId = process.env.MYPAYTAG_DEV_CUBID_USER_ID;
 
 export async function getHostedRouteSelectionAction(actionId: string): Promise<RouteSelectionAction> {
-  return await getHostedAction(actionId, "route_selection", () => getRouteSelectionAction(actionId));
+  const action = await getHostedAction(actionId, "route_selection", () =>
+    getRouteSelectionAction(actionId),
+  );
+
+  return sanitizeRouteSelectionAction(action);
 }
 
 export async function submitHostedAction(input: {
@@ -91,4 +95,14 @@ function backendHeaders(): HeadersInit {
 
 function isLocalOrTestRuntime(): boolean {
   return process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test";
+}
+
+function sanitizeRouteSelectionAction(action: RouteSelectionAction): RouteSelectionAction {
+  if (action.state === "ready") return action;
+
+  return {
+    ...action,
+    maskedIdentifier: "Hidden",
+    paths: [],
+  };
 }
