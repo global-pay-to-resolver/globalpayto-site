@@ -651,9 +651,9 @@ Acceptance notes:
 
 ### GPTW-S8-T5 Update Launch Smoke For SmarTrust And NEAR 1Click
 
-Status: Todo
+Status: Complete
 Feature branch: codex/mypaytag-mvp-realignment-20260628
-Gap note: agent-context/2026-06-28-mypaytag-site-mvp-gap-review.md
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s8-t5
 Depends on: mypaytag-site:GPTW-S8-T2, mypaytag-site:GPTW-S8-T4, smartrust-wallet:SMTW-S1-T2
 
 Revise launch-readiness guidance for the updated MVP.

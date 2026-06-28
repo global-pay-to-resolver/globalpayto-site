@@ -427,3 +427,14 @@ todo: mypaytag-site:GPTW-S8-T4
 summary: Gated hosted route-selection fixtures behind explicit local/test mock mode, made backend hydration and completion failures fail closed outside that mode, added visible mock-mode UI copy, and documented the mock-mode boundary.
 validation: Ran pnpm check:hosted-actions, pnpm privacy:route-selection, pnpm scan:browser-secrets, pnpm typecheck, pnpm lint, pnpm scan:public-docs, and pnpm build.
 follow-ups: Update launch smoke guidance for the SmarTrust and NEAR 1Click MVP path.
+
+---
+
+## 2026-06-28-gptw-s8-t5
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S8-T5
+summary: Revised launch-readiness smoke guidance so local gates include hosted-action, public-doc, and solver-content checks, and hosted staging smoke covers SmarTrust as the first PayingDapp/PayToDapp plus NEAR 1Click quote, selected-quote, and payable-instruction paths.
+validation: Ran pnpm scan:public-docs, pnpm check:solver-content, pnpm typecheck, and pnpm lint.
+follow-ups: Replace broad solver content guardrails with the revised Phase 1/Phase 2 enforcement.
