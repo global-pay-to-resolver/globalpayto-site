@@ -19,7 +19,7 @@ interface PlaygroundRequest {
 }
 
 const operationConfig: Record<
-  Exclude<PlaygroundOperation, "simulateQuotes">,
+  Exclude<PlaygroundOperation, "simulateQuotes" | "nearOneClickQuote" | "nearOneClickSelectedQuote">,
   { method: "GET" | "POST"; path: string; dappId?: DemoAppId }
 > = {
   registerRoutes: { method: "POST", path: "/payto-routes", dappId: "smartrust-wallet" },
@@ -61,6 +61,14 @@ export async function POST(request: Request) {
 
   if (input.operation === "simulateQuotes") {
     return NextResponse.json(simulateQuotes(input.body));
+  }
+
+  if (input.operation === "nearOneClickQuote") {
+    return NextResponse.json(simulateNearOneClickQuote(input.body));
+  }
+
+  if (input.operation === "nearOneClickSelectedQuote") {
+    return NextResponse.json(simulateNearOneClickSelectedQuote(input.body));
   }
 
   const config = operationConfig[input.operation];
@@ -216,6 +224,89 @@ function simulateQuotes(body: unknown) {
         note: "No public quote Edge Function exists yet. This mirrors the current SDK quote-provider behavior.",
         quoteMode: input.preferredSolverId ? "preferred_solver_only" : "fanout_all_configured_solvers",
         quotes: selected,
+      },
+    },
+  };
+}
+
+function simulateNearOneClickQuote(body: unknown) {
+  return {
+    request: {
+      method: "POST",
+      url: "NEAR 1Click quote request",
+      body,
+    },
+    response: {
+      ok: true,
+      status: 200,
+      body: {
+        status: "quoted",
+        phase: "mvp",
+        solverId: "near_intents_1click",
+        quote: quote("near_intents_1click", "near_1click_quote_mvp_001", "25.18", 20, "NEAR 1Click"),
+        disclosure:
+          "Cubid validates Paytag identity and consent only; quote, wallet, swap, bridge, and payment details stay in MyPayTag/SmarTrust execution context.",
+      },
+    },
+  };
+}
+
+function simulateNearOneClickSelectedQuote(body: unknown) {
+  return {
+    request: {
+      method: "POST",
+      url: "NEAR selected quote",
+      body,
+    },
+    response: {
+      ok: true,
+      status: 200,
+      body: {
+        status: "resolved",
+        intent: {
+          id: "mpt_pi_near_1click_001",
+          schema: "mypaytag.intent.v1",
+          status: "ready",
+          modality: "provider_intent",
+          recipient: {
+            identifierType: "paytag",
+            identifierHash: "sha256:paytag_fixture",
+          },
+          selectedRoute: {
+            payToDappId: "smartrust-wallet",
+            chain: "base",
+            network: "mainnet",
+            asset: "USDC",
+          },
+          amount: {
+            value: "25.00",
+            currency: "USDC",
+          },
+          expiresAt: "2026-06-28T20:00:00Z",
+          singleUse: true,
+          paymentInstruction: {
+            type: "provider_json",
+            provider: "smartrust-wallet",
+            payload: {
+              providerIntentId: "st_near_1click_intent_001",
+              chain: "base",
+              network: "mainnet",
+              asset: "USDC",
+              destination: {
+                kind: "near_1click_payable_instruction",
+                quoteId: "near_1click_quote_mvp_001",
+              },
+              amount: "25.00",
+              reference: "smartrust:send_001",
+              expiresAt: "2026-06-28T20:00:00Z",
+            },
+          },
+          references: {
+            resolverReference: "mpt_req_smartrust_001",
+            providerReference: "st_near_1click_intent_001",
+            payingDappReference: "smartrust:send_001",
+          },
+        },
       },
     },
   };

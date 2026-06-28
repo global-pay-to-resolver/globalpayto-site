@@ -600,9 +600,9 @@ Acceptance notes:
 
 ### GPTW-S8-T2 Add NEAR 1Click MVP Playground Flows
 
-Status: Todo
+Status: Complete
 Feature branch: codex/mypaytag-mvp-realignment-20260628
-Gap note: agent-context/2026-06-28-mypaytag-site-mvp-gap-review.md
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s8-t2
 Depends on: mypaytag:GPTR-S7-T2, mypaytag-sdk:GPTS-S7-T2, mypaytag-site:GPTW-S8-T1
 
 Make the playground demonstrate the revised happy paths instead of only simulating future quote fanout.

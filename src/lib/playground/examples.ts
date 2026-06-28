@@ -3,6 +3,8 @@ export type PlaygroundOperation =
   | "resolvePayment"
   | "hydrateRouteSelection"
   | "completeRouteSelection"
+  | "nearOneClickQuote"
+  | "nearOneClickSelectedQuote"
   | "simulateQuotes";
 
 export interface PlaygroundExample {
@@ -128,15 +130,63 @@ export const sendingExamples: PlaygroundExample[] = [
     },
     notes: [
       "This is not a NEAR call; it is the MyPayTag route preference action.",
-      "Any execution quote step is separate and shown below as a future SDK simulation.",
+      "If the selected payment requires a swap or bridge, the MVP execution quote step is shown below through NEAR 1Click.",
+    ],
+  },
+  {
+    operation: "nearOneClickQuote",
+    label: "Request a NEAR 1Click MVP quote",
+    eyebrow: "MVP execution adapter",
+    description:
+      "SmarTrust can request a NEAR 1Click quote after MyPayTag resolves the Paytag and selected route. This models the Phase 1 swap or bridge path without sending wallet routing details to Cubid.",
+    method: "POST",
+    endpoint: "NEAR 1Click quote request",
+    appId: "smartrust-wallet",
+    body: {
+      paytag: "abd123@cubid.mypaytag",
+      payingDappId: "smartrust-wallet",
+      payToDappId: "smartrust-wallet",
+      resolverReference: "mpt_req_smartrust_001",
+      sourceAsset: "near:mainnet/wrap.near",
+      destinationAsset: "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      amount: {
+        value: "25.00",
+        currency: "USDC",
+      },
+      preferredSolverId: "near_intents_1click",
+    },
+    notes: [
+      "NEAR 1Click is the only MVP swap and bridge execution adapter.",
+      "SmarTrust is modeled as both the initial PayingDapp and PayToDapp.",
+      "Cubid receives identity and consent context only, not quote, bridge, swap, wallet, or payment details.",
+    ],
+  },
+  {
+    operation: "nearOneClickSelectedQuote",
+    label: "Select NEAR quote for payable instructions",
+    eyebrow: "MVP payable instruction",
+    description:
+      "After a NEAR 1Click quote is selected, MyPayTag can return payable instructions inside the corrected provider_json intent shape.",
+    method: "POST",
+    endpoint: "NEAR selected quote",
+    appId: "smartrust-wallet",
+    body: {
+      quoteId: "near_1click_quote_mvp_001",
+      resolverReference: "mpt_req_smartrust_001",
+      payToDappId: "smartrust-wallet",
+      payingDappReference: "smartrust:send_001",
+    },
+    notes: [
+      "The response is shaped as a MyPayTag provider_json instruction, not a Cubid wallet-routing response.",
+      "Same-chain same-token transfers remain a PayingDapp decision: use MyPayTag or execute locally.",
     ],
   },
   {
     operation: "simulateQuotes",
-    label: "Simulate future execution quotes",
-    eyebrow: "Future SDK simulation",
+    label: "Simulate Phase 2 quote fanout",
+    eyebrow: "Phase 2 SDK simulation",
     description:
-      "There is no public quote Edge Function yet, and quote fanout is not part of the MVP core flow. This panel simulates a future execution-adapter helper: prefer NEAR 1Click when selected, otherwise fan out across configured solvers.",
+      "Broad solver fanout is Phase 2. This panel simulates a future execution-adapter helper across the broader adapter set after the MVP NEAR 1Click path.",
     method: "POST",
     endpoint: "SDK quote simulation",
     body: {
@@ -151,8 +201,8 @@ export const sendingExamples: PlaygroundExample[] = [
       preferredSolverId: "near_intents_1click",
     },
     notes: [
-      "These execution steps happen after MyPayTag route selection and provider-intent creation; they are not required for MVP resolve.",
-      "Remove preferredSolverId to see future quote fanout across every configured demo solver.",
+      "Phase 2 fanout happens after MyPayTag route selection and provider-intent creation.",
+      "Remove preferredSolverId to see future quote fanout across every configured Phase 2 demo solver.",
     ],
   },
 ];

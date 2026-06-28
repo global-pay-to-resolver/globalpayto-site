@@ -62,7 +62,7 @@ export function ApiPlayground() {
             {[
               "PayToDapps call /payto-routes with supported paths, never wallet addresses.",
               "PayingDapps call /resolve with a Paytag and receive a safe status or one-time provider intent.",
-              "Execution quotes are visibly a future SDK simulation, not part of the MVP core call.",
+              "NEAR 1Click is the MVP swap and bridge adapter; broad solver fanout is Phase 2 simulation.",
             ].map((item) => (
               <div className="flex gap-3 text-sm leading-6 text-[#3f493a]" key={item}>
                 <CheckCircle2 className="mt-1 shrink-0 text-[#176b46]" size={17} aria-hidden="true" />

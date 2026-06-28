@@ -394,3 +394,14 @@ todo: mypaytag-site:GPTW-S8-T1
 summary: Reframed homepage, marketing track, and solver explainer copy so NEAR Intents / 1Click is the Phase 1 MVP swap and bridge adapter for the initial SmarTrust path, while LI.FI, Squid, 0x, Across, LayerZero/Stargate, broad fanout, and generic adapters remain Phase 2.
 validation: Ran pnpm check:solver-content, pnpm typecheck, and pnpm lint.
 follow-ups: Add NEAR 1Click MVP playground quote and selected-quote flows.
+
+---
+
+## 2026-06-28-gptw-s8-t2
+
+agent: Codex
+branch: codex/mypaytag-mvp-realignment-20260628
+todo: mypaytag-site:GPTW-S8-T2
+summary: Added playground examples and local simulated responses for an MVP NEAR 1Click quote request and selected-quote payable instruction, using SmarTrust as the initial PayingDapp/PayToDapp while keeping broad solver fanout labeled Phase 2.
+validation: Ran pnpm typecheck, pnpm lint, pnpm build, and a targeted rg scan to ensure old future-only quote wording was removed from playground surfaces.
+follow-ups: Update public API docs for revised MVP quote and selected-quote paths.
