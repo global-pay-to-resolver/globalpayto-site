@@ -682,3 +682,61 @@ Acceptance notes:
 - The check requires LI.FI, Squid, 0x, Across, LayerZero / Stargate, broad fanout, and generic adapters to be labeled Phase 2 or future when they appear.
 - The check fails if public content says NEAR 1Click is future-only or non-MVP.
 - Existing private-boundary checks for service-role language, provider credentials, private resolver env names, and private repo links remain enforced.
+
+## Sprint 9: Code-Verified MVP Playground And API Closure
+
+### GPTW-S9-T1 Sync API Docs And Playground Payloads To Backend Paytag Contract
+
+Status: Todo
+Feature branch: codex/mypaytag-mvp-code-gap-todos-20260629
+Session log: TBD
+Depends on: mypaytag:GPTR-S8-T1, mypaytag-sdk:GPTS-S8-T1
+
+Update site API examples and playground payloads after backend public
+boundaries accept the canonical SDK `identifierType: "paytag"` contract.
+
+Acceptance notes:
+
+- API docs, playground examples, and generated artifacts validate against the
+  same SDK schemas the backend accepts.
+- Site checks fail if public examples use `identifierType: "verified_stamp"`.
+- Playground resolve and route-registration calls no longer demonstrate a
+  payload shape that the backend rejects.
+
+### GPTW-S9-T2 Replace NEAR 1Click Simulations With Real Backend Calls When Configured
+
+Status: Todo
+Feature branch: codex/mypaytag-mvp-code-gap-todos-20260629
+Session log: TBD
+Depends on: mypaytag:GPTR-S8-T2, mypaytag-sdk:GPTS-S8-T2
+
+Keep local mock mode available, but make the NEAR 1Click quote and selected
+quote playground flows call the real backend endpoints whenever resolver
+configuration is present.
+
+Acceptance notes:
+
+- Local simulation is enabled only through explicit development mock mode.
+- Staging and production fail closed rather than silently returning simulated
+  NEAR quote or payable-instruction responses.
+- The UI visibly labels any local mock response as a development fixture.
+- Hosted smoke instructions require the real backend NEAR quote and selected
+  quote paths.
+
+### GPTW-S9-T3 Keep Broad Solver Fanout As Phase 2 Demo Only
+
+Status: Todo
+Feature branch: codex/mypaytag-mvp-code-gap-todos-20260629
+Session log: TBD
+Depends on: mypaytag-site:GPTW-S9-T2
+
+Prevent Phase 2 fanout simulation from being confused with MVP functionality.
+
+Acceptance notes:
+
+- LI.FI, Squid, 0x, Across, LayerZero/Stargate, broad fanout, and generic
+  adapter examples are hidden behind Phase 2 or future labels.
+- The playground cannot run broad fanout in staging/production as if it were an
+  MVP backend feature.
+- Site validation fails if Phase 2 simulation is presented as required for the
+  core resolve, provider callback, or NEAR 1Click MVP flow.
