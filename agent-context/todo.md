@@ -740,3 +740,80 @@ Acceptance notes:
   MVP backend feature.
 - Site validation fails if Phase 2 simulation is presented as required for the
   core resolve, provider callback, or NEAR 1Click MVP flow.
+
+## Sprint 10: Public Payment And Developer Directory Surfaces
+
+### GPTW-S10-T1 Add Enter Paytag Wallet-Pay Page
+
+Status: Todo
+Feature branch: codex/mypaytag-mvp-code-gap-todos-20260629
+Session log: TBD
+Depends on: mypaytag:GPTR-S8-T1, mypaytag:GPTR-S8-T2, mypaytag-sdk:GPTS-S8-T2
+
+Add a public "Enter Paytag" page where either an unauthenticated or
+authenticated user can connect a third-party wallet, enter a destination
+paytag, and specify either a dollar amount or a token plus token amount.
+
+Acceptance notes:
+
+- Page supports wallet connection before requiring a paytag or amount.
+- Connected wallet network, token balances, and supported payment paths are
+  used to present the best direct payment options that match the connected
+  network and available balances.
+- A separate quote section shows exchange/swap options based on available
+  balances in the connected wallet.
+- Same-chain same-token direct options are shown as payment options when
+  available, but the user can still choose a MyPayTag-backed route when
+  supported.
+- Swap/bridge/exchange quotes use the MVP NEAR 1Click flow when configured and
+  do not imply Phase 2 solvers are production-ready.
+- Negative states do not reveal whether the paytag, Cubid user, route, or
+  PayToDapp exists beyond the public resolver status.
+- The page remains browser-safe: no resolver secrets, Cubid API keys,
+  provider callback secrets, service-role keys, or private diagnostics in the
+  bundle.
+
+### GPTW-S10-T2 Require Developer App Metadata Before API Key Issuance
+
+Status: Todo
+Feature branch: codex/mypaytag-mvp-code-gap-todos-20260629
+Session log: TBD
+Depends on: mypaytag:GPTR-S8-T4
+
+Update the developer API key flow so developers must register app metadata
+before receiving keys.
+
+Acceptance notes:
+
+- API key provisioning requires a marketing name for the app, an environment
+  selection of testnet or mainnet, and the app URL.
+- The developer console validates the URL and makes the environment choice
+  explicit before key creation or rotation.
+- Marketing name, environment, and URL are displayed back to the developer in
+  the app/account summary after provisioning.
+- Browser-visible key handling remains safe: secrets are never exposed after
+  initial issuance unless the backend explicitly supports a one-time reveal.
+- The site does not claim mainnet approval just because a developer selected
+  mainnet; any approval or activation state comes from backend policy.
+
+### GPTW-S10-T3 Add Registered PayTo Wallet Directory Section
+
+Status: Todo
+Feature branch: codex/mypaytag-mvp-code-gap-todos-20260629
+Session log: TBD
+Depends on: mypaytag:GPTR-S8-T4
+
+Add a public website section that lists registered PayTo wallets eligible for
+display.
+
+Acceptance notes:
+
+- Directory shows only registered PayTo wallets filtered to mainnet.
+- Directory includes only wallets with a registered-user-with-wallet count
+  greater than zero.
+- Each listed wallet shows its marketing name and a hyperlink to its registered
+  app URL.
+- Directory does not expose user identities, wallet addresses, balances,
+  route preferences, private provider metadata, or testnet-only providers.
+- Empty and loading states avoid implying whether any specific unlisted wallet
+  is registered or rejected.
