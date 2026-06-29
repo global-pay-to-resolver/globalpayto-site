@@ -705,7 +705,7 @@ Acceptance notes:
 
 ### GPTW-S9-T2 Replace NEAR 1Click Simulations With Real Backend Calls When Configured
 
-Status: Todo
+Status: Complete
 Feature branch: codex/mypaytag-mvp-code-gap-todos-20260629
 Session log: TBD
 Depends on: mypaytag:GPTR-S8-T2, mypaytag-sdk:GPTS-S8-T2

@@ -28,6 +28,14 @@ const operationConfig: Record<
   completeRouteSelection: { method: "POST", path: "/route-selection" },
 };
 
+const nearOneClickOperationConfig: Record<
+  Extract<PlaygroundOperation, "nearOneClickQuote" | "nearOneClickSelectedQuote">,
+  { method: "POST"; path: string; dappId: DemoAppId }
+> = {
+  nearOneClickQuote: { method: "POST", path: "/near-oneclick-quotes", dappId: "smartrust-wallet" },
+  nearOneClickSelectedQuote: { method: "POST", path: "/near-oneclick-selected-quote", dappId: "smartrust-wallet" },
+};
+
 const defaultDemoDapps: Record<DemoAppId, DemoDappSecret> = {
   chaincrew: {
     id: "chaincrew",
@@ -63,12 +71,26 @@ export async function POST(request: Request) {
     return NextResponse.json(simulateQuotes(input.body));
   }
 
-  if (input.operation === "nearOneClickQuote") {
-    return NextResponse.json(simulateNearOneClickQuote(input.body));
-  }
+  if (input.operation === "nearOneClickQuote" || input.operation === "nearOneClickSelectedQuote") {
+    const resolverBaseUrl = process.env.MYPAYTAG_RESOLVER_BASE_URL;
+    if (!resolverBaseUrl) {
+      if (process.env.MYPAYTAG_PLAYGROUND_MOCK_MODE === "true") {
+        return NextResponse.json(input.operation === "nearOneClickQuote"
+          ? simulateNearOneClickQuote(input.body)
+          : simulateNearOneClickSelectedQuote(input.body));
+      }
 
-  if (input.operation === "nearOneClickSelectedQuote") {
-    return NextResponse.json(simulateNearOneClickSelectedQuote(input.body));
+      return NextResponse.json(
+        {
+          status: "backend_not_configured",
+          message:
+            "Set MYPAYTAG_RESOLVER_BASE_URL for real NEAR 1Click playground calls, or MYPAYTAG_PLAYGROUND_MOCK_MODE=true for a local development fixture.",
+        },
+        { status: 503 },
+      );
+    }
+
+    return proxyResolverCall(nearOneClickOperationConfig[input.operation], resolverBaseUrl, input.body);
   }
 
   const config = operationConfig[input.operation];
@@ -77,8 +99,16 @@ export async function POST(request: Request) {
   }
 
   const resolverBaseUrl = process.env.MYPAYTAG_RESOLVER_BASE_URL ?? "http://127.0.0.1:54321";
-  const { url, signingPathWithSearch } = buildFunctionUrl(resolverBaseUrl, config.path, input.body);
-  const bodyText = config.method === "GET" ? "" : JSON.stringify(input.body ?? {});
+  return proxyResolverCall(config, resolverBaseUrl, input.body);
+}
+
+async function proxyResolverCall(
+  config: { method: "GET" | "POST"; path: string; dappId?: DemoAppId },
+  resolverBaseUrl: string,
+  body: unknown,
+) {
+  const { url, signingPathWithSearch } = buildFunctionUrl(resolverBaseUrl, config.path, body);
+  const bodyText = config.method === "GET" ? "" : JSON.stringify(body ?? {});
   const headers: Record<string, string> = {
     accept: "application/json",
     "content-type": "application/json",
@@ -221,7 +251,8 @@ function simulateQuotes(body: unknown) {
       status: 200,
       body: {
         status: "simulated",
-        note: "No public quote Edge Function exists yet. This mirrors the current SDK quote-provider behavior.",
+        phase: "phase_2_demo_only",
+        note: "Development fixture only. Broad solver fanout is not an MVP backend feature.",
         quoteMode: input.preferredSolverId ? "preferred_solver_only" : "fanout_all_configured_solvers",
         quotes: selected,
       },
@@ -240,9 +271,11 @@ function simulateNearOneClickQuote(body: unknown) {
       ok: true,
       status: 200,
       body: {
-        status: "quoted",
+        status: "development_fixture",
         phase: "mvp",
         solverId: "near_intents_1click",
+        note:
+          "Local development fixture only. Configure MYPAYTAG_RESOLVER_BASE_URL to exercise the real MyPayTag NEAR 1Click endpoint.",
         quote: quote("near_intents_1click", "near_1click_quote_mvp_001", "25.18", 20, "NEAR 1Click"),
         disclosure:
           "Cubid validates Paytag identity and consent only; quote, wallet, swap, bridge, and payment details stay in MyPayTag/SmarTrust execution context.",
@@ -262,7 +295,10 @@ function simulateNearOneClickSelectedQuote(body: unknown) {
       ok: true,
       status: 200,
       body: {
-        status: "resolved",
+        status: "development_fixture",
+        phase: "mvp",
+        note:
+          "Local development fixture only. Configure MYPAYTAG_RESOLVER_BASE_URL to exercise the real MyPayTag selected-quote endpoint.",
         intent: {
           id: "mpt_pi_near_1click_001",
           schema: "mypaytag.intent.v1",
