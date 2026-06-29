@@ -8,8 +8,7 @@ const explainer = readFileSync(
   "utf8",
 );
 
-const requiredSolverNames = [
-  "NEAR Intents / 1Click",
+const phaseTwoAdapters = [
   "LI.FI",
   "Squid",
   "0x Cross-Chain API",
@@ -27,16 +26,55 @@ const forbiddenPatterns = [
   /private resolver env/i,
 ];
 
-for (const solverName of requiredSolverNames) {
-  if (!homepage.includes(solverName)) {
-    throw new Error(`Homepage solver section is missing ${solverName}`);
-  }
-}
-
 const publicContent = `${homepage}\n${explainer}`;
 for (const pattern of forbiddenPatterns) {
   if (pattern.test(publicContent)) {
     throw new Error(`Solver public content contains forbidden private-boundary term: ${pattern}`);
+  }
+}
+
+if (!homepage.includes("NEAR Intents / 1Click")) {
+  throw new Error("Homepage solver section is missing NEAR Intents / 1Click");
+}
+
+if (!homepage.includes("Phase 1 MVP adapter") && !homepage.includes("Phase 1 execution adapter")) {
+  throw new Error("Homepage does not label NEAR 1Click as Phase 1/MVP execution content");
+}
+
+if (!/NEAR 1Click[^.]{0,140}MVP swap and bridge execution adapter/i.test(homepage)) {
+  throw new Error("Homepage does not describe NEAR 1Click as the MVP swap and bridge adapter");
+}
+
+const nearFutureOnlyPatterns = [
+  /NEAR(?:\s+Intents|\s+1Click)?[^.]{0,160}(future-only|future only|non-MVP|not part of the MVP|outside the MVP)/i,
+  /(future-only|future only|non-MVP|not part of the MVP|outside the MVP)[^.]{0,160}NEAR(?:\s+Intents|\s+1Click)?/i,
+];
+
+for (const pattern of nearFutureOnlyPatterns) {
+  if (pattern.test(publicContent)) {
+    throw new Error("Public solver content incorrectly frames NEAR 1Click as future-only or non-MVP");
+  }
+}
+
+for (const adapter of phaseTwoAdapters) {
+  if (homepage.includes(adapter) && !hasPhaseTwoHomepageCard(adapter)) {
+    throw new Error(`Homepage mentions ${adapter} without a Phase 2 adapter label`);
+  }
+}
+
+const phaseTwoExplainerRequirements = [
+  "LI.FI",
+  "Squid",
+  "0x Cross-Chain API",
+  "Across",
+  "LayerZero / Stargate",
+  "broad solver fanout",
+  "generic external adapters",
+];
+
+for (const term of phaseTwoExplainerRequirements) {
+  if (!new RegExp(`Phase 2:[\\s\\S]{0,220}${escapeRegExp(term)}`, "i").test(explainer)) {
+    throw new Error(`Solver explainer does not label ${term} as Phase 2`);
   }
 }
 
@@ -53,3 +91,16 @@ if (!homepage.includes("max-w-7xl px-6")) {
 }
 
 console.log("solver_content_ok");
+
+function hasPhaseTwoHomepageCard(adapterName) {
+  const escaped = escapeRegExp(adapterName);
+  const cardPattern = new RegExp(
+    `phase:\\s*"Phase 2 adapter"[\\s\\S]{0,260}name:\\s*"${escaped}"|name:\\s*"${escaped}"[\\s\\S]{0,260}phase:\\s*"Phase 2 adapter"`,
+  );
+
+  return cardPattern.test(homepage);
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}

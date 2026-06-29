@@ -205,9 +205,9 @@ Acceptance notes:
 
 ### GPTW-S4-T1 Add Browser Acceptance Coverage For Hosted Actions
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s4-t1
 Depends on: mypaytag-site:GPTW-S2-T2, mypaytag-site:GPTW-S2-T4
 
 Add browser acceptance coverage for route-selection hosted actions.
@@ -220,9 +220,9 @@ Acceptance notes:
 
 ### GPTW-S4-T2 Add Responsive And Accessibility Checks
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s4-t2
 Depends on: mypaytag-site:GPTW-S2-T2, mypaytag-site:GPTW-S2-T4
 
 Add responsive and accessibility checks for hosted action pages.
@@ -235,9 +235,9 @@ Acceptance notes:
 
 ### GPTW-S4-T3 Update Public README And Setup Docs
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s4-t3
 Depends on: mypaytag-site:GPTW-S2-T2, mypaytag-site:GPTW-S2-T4
 
 Update public README and setup docs to describe the MyPayTag hosted-action app rather than only the Cubid starter baseline.
@@ -250,9 +250,9 @@ Acceptance notes:
 
 ### GPTW-S4-T4 Validate Public Docs Do Not Link Into The Private Repo
 
-Status: TBD  
-Feature branch: TBD  
-Session log: TBD  
+Status: Complete
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s4-t4
 Depends on: mypaytag-site:GPTW-S4-T3
 
 Review public site docs for private-repo links and private implementation leakage.
@@ -480,3 +480,205 @@ Acceptance notes:
 - Checks verify all six solver names render on the homepage.
 - Checks verify solver copy does not include private resolver env names, service-role references, provider credentials, or private repo links.
 - Checks cover desktop and mobile layouts for the solver section.
+
+## Sprint 7: MyPayTag MVP Messaging And Hosted Flow Realignment
+
+### GPTW-S7-T1 Rename Public GlobalPayTo Site Surfaces To MyPayTag
+
+Status: Done 2026-06-28
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s7-t1
+Depends on: mypaytag-sdk:GPTS-S6-T1
+
+Implement the site-facing rename requested in `agent-context/2026-06-28-mypaytag-mvp-realignment.md`.
+
+Acceptance notes:
+
+- Site copy, routes, links, examples, generated API artifacts, docs, metadata, browser-visible IDs, test names, and public repo links use `MyPayTag`, `mypaytag`, and `Paytag`.
+- Stale GitHub org/repo URLs and old GlobalPayTo references are fixed or explicitly marked as compatibility history.
+- User-facing "Paytag" branding lives primarily in MyPayTag copy.
+- The other four realignment docs are checked before implementation.
+
+### GPTW-S7-T2 Reframe Public Copy Around MVP Versus Future Capabilities
+
+Status: Done 2026-06-28
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s7-t2
+Depends on: mypaytag-site:GPTW-S6-T1, mypaytag-site:GPTW-S6-T2
+
+Keep the broader MyPayTag story while preventing non-MVP solver/execution promises from becoming launch requirements.
+
+Acceptance notes:
+
+- Primary developer path teaches paytag to MyPayTag route selection to PayToDapp provider intent.
+- Solver, bridge, swap, quote fanout, and preferred solver content is visibly labeled as future execution-adapter capability.
+- Copy avoids implying settlement, payment execution, or solver readiness is part of the MVP core flow.
+- Cubid is described as powering verified identity, consent, and aliases, not payment routing or wallets.
+
+### GPTW-S7-T3 Sync Public API Docs From Corrected SDK Artifacts
+
+Status: Done 2026-06-28
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s7-t3
+Depends on: mypaytag-sdk:GPTS-S6-T2
+
+Refresh public API documentation views from the corrected SDK contract.
+
+Acceptance notes:
+
+- `public/api/openapi.yaml` and Postman artifacts are synced from `mypaytag-sdk` through repo scripts.
+- Generated API artifacts are not hand-edited.
+- Examples show opaque/default paytags and raw-explicit paytags correctly.
+- API docs do not show weak intent payloads or imply MyPayTag has already executed settlement.
+
+### GPTW-S7-T4 Harden Hosted Route-Selection UX
+
+Status: Done 2026-06-28
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s7-t4
+Depends on: mypaytag:GPTR-S6-T2, mypaytag-site:GPTW-S3-T1, mypaytag-site:GPTW-S3-T2
+
+Make hosted route selection browser-safe and aligned with the corrected backend action model.
+
+Acceptance notes:
+
+- Route-selection pages hydrate browser-safe action data only after action validation and user sign-in.
+- Pages show only route options relevant to the current action and current user.
+- Pages do not show wallet graph data, unrelated PayToDapps, raw Cubid identifiers, or provider internals.
+- Expired, invalid, denied, completed, and already-used states preserve negative-disclosure guarantees.
+
+### GPTW-S7-T5 Link Cubid-Owned Identity Work Out To Cubid
+
+Status: Done 2026-06-28
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s7-t5
+Depends on: cubid-monorepo:CUBID-PAYTAG-03, cubid-sdk-v2:S18.2
+
+Ensure MyPayTag does not implement Cubid-owned paytag identity management.
+
+Acceptance notes:
+
+- Stamp elevation, opaque paytag creation, raw-stamp exposure, and Cubid grant/revoke flows link to Cubid-owned hosted flows.
+- MyPayTag copy says Cubid owns identity and consent while MyPayTag owns payment route preference and provider intent orchestration.
+- MyPayTag pages do not implement Cubid stamp/grant management directly.
+- PayingDapp examples call MyPayTag rather than Cubid directly.
+
+### GPTW-S7-T6 Harden Playground And Launch Smoke
+
+Status: Done 2026-06-28
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s7-t6
+Depends on: mypaytag-site:GPTW-S7-T3, mypaytag-site:GPTW-S7-T4, mypaytag:GPTR-S6-T8
+
+Make the playground demonstrate the MVP accurately and document launch-readiness smoke.
+
+Acceptance notes:
+
+- MVP playground calls use real MyPayTag API contracts.
+- Solver quote simulation remains clearly labeled as simulation or non-MVP extension.
+- Playground copy does not imply Cubid receives wallet/payment details.
+- Local lint/typecheck/test/build, browser secret scan, OpenAPI sync checks, and hosted staging smoke are documented before launch readiness is claimed.
+
+## Sprint 8: NEAR 1Click MVP Site Correction
+
+### GPTW-S8-T1 Reframe Execution Copy Around NEAR 1Click MVP
+
+Status: Complete
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s8-t1
+Depends on: mypaytag:GPTR-S7-T1, mypaytag-sdk:GPTS-S7-T1, smartrust-wallet:SMTW-S1-T1
+
+Correct public execution messaging for the updated Phase 1 scope.
+
+Acceptance notes:
+
+- Homepage and marketing copy describe NEAR Intents / 1Click as the only MVP swap and bridge execution adapter.
+- LI.FI, Squid, 0x, Across, LayerZero / Stargate, broad solver fanout, and generic external adapters remain clearly labeled as Phase 2 or future.
+- Copy no longer says all solver, swap, bridge, or quote behavior is outside MVP.
+- Same-chain same-token transfers are described as possible through MyPayTag, with the PayingDapp deciding whether to use MyPayTag or execute locally.
+- SmarTrust is named as the initial PayingDapp and PayToDapp where the MVP launch path is described.
+
+### GPTW-S8-T2 Add NEAR 1Click MVP Playground Flows
+
+Status: Complete
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s8-t2
+Depends on: mypaytag:GPTR-S7-T2, mypaytag-sdk:GPTS-S7-T2, mypaytag-site:GPTW-S8-T1
+
+Make the playground demonstrate the revised happy paths instead of only simulating future quote fanout.
+
+Acceptance notes:
+
+- Playground includes an MVP quote request example for a PayingDapp paying a Paytag through NEAR 1Click.
+- Playground includes an MVP selected-quote example that returns payable instructions through the corrected SDK/backend contract.
+- SmarTrust examples cover the initial PayingDapp and PayToDapp roles.
+- Broad solver fanout remains available only as a Phase 2 simulation or is removed until the public contract supports it.
+- Playground warnings explain that Cubid receives identity and consent context only, not wallet routing, payment, quote, bridge, or swap details.
+
+### GPTW-S8-T3 Update Public API Docs For Revised MVP Contracts
+
+Status: Complete
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s8-t3
+Depends on: mypaytag-sdk:GPTS-S7-T3, mypaytag:GPTR-S7-T3
+
+Refresh public API docs after the SDK and backend contracts are corrected.
+
+Acceptance notes:
+
+- `public/api/openapi.yaml` and Postman artifacts are regenerated from `mypaytag-sdk`; generated artifacts are not hand-edited.
+- API docs distinguish MVP NEAR 1Click quote and selected-quote payable-instruction paths from Phase 2 adapters.
+- Notification examples use the canonical SDK schema and no longer show stale `event`, `recipientDisplay`, or `resolverRequestId` payloads if those fields are removed upstream.
+- Route registration, resolve, provider callback, hosted action, quote, and selected-quote docs preserve negative-disclosure language.
+- API docs do not imply MyPayTag stores raw wallets, executes settlement, or lets PayingDapps probe Cubid directly.
+
+### GPTW-S8-T4 Harden Hosted Action Fallback Behavior
+
+Status: Complete
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s8-t4
+Depends on: mypaytag:GPTR-S7-T4, mypaytag-site:GPTW-S7-T4
+
+Prevent static route-selection fixtures from masking staging and production failures.
+
+Acceptance notes:
+
+- Static hosted-action fallback is available only when an explicit local development mock mode is enabled.
+- Staging and production fail closed when resolver backend action hydration or completion calls fail.
+- Mock mode is visible in local UI and logs so it cannot be confused with hosted staging smoke.
+- Existing negative-disclosure behavior for invalid, expired, completed, denied, and already-used action states is preserved.
+- Browser-secret and route-selection privacy checks still pass after fallback changes.
+
+### GPTW-S8-T5 Update Launch Smoke For SmarTrust And NEAR 1Click
+
+Status: Complete
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s8-t5
+Depends on: mypaytag-site:GPTW-S8-T2, mypaytag-site:GPTW-S8-T4, smartrust-wallet:SMTW-S1-T2
+
+Revise launch-readiness guidance for the updated MVP.
+
+Acceptance notes:
+
+- Smoke checklist requires local lint, typecheck, build, browser secret scan, OpenAPI sync, route-selection privacy scan, and updated execution-content checks before hosted smoke.
+- Hosted smoke covers Cubid identity/consent, MyPayTag paytag validation, route registration, resolve, provider callback, hosted action completion, and negative-disclosure states.
+- Hosted smoke includes SmarTrust acting as the first PayingDapp and PayToDapp.
+- Hosted smoke includes a NEAR 1Click swap or bridge quote, selected quote, and payable instruction path.
+- Checklist clarifies that same-chain same-token transfer handling is a PayingDapp decision, not something MyPayTag should force.
+
+### GPTW-S8-T6 Replace Broad Solver Content Guardrails
+
+Status: Complete
+Feature branch: codex/mypaytag-mvp-realignment-20260628
+Session log: agent-context/session-log/main.md#2026-06-28-gptw-s8-t6
+Depends on: mypaytag-site:GPTW-S8-T1
+
+Update site validation scripts so they enforce the revised phase split.
+
+Acceptance notes:
+
+- `pnpm check:solver-content` no longer requires all six solver names to appear as equivalent homepage content.
+- The check requires NEAR Intents / 1Click to appear as Phase 1/MVP execution-adapter content.
+- The check requires LI.FI, Squid, 0x, Across, LayerZero / Stargate, broad fanout, and generic adapters to be labeled Phase 2 or future when they appear.
+- The check fails if public content says NEAR 1Click is future-only or non-MVP.
+- Existing private-boundary checks for service-role language, provider credentials, private resolver env names, and private repo links remain enforced.

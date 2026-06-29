@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, ChevronDown, Code2, LogOut, UserRound } from "lucide-react";
+import { CheckCircle2, ChevronDown, Code2, Github, LogOut, UserRound } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -32,12 +32,24 @@ export function SiteHeader() {
           <Link className="hover:text-[#176b46]" href="/api-docs">
             API Docs
           </Link>
+          <Link className="hover:text-[#176b46]" href="/api-playground">
+            Playground
+          </Link>
           <Link className="hover:text-[#176b46]" href="/reference">
             Reference
           </Link>
           <Link className="hover:text-[#176b46]" href="/history">
             History
           </Link>
+          <a
+            className="inline-flex items-center gap-1.5 hover:text-[#176b46]"
+            href="https://github.com/myPayTag"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <Github size={15} aria-hidden="true" />
+            GitHub
+          </a>
           {session?.credential === "developer" ? (
             <Link className="hover:text-[#176b46]" href="/developer">
               Developer
