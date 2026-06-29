@@ -86,6 +86,31 @@ const cubidIdentityTasks = [
   "Grant or revoke MyPayTag paytag validation consent",
 ];
 
+const registeredPayToWallets = [
+  {
+    marketingName: "SmarTrust Wallet",
+    appUrl: "https://smartrust.example",
+    environment: "mainnet",
+    registeredUsersWithWallets: 128,
+  },
+  {
+    marketingName: "ChainCrew Test Wallet",
+    appUrl: "https://chaincrew.example",
+    environment: "testnet",
+    registeredUsersWithWallets: 42,
+  },
+  {
+    marketingName: "Example Wallet",
+    appUrl: "https://wallet.example",
+    environment: "mainnet",
+    registeredUsersWithWallets: 0,
+  },
+];
+
+const visiblePayToWallets = registeredPayToWallets.filter((wallet) => {
+  return wallet.environment === "mainnet" && wallet.registeredUsersWithWallets > 0;
+});
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#f6f7f2] text-[#121612]">
@@ -180,6 +205,56 @@ export default function Home() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-[#d9dfd1] bg-white">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#176b46]">
+              Registered PayTo wallets
+            </p>
+            <h2 className="mt-4 text-4xl font-semibold leading-tight">
+              Wallets with active mainnet receive registrations.
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-[#586250]">
+              This directory shows public app metadata only. It does not expose
+              users, wallet addresses, balances, route preferences, provider
+              internals, or testnet-only registrations.
+            </p>
+          </div>
+          <div className="grid gap-3">
+            {visiblePayToWallets.length > 0 ? (
+              visiblePayToWallets.map((wallet) => (
+                <article
+                  className="flex flex-col gap-3 rounded-md border border-[#d9dfd1] bg-[#fbfcf8] p-4 sm:flex-row sm:items-center sm:justify-between"
+                  key={wallet.marketingName}
+                >
+                  <div>
+                    <a
+                      className="inline-flex items-center gap-2 text-base font-semibold text-[#176b46] hover:underline"
+                      href={wallet.appUrl}
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      {wallet.marketingName}
+                      <ExternalLink size={15} aria-hidden="true" />
+                    </a>
+                    <p className="mt-1 text-sm leading-6 text-[#586250]">
+                      Mainnet PayTo wallet with active registered users.
+                    </p>
+                  </div>
+                  <span className="rounded-md border border-[#c8d4bf] bg-white px-3 py-2 text-sm font-semibold text-[#33402f]">
+                    {wallet.registeredUsersWithWallets.toLocaleString("en-US")} users
+                  </span>
+                </article>
+              ))
+            ) : (
+              <p className="rounded-md border border-[#d9dfd1] bg-[#fbfcf8] p-4 text-sm leading-6 text-[#586250]">
+                No public mainnet PayTo wallet entries are available yet.
+              </p>
+            )}
           </div>
         </div>
       </section>
