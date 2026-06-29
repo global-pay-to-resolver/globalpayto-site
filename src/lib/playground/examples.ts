@@ -201,8 +201,8 @@ export const sendingExamples: PlaygroundExample[] = [
       preferredSolverId: "near_intents_1click",
     },
     notes: [
-      "Phase 2 fanout happens after MyPayTag route selection and provider-intent creation.",
-      "Remove preferredSolverId to see future quote fanout across every configured Phase 2 demo solver.",
+      "This local fixture requires MYPAYTAG_PLAYGROUND_PHASE2_DEMO_MODE=true and is not part of the MVP backend path.",
+      "Phase 2 fanout happens after MyPayTag route selection and provider-intent creation; remove preferredSolverId only for future adapter exploration.",
     ],
   },
 ];

@@ -68,6 +68,17 @@ export async function POST(request: Request) {
   }
 
   if (input.operation === "simulateQuotes") {
+    if (process.env.MYPAYTAG_PLAYGROUND_PHASE2_DEMO_MODE !== "true") {
+      return NextResponse.json(
+        {
+          status: "phase_2_demo_disabled",
+          message:
+            "Broad solver fanout is a Phase 2 demo. Set MYPAYTAG_PLAYGROUND_PHASE2_DEMO_MODE=true for local fixture exploration.",
+        },
+        { status: 403 },
+      );
+    }
+
     return NextResponse.json(simulateQuotes(input.body));
   }
 

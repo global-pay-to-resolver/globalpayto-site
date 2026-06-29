@@ -126,6 +126,7 @@ MYPAYTAG_PLAYGROUND_ENABLED=true
 MYPAYTAG_RESOLVER_BASE_URL=http://127.0.0.1:54321
 MYPAYTAG_HOSTED_ACTION_MOCK_MODE=false
 MYPAYTAG_PLAYGROUND_MOCK_MODE=false
+MYPAYTAG_PLAYGROUND_PHASE2_DEMO_MODE=false
 MYPAYTAG_PLAYGROUND_DAPP_SECRETS_JSON='{"chaincrew":{"id":"chaincrew","role":"paying_dapp","status":"active","secret":"local-chaincrew-secret"},"smartrust-wallet":{"id":"smartrust-wallet","role":"both","status":"active","secret":"local-smartrust-secret"}}'
 ```
 
@@ -134,7 +135,8 @@ demo secrets through `NEXT_PUBLIC_*` variables. Start local Supabase from the
 private backend repo before running live playground calls. NEAR 1Click
 playground examples call the backend when `MYPAYTAG_RESOLVER_BASE_URL` is set;
 they return local development fixtures only when
-`MYPAYTAG_PLAYGROUND_MOCK_MODE=true`.
+`MYPAYTAG_PLAYGROUND_MOCK_MODE=true`. Broad solver fanout is a Phase 2 fixture
+and requires `MYPAYTAG_PLAYGROUND_PHASE2_DEMO_MODE=true`.
 
 ## Cubid Console Setup
 
