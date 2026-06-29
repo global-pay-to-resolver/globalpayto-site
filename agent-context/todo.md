@@ -687,7 +687,7 @@ Acceptance notes:
 
 ### GPTW-S9-T1 Sync API Docs And Playground Payloads To Backend Paytag Contract
 
-Status: Todo
+Status: Complete
 Feature branch: codex/mypaytag-mvp-code-gap-todos-20260629
 Session log: TBD
 Depends on: mypaytag:GPTR-S8-T1, mypaytag-sdk:GPTS-S8-T1

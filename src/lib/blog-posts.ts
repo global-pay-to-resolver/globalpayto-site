@@ -459,8 +459,8 @@ export const blogPosts: BlogPost[] = [
         type: "code",
         code: `{
   "recipient": {
-    "identifierType": "verified_stamp",
-    "identifier": "email:recipient@example.com"
+    "identifierType": "paytag",
+    "identifier": "abd123@cubid.mypaytag"
   },
   "supportedPaths": [
     {
@@ -485,7 +485,7 @@ export const blogPosts: BlogPost[] = [
       {
         type: "list",
         items: [
-          "recipient identifies the user through an approved pay-to identifier, not a public wallet graph.",
+          "recipient identifies the user through an approved Paytag, not a public wallet graph.",
           "supportedPaths tells the resolver what the PayingDapp can actually pay.",
           "amount binds the resulting intent to a concrete value and currency.",
           "purpose gives the user and resolver context for the authorization moment.",
@@ -548,8 +548,8 @@ export const blogPosts: BlogPost[] = [
         type: "code",
         code: `{
   "recipient": {
-    "identifierType": "verified_stamp",
-    "identifier": "email:recipient@example.com"
+    "identifierType": "paytag",
+    "identifier": "abd123@cubid.mypaytag"
   },
   "supportedRoutes": [
     {
