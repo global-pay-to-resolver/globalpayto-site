@@ -775,7 +775,7 @@ Acceptance notes:
 
 ### GPTW-S10-T2 Require Developer App Metadata Before API Key Issuance
 
-Status: Todo
+Status: Complete
 Feature branch: codex/mypaytag-mvp-code-gap-todos-20260629
 Session log: TBD
 Depends on: mypaytag:GPTR-S8-T4
