@@ -229,7 +229,7 @@ export default function Home() {
               visiblePayToWallets.map((wallet) => (
                 <article
                   className="flex flex-col gap-3 rounded-md border border-[#d9dfd1] bg-[#fbfcf8] p-4 sm:flex-row sm:items-center sm:justify-between"
-                  key={wallet.marketingName}
+                  key={wallet.appUrl}
                 >
                   <div>
                     <a

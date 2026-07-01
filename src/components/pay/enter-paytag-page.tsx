@@ -456,7 +456,7 @@ async function loadBalances(
         params: [
           {
             to: token.address,
-            data: `0x70a08231000000000000000000000000${address.replace(/^0x/, "").toLowerCase()}`,
+            data: `0x70a08231${encodeAbiAddress(address)}`,
           },
           "latest",
         ],
@@ -484,6 +484,12 @@ async function loadBalances(
   }
 
   return balances;
+}
+
+function encodeAbiAddress(address: string): string {
+  const normalized = address.replace(/^0x/, "").toLowerCase();
+  if (!/^[0-9a-f]{40}$/.test(normalized)) throw new Error("invalid_wallet_address");
+  return normalized.padStart(64, "0");
 }
 
 function formatUnits(value: bigint, decimals: number): string {
