@@ -3,6 +3,8 @@ import { join } from "node:path";
 
 const repoRoot = process.cwd();
 const homepage = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
+const playgroundRoute = readFileSync(join(repoRoot, "src/app/api/playground/call/route.ts"), "utf8");
+const playgroundExamples = readFileSync(join(repoRoot, "src/lib/playground/examples.ts"), "utf8");
 const explainer = readFileSync(
   join(repoRoot, "docs/engineering/solver-adapter-developer-explainer.md"),
   "utf8",
@@ -80,6 +82,18 @@ for (const term of phaseTwoExplainerRequirements) {
 
 if (!homepage.includes('id="solver-adapters"')) {
   throw new Error("Homepage solver section is missing the solver-adapters anchor");
+}
+
+if (!playgroundRoute.includes("MYPAYTAG_PLAYGROUND_PHASE2_DEMO_MODE")) {
+  throw new Error("Playground broad solver fanout is missing an explicit Phase 2 demo gate");
+}
+
+if (!/simulateQuotes[\s\S]{0,600}Phase 2/i.test(playgroundExamples)) {
+  throw new Error("Playground broad solver fanout example is not visibly labeled Phase 2");
+}
+
+if (/simulateQuotes[\s\S]{0,600}\bis (?:an? )?MVP backend path\b/i.test(playgroundExamples)) {
+  throw new Error("Playground broad solver fanout example must not be described as an MVP backend path");
 }
 
 if (!homepage.includes("grid gap-4 md:grid-cols-2")) {

@@ -2,7 +2,16 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 
 const root = process.cwd();
-const docRoots = ["README.md", "docs", "src/app/api-docs/page.tsx", "src/app/page.tsx"];
+const docRoots = [
+  "README.md",
+  "docs",
+  "src/app/api-docs/page.tsx",
+  "src/app/page.tsx",
+  "src/lib/blog-posts.ts",
+  "src/lib/playground/examples.ts",
+  "public/api/openapi.yaml",
+  "public/api/postman_collection.json",
+];
 
 const forbidden = [
   { name: "private backend path", pattern: /\/Users\/botmaster\/src\/myPayTag\/mypaytag-backend/i },
@@ -13,6 +22,7 @@ const forbidden = [
   { name: "database credential", pattern: /DATABASE_URL/i },
   { name: "private audit detail", pattern: /audit_(log|event|trail)|private audit table/i },
   { name: "admin tool detail", pattern: /admin cli|admin token|admin secret/i },
+  { name: "legacy public identifier contract", pattern: /identifierType["']?\s*:\s*["']verified_stamp["']/i },
 ];
 
 const allowlistedInstructionFiles = new Set([

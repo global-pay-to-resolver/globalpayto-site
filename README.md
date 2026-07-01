@@ -125,12 +125,18 @@ Local MyPayTag API playground values are server-only and used by
 MYPAYTAG_PLAYGROUND_ENABLED=true
 MYPAYTAG_RESOLVER_BASE_URL=http://127.0.0.1:54321
 MYPAYTAG_HOSTED_ACTION_MOCK_MODE=false
+MYPAYTAG_PLAYGROUND_MOCK_MODE=false
+MYPAYTAG_PLAYGROUND_PHASE2_DEMO_MODE=false
 MYPAYTAG_PLAYGROUND_DAPP_SECRETS_JSON='{"chaincrew":{"id":"chaincrew","role":"paying_dapp","status":"active","secret":"local-chaincrew-secret"},"smartrust-wallet":{"id":"smartrust-wallet","role":"both","status":"active","secret":"local-smartrust-secret"}}'
 ```
 
 The playground signs demo MyPayTag requests on the server. Do not expose these
 demo secrets through `NEXT_PUBLIC_*` variables. Start local Supabase from the
-private backend repo before running live playground calls.
+private backend repo before running live playground calls. NEAR 1Click
+playground examples call the backend when `MYPAYTAG_RESOLVER_BASE_URL` is set;
+they return local development fixtures only when
+`MYPAYTAG_PLAYGROUND_MOCK_MODE=true`. Broad solver fanout is a Phase 2 fixture
+and requires `MYPAYTAG_PLAYGROUND_PHASE2_DEMO_MODE=true`.
 
 ## Cubid Console Setup
 
@@ -181,7 +187,8 @@ a non-secret setup message until server-only Cubid credentials are present in
 Hosted route-selection pages use signed-in user context and backend-provided
 action data. Local mock actions are for development and acceptance checks only;
 set `MYPAYTAG_HOSTED_ACTION_MOCK_MODE=true` only for local fixture work. Staging
-smoke must use real MyPayTag backend action hydration and completion.
+smoke must use real MyPayTag backend action hydration, completion, NEAR 1Click
+quote, and selected-quote calls.
 
 The public site owns browser-safe hosted action UX, public API docs, marketing
 copy, and the local playground. Protocol details live in `../mypaytag-sdk`, and
