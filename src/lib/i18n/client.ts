@@ -5,12 +5,7 @@ import { initReactI18next } from "react-i18next";
 
 import { defaultLocale } from "@/lib/i18n/config";
 import { translationNamespaces } from "@/lib/i18n/namespaces";
-
-const emptyResources = {
-  en: {},
-  sv: {},
-  "en-XA": {},
-};
+import { resources } from "@/lib/i18n/resources";
 
 export function getClientI18n() {
   if (!i18next.isInitialized) {
@@ -21,9 +16,9 @@ export function getClientI18n() {
         escapeValue: false,
       },
       lng: defaultLocale,
-      resources: emptyResources,
+      resources,
       ns: translationNamespaces,
-      supportedLngs: Object.keys(emptyResources),
+      supportedLngs: Object.keys(resources),
     });
   }
 
