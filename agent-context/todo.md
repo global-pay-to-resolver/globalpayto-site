@@ -843,8 +843,8 @@ Acceptance notes:
 
 ### GPTW-S11-T2 Add Typed Translation Keys And Namespaces
 
-Status: Planned
-Feature branch: TBD
+Status: Complete
+Feature branch: codex/mypaytag-site-i18n-sprint-20260708
 Session log: TBD
 Depends on: mypaytag-site:GPTW-S11-T1
 
