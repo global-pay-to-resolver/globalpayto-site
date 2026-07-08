@@ -817,3 +817,154 @@ Acceptance notes:
   route preferences, private provider metadata, or testnet-only providers.
 - Empty and loading states avoid implying whether any specific unlisted wallet
   is registered or rejected.
+
+## Sprint 11: Typed UI Internationalization
+
+### GPTW-S11-T1 Install And Configure i18next
+
+Status: Planned
+Feature branch: TBD
+Session log: TBD
+Depends on: mypaytag-site:GPTW-S10-T1, mypaytag-site:GPTW-S10-T2, mypaytag-site:GPTW-S10-T3
+
+Install `i18next` and the React/Next integration needed for the public
+MyPayTag UI.
+
+Acceptance notes:
+
+- Runtime translation uses `i18next` with a Next-compatible initialization
+  path for server and client UI.
+- Translation loading works for English, Swedish, and the pseudo-locale without
+  shipping resolver secrets or server-only configuration to the browser.
+- Locale state is available to navigation, settings, onboarding, developer
+  tools, playground, hosted-action, and payment-entry components.
+- The setup does not introduce hydration mismatches between server-rendered and
+  client-rendered copy.
+
+### GPTW-S11-T2 Add Typed Translation Keys And Namespaces
+
+Status: Planned
+Feature branch: TBD
+Session log: TBD
+Depends on: mypaytag-site:GPTW-S11-T1
+
+Create typed translation resources and namespace boundaries for the public UI.
+
+Acceptance notes:
+
+- Translation keys are type-checked so removed or misspelled keys fail in local
+  validation before runtime.
+- Namespaces at minimum cover `common`, `navigation`, `buttons`, `settings`,
+  `onboarding`, `developer`, `playground`, `hostedAction`, `pay`, and
+  `marketing`.
+- Namespace naming stays stable enough for product, design, and localization
+  review without coupling every component to file paths.
+- Shared labels such as loading, retry, continue, cancel, save, copy, rotate,
+  connect, disconnect, and submit live in common/button namespaces instead of
+  being duplicated.
+
+### GPTW-S11-T3 Add English, Swedish, And Pseudo-Locale Resources
+
+Status: Planned
+Feature branch: TBD
+Session log: TBD
+Depends on: mypaytag-site:GPTW-S11-T2
+
+Add translation files for English, Swedish, and an expansion pseudo-locale.
+
+Acceptance notes:
+
+- English is the source locale and remains the default global language.
+- Swedish translations are available for all first-pass UI namespaces.
+- `en-XA` or equivalent pseudo-locale expands and brackets strings to expose
+  layout overflow, clipped controls, hard-coded copy, and concatenated strings.
+- Pseudo-locale resources are available in development and test fixtures but
+  are not selected by default for production users.
+
+### GPTW-S11-T4 Extract Visible UI Strings Into Translation Files
+
+Status: Planned
+Feature branch: TBD
+Session log: TBD
+Depends on: mypaytag-site:GPTW-S11-T2, mypaytag-site:GPTW-S11-T3
+
+Extract visible strings from the current Next UI entry points and components
+into translation resources.
+
+Acceptance notes:
+
+- Visible strings from app pages, layout, and shared components are moved out
+  of inline JSX into typed translation keys. This covers the Next app
+  equivalents of a single `App.tsx` shell.
+- Common navigation, buttons, settings, onboarding, developer-console,
+  playground, hosted-action, marketing, and enter-paytag copy are covered.
+- Dynamic copy uses interpolation, pluralization, and structured variables
+  instead of string concatenation.
+- API payload examples, code snippets, route paths, environment variable names,
+  provider names, and product identifiers remain literal where translation
+  would be incorrect.
+
+### GPTW-S11-T5 Add Locale Selection And Developer Fixture Controls
+
+Status: Planned
+Feature branch: TBD
+Session log: TBD
+Depends on: mypaytag-site:GPTW-S11-T1, mypaytag-site:GPTW-S11-T3
+
+Add a browser-safe way to simulate and inspect locale behavior during local
+development and review.
+
+Acceptance notes:
+
+- Developer tools include a fixture control for switching between English,
+  Swedish, and pseudo-locale without changing production user settings.
+- The fixture makes the active locale obvious in development so screenshots and
+  smoke results are not confused with production behavior.
+- Locale switching exercises navigation, settings, onboarding, developer
+  console, hosted action, playground, and enter-paytag surfaces.
+- Fixture state is isolated to local/dev tooling and does not leak private
+  user, wallet, resolver, or Cubid state.
+
+### GPTW-S11-T6 Implement Locale Detection Defaults
+
+Status: Planned
+Feature branch: TBD
+Session log: TBD
+Depends on: mypaytag-site:GPTW-S11-T1, mypaytag-site:GPTW-S11-T3
+
+Default the site to English globally, with Swedish selected for users in
+Sweden.
+
+Acceptance notes:
+
+- English is used globally unless locale detection indicates Sweden or the user
+  explicitly chooses another supported locale.
+- Sweden detection uses safe browser/server signals such as accepted language,
+  explicit locale preference, or deployment-supported geolocation headers when
+  available.
+- Locale detection avoids collecting or exposing precise location data.
+- Users can override the detected locale in settings once a settings surface is
+  available.
+- Unsupported locales fall back to English.
+
+### GPTW-S11-T7 Add Translation Completeness Checks To CI
+
+Status: Planned
+Feature branch: TBD
+Session log: TBD
+Depends on: mypaytag-site:GPTW-S11-T2, mypaytag-site:GPTW-S11-T3, mypaytag-site:GPTW-S11-T4
+
+Add validation that prevents missing or stale translation keys from landing.
+
+Acceptance notes:
+
+- CI fails when any supported locale is missing a required key from the source
+  English namespace set.
+- CI fails when resource files contain orphaned keys no longer referenced by
+  typed key definitions, unless explicitly allowed.
+- CI verifies pseudo-locale generation or resources stay in sync with English.
+- CI or local checks catch inline visible strings in core UI areas after the
+  extraction pass, while allowing intentional literals such as code examples,
+  product names, route paths, and environment variable names.
+- The validation command is documented in `package.json` scripts and included
+  in the launch-readiness check list.
