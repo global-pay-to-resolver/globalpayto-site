@@ -12,6 +12,7 @@
     "check:hosted-actions": "node scripts/check-hosted-action-acceptance.mjs",
     "scan:browser-secrets": "node scripts/scan-browser-secrets.mjs",
     "check:solver-content": "node scripts/check-solver-content.mjs",
+    "check:i18n": "node scripts/check-i18n.mjs",
     "check:openapi-sync": "node scripts/check-openapi-sync.mjs",
     "scan:public-docs": "node scripts/scan-public-docs.mjs",
     "start": "next start",

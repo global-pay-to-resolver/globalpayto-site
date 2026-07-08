@@ -25,6 +25,7 @@ pnpm check:hosted-action-a11y
 pnpm privacy:route-selection
 pnpm scan:public-docs
 pnpm check:solver-content
+pnpm check:i18n
 ```
 
 This repo currently has no `pnpm test` script. If a test script is added, it

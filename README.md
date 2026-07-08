@@ -177,8 +177,13 @@ pnpm check:hosted-action-a11y
 pnpm privacy:route-selection
 pnpm scan:browser-secrets
 pnpm check:solver-content
+pnpm check:i18n
 pnpm build
 ```
+
+`pnpm check:i18n` verifies that English and Swedish translation resources match
+the typed namespace registry, the pseudo-locale export is present, and the
+extracted shell UI strings stay out of inline JSX.
 
 The browser demo can render without server credentials. The server demo returns
 a non-secret setup message until server-only Cubid credentials are present in
