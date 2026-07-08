@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowRight,
   CircleDollarSign,
@@ -12,31 +14,37 @@ import {
 import Link from "next/link";
 
 import { MarketingTracks } from "@/components/marketing/marketing-tracks";
+import type { TranslationKey } from "@/lib/i18n/namespaces";
+import { useTypedTranslation } from "@/lib/i18n/use-typed-translation";
 
 const introPoints = [
   {
     icon: Link2,
-    title: "One Paytag",
-    text: "A MyPayTag-branded payment identity gives paying apps one user-approved handle to start from.",
+    titleKey: "onePaytagTitle",
+    textKey: "onePaytagText",
   },
   {
     icon: Route,
-    title: "MVP route selection",
-    text: "MyPayTag selects an approved PayToDapp route for the current paytag, asset, network, and paying app.",
+    titleKey: "mvpRouteSelectionTitle",
+    textKey: "mvpRouteSelectionText",
   },
   {
     icon: ShieldCheck,
-    title: "Cubid stays identity-only",
-    text: "Cubid powers verified identity, consent, and aliases without receiving wallet, route, or payment details.",
+    titleKey: "cubidIdentityTitle",
+    textKey: "cubidIdentityText",
   },
-];
+] as const satisfies ReadonlyArray<{
+  icon: typeof Link2;
+  titleKey: TranslationKey<"marketing">;
+  textKey: TranslationKey<"marketing">;
+}>;
 
-const ecosystemSteps = [
-  "PayingDapp submits a Paytag",
-  "MyPayTag selects a route",
-  "PayToDapp creates the intent",
-  "PayingDapp receives one-time instructions",
-];
+const ecosystemStepKeys = [
+  "ecosystemStepPayingDapp",
+  "ecosystemStepRoute",
+  "ecosystemStepPayToDapp",
+  "ecosystemStepInstructions",
+] as const satisfies readonly TranslationKey<"onboarding">[];
 
 const solverCards = [
   {
@@ -112,6 +120,12 @@ const visiblePayToWallets = registeredPayToWallets.filter((wallet) => {
 });
 
 export default function Home() {
+  const { t: tCommon } = useTypedTranslation("common");
+  const { t: tButton } = useTypedTranslation("buttons");
+  const { t: tMarketing } = useTypedTranslation("marketing");
+  const { t: tOnboarding } = useTypedTranslation("onboarding");
+  const { t: tPay } = useTypedTranslation("pay");
+
   return (
     <main className="min-h-screen bg-[#f6f7f2] text-[#121612]">
       <section className="relative overflow-hidden border-b border-[#d9dfd1] bg-[#0f1712] text-white">
@@ -123,28 +137,27 @@ export default function Home() {
         <div className="relative mx-auto grid min-h-[calc(100svh-73px)] max-w-7xl content-center gap-12 px-6 py-16 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
           <div className="animate-[fadeUp_650ms_ease-out_both]">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#9fd3a5]">
-              Pay users, not wallet addresses
+              {tOnboarding("heroEyebrow")}
             </p>
             <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-[1.02] tracking-normal sm:text-7xl">
-              A Paytag layer for crypto apps.
+              {tOnboarding("heroTitle")}
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[#d6dfd1]">
-              MyPayTag lets PayingDapps reach any user through a Paytag while
-              PayToDapps stay in control of the provider intent they create.
+              {tOnboarding("heroDescription")}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-[#9fd3a5] px-5 text-sm font-semibold text-[#101710] transition hover:bg-[#b8e3ba]"
                 href="#tracks"
               >
-                Choose your track
+                {tButton("chooseTrack")}
                 <ArrowRight size={17} aria-hidden="true" />
               </a>
               <Link
                 className="inline-flex h-11 items-center justify-center rounded-md border border-[#6f806f] px-5 text-sm font-semibold text-white transition hover:bg-white/10"
                 href="/api-docs"
               >
-                Read API docs
+                {tButton("readApiDocs")}
               </Link>
             </div>
           </div>
@@ -155,12 +168,10 @@ export default function Home() {
               <div className="absolute inset-20 rounded-full border border-[#d6e5d0]/25" />
               <div className="absolute left-1/2 top-1/2 flex h-32 w-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#9fd3a5]/40 bg-[#f6f7f2] text-[#121612] shadow-2xl">
                 <span className="text-center text-sm font-bold leading-5">
-                  Paytag
-                  <br />
-                  ID
+                  {tOnboarding("paytagId")}
                 </span>
               </div>
-              {ecosystemSteps.map((step, index) => (
+              {ecosystemStepKeys.map((stepKey, index) => (
                 <div
                   className={`absolute max-w-40 rounded-md border border-white/15 bg-white/10 p-3 text-sm leading-5 text-[#eef4ea] backdrop-blur transition duration-200 hover:-translate-y-1 hover:bg-white/15 ${
                     index === 0
@@ -171,9 +182,9 @@ export default function Home() {
                           ? "bottom-20 left-3"
                           : "bottom-10 right-4"
                   }`}
-                  key={step}
+                  key={stepKey}
                 >
-                  {step}
+                  {tOnboarding(stepKey)}
                 </div>
               ))}
               <div className="absolute left-1/2 top-1/2 h-[78%] w-px -translate-x-1/2 -translate-y-1/2 rotate-45 bg-gradient-to-b from-transparent via-[#9fd3a5]/70 to-transparent" />
@@ -187,10 +198,10 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-[0.75fr_1.25fr] lg:px-8">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#176b46]">
-              The network layer
+              {tOnboarding("networkEyebrow")}
             </p>
             <h2 className="mt-4 text-4xl font-semibold leading-tight">
-              Three audiences. One MVP payment path.
+              {tOnboarding("networkTitle")}
             </h2>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
@@ -198,10 +209,14 @@ export default function Home() {
               const Icon = item.icon;
 
               return (
-                <div className="border-l border-[#d9dfd1] pl-5" key={item.title}>
+                <div className="border-l border-[#d9dfd1] pl-5" key={item.titleKey}>
                   <Icon className="text-[#245c8d]" size={22} aria-hidden="true" />
-                  <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#586250]">{item.text}</p>
+                  <h3 className="mt-4 text-lg font-semibold">
+                    {tMarketing(item.titleKey)}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-[#586250]">
+                    {tMarketing(item.textKey)}
+                  </p>
                 </div>
               );
             })}
@@ -213,15 +228,13 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#176b46]">
-              Registered PayTo wallets
+              {tPay("registeredWalletsEyebrow")}
             </p>
             <h2 className="mt-4 text-4xl font-semibold leading-tight">
-              Wallets with active mainnet receive registrations.
+              {tPay("registeredWalletsTitle")}
             </h2>
             <p className="mt-4 text-sm leading-7 text-[#586250]">
-              This directory shows public app metadata only. It does not expose
-              users, wallet addresses, balances, route preferences, provider
-              internals, or testnet-only registrations.
+              {tPay("registeredWalletsDescription")}
             </p>
           </div>
           <div className="grid gap-3">
@@ -242,17 +255,19 @@ export default function Home() {
                       <ExternalLink size={15} aria-hidden="true" />
                     </a>
                     <p className="mt-1 text-sm leading-6 text-[#586250]">
-                      Mainnet PayTo wallet with active registered users.
+                      {tPay("mainnetWalletDescription")}
                     </p>
                   </div>
                   <span className="rounded-md border border-[#c8d4bf] bg-white px-3 py-2 text-sm font-semibold text-[#33402f]">
-                    {wallet.registeredUsersWithWallets.toLocaleString("en-US")} users
+                    {tCommon("users", {
+                      count: wallet.registeredUsersWithWallets,
+                    })}
                   </span>
                 </article>
               ))
             ) : (
               <p className="rounded-md border border-[#d9dfd1] bg-[#fbfcf8] p-4 text-sm leading-6 text-[#586250]">
-                No public mainnet PayTo wallet entries are available yet.
+                {tPay("emptyWalletDirectory")}
               </p>
             )}
           </div>

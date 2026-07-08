@@ -5,9 +5,13 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { useMockSession } from "@/components/auth/mock-session-provider";
+import { useTypedTranslation } from "@/lib/i18n/use-typed-translation";
 import { credentialLabel, type MockCredential } from "@/lib/mock-session";
 
 export function SiteHeader() {
+  const { t: tButton } = useTypedTranslation("buttons");
+  const { t: tCommon } = useTypedTranslation("common");
+  const { t: tNav } = useTypedTranslation("navigation");
   const { isLoaded, session, signIn, signOut } = useMockSession();
   const [open, setOpen] = useState(false);
 
@@ -24,25 +28,25 @@ export function SiteHeader() {
         </Link>
         <nav className="flex flex-wrap items-center gap-3 text-sm font-semibold text-[#4f5a49]">
           <Link className="hover:text-[#176b46]" href="/#tracks">
-            Tracks
+            {tNav("tracks")}
           </Link>
           <Link className="hover:text-[#176b46]" href="/blog">
-            Blog
+            {tNav("blog")}
           </Link>
           <Link className="hover:text-[#176b46]" href="/enter-paytag">
-            Enter Paytag
+            {tNav("enterPaytag")}
           </Link>
           <Link className="hover:text-[#176b46]" href="/api-docs">
-            API Docs
+            {tNav("apiDocs")}
           </Link>
           <Link className="hover:text-[#176b46]" href="/api-playground">
-            Playground
+            {tNav("playground")}
           </Link>
           <Link className="hover:text-[#176b46]" href="/reference">
-            Reference
+            {tNav("reference")}
           </Link>
           <Link className="hover:text-[#176b46]" href="/history">
-            History
+            {tNav("history")}
           </Link>
           <a
             className="inline-flex items-center gap-1.5 hover:text-[#176b46]"
@@ -51,11 +55,11 @@ export function SiteHeader() {
             target="_blank"
           >
             <Github size={15} aria-hidden="true" />
-            GitHub
+            {tNav("github")}
           </a>
           {session?.credential === "developer" ? (
             <Link className="hover:text-[#176b46]" href="/developer">
-              Developer
+              {tNav("developer")}
             </Link>
           ) : null}
         </nav>
@@ -65,6 +69,9 @@ export function SiteHeader() {
             <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex h-9 items-center gap-2 rounded-md border border-[#b9c7ad] bg-[#eef7ef] px-3 text-sm font-semibold text-[#176b46]">
                 <CheckCircle2 size={16} aria-hidden="true" />
+                <span className="sr-only">
+                  {tNav("signedInAs", { credential: credentialLabel(session.credential) })}
+                </span>
                 {credentialLabel(session.credential)}
               </span>
               <button
@@ -73,7 +80,7 @@ export function SiteHeader() {
                 type="button"
               >
                 <LogOut size={15} aria-hidden="true" />
-                Sign out
+                {tButton("signOut")}
               </button>
             </div>
           ) : (
@@ -84,7 +91,7 @@ export function SiteHeader() {
                 onClick={() => setOpen((current) => !current)}
                 type="button"
               >
-                Sign in
+                {tButton("signIn")}
                 <ChevronDown size={15} aria-hidden="true" />
               </button>
               {open ? (
@@ -97,10 +104,10 @@ export function SiteHeader() {
                     <UserRound className="mt-0.5 text-[#176b46]" size={18} aria-hidden="true" />
                     <span>
                       <span className="block text-sm font-semibold text-[#121612]">
-                        Log in as user
+                        {tNav("loginUser")}
                       </span>
                       <span className="mt-1 block text-xs leading-5 text-[#586250]">
-                        Access route choices and incoming history.
+                        {tNav("loginUserDescription")}
                       </span>
                     </span>
                   </button>
@@ -112,10 +119,10 @@ export function SiteHeader() {
                     <Code2 className="mt-0.5 text-[#245c8d]" size={18} aria-hidden="true" />
                     <span>
                       <span className="block text-sm font-semibold text-[#121612]">
-                        Log in as developer
+                        {tNav("loginDeveloper")}
                       </span>
                       <span className="mt-1 block text-xs leading-5 text-[#586250]">
-                        Manage API access, team invites, and app history.
+                        {tNav("loginDeveloperDescription")}
                       </span>
                     </span>
                   </button>
