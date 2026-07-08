@@ -449,3 +449,14 @@ todo: mypaytag-site:GPTW-S8-T6
 summary: Replaced broad solver homepage-name assertions with guardrails that require NEAR Intents / 1Click as Phase 1 MVP execution content, require Phase 2 labeling for LI.FI, Squid, 0x, Across, LayerZero/Stargate, broad fanout, and generic adapters, and fail if public copy frames NEAR as future-only or non-MVP.
 validation: Ran pnpm check:solver-content, pnpm typecheck, pnpm lint, and pnpm build.
 follow-ups: Hosted staging smoke is still required before launch readiness can be claimed.
+
+---
+
+## 2026-07-08-gptw-s11-i18n
+
+agent: Codex
+branch: codex/mypaytag-site-i18n-sprint-20260708
+todo: mypaytag-site:GPTW-S11-T1 through mypaytag-site:GPTW-S11-T7
+summary: Implemented the typed UI internationalization sprint with i18next/react-i18next runtime wiring, typed namespaces and keys, English and Swedish resources, generated en-XA pseudo-locale resources, first-pass shell UI string extraction, a developer-console locale fixture, Sweden-aware locale defaults, and a CI-safe translation completeness check.
+validation: Ran pnpm lint, pnpm typecheck, pnpm check:i18n, and pnpm build. The i18n check validates English/Swedish resource completeness, orphaned translation keys, pseudo-locale export presence, and extracted shell UI strings staying out of inline JSX.
+follow-ups: Continue extracting deeper long-form marketing, playground, hosted-action, and developer-console copy into the typed namespace resources as those pages receive UI work.
