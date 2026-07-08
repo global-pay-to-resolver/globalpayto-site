@@ -906,8 +906,8 @@ Acceptance notes:
 
 ### GPTW-S11-T5 Add Locale Selection And Developer Fixture Controls
 
-Status: Planned
-Feature branch: TBD
+Status: Complete
+Feature branch: codex/mypaytag-site-i18n-sprint-20260708
 Session log: TBD
 Depends on: mypaytag-site:GPTW-S11-T1, mypaytag-site:GPTW-S11-T3
 
