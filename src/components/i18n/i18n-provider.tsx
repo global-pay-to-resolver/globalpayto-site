@@ -37,21 +37,22 @@ export function I18nProvider({
   initialLocale = defaultLocale,
 }: I18nProviderProps) {
   const i18n = getClientI18n(initialLocale);
-  const [locale, setLocaleState] = useState<SupportedLocale>(initialLocale);
-
-  useEffect(() => {
-    const storedLocale = window.localStorage.getItem(localeStorageKey);
-
-    if (storedLocale && isSupportedLocale(storedLocale)) {
-      setLocaleState(storedLocale);
-      void i18n.changeLanguage(storedLocale);
-      document.documentElement.lang = storedLocale;
-      return;
+  const [locale, setLocaleState] = useState<SupportedLocale>(() => {
+    if (typeof window === "undefined") {
+      return initialLocale;
     }
 
-    void i18n.changeLanguage(initialLocale);
-    document.documentElement.lang = initialLocale;
-  }, [i18n, initialLocale]);
+    const storedLocale = window.localStorage.getItem(localeStorageKey);
+
+    return storedLocale && isSupportedLocale(storedLocale)
+      ? storedLocale
+      : initialLocale;
+  });
+
+  useEffect(() => {
+    void i18n.changeLanguage(locale);
+    document.documentElement.lang = locale;
+  }, [i18n, locale]);
 
   const value = useMemo<LocaleContextValue>(
     () => ({

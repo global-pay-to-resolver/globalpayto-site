@@ -10,7 +10,6 @@ import { credentialLabel, type MockCredential } from "@/lib/mock-session";
 
 export function SiteHeader() {
   const { t: tButton } = useTypedTranslation("buttons");
-  const { t: tCommon } = useTypedTranslation("common");
   const { t: tNav } = useTypedTranslation("navigation");
   const { isLoaded, session, signIn, signOut } = useMockSession();
   const [open, setOpen] = useState(false);
