@@ -16,9 +16,11 @@ import {
   type SupportedLocale,
 } from "@/lib/i18n/config";
 import { getClientI18n } from "@/lib/i18n/client";
+import { localeCookieName } from "@/lib/i18n/detection";
 
 interface I18nProviderProps {
   children: ReactNode;
+  initialLocale?: SupportedLocale;
 }
 
 interface LocaleContextValue {
@@ -30,9 +32,12 @@ const localeStorageKey = "mypaytag.locale.fixture";
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
 
-export function I18nProvider({ children }: I18nProviderProps) {
-  const i18n = getClientI18n();
-  const [locale, setLocaleState] = useState<SupportedLocale>(defaultLocale);
+export function I18nProvider({
+  children,
+  initialLocale = defaultLocale,
+}: I18nProviderProps) {
+  const i18n = getClientI18n(initialLocale);
+  const [locale, setLocaleState] = useState<SupportedLocale>(initialLocale);
 
   useEffect(() => {
     const storedLocale = window.localStorage.getItem(localeStorageKey);
@@ -41,8 +46,12 @@ export function I18nProvider({ children }: I18nProviderProps) {
       setLocaleState(storedLocale);
       void i18n.changeLanguage(storedLocale);
       document.documentElement.lang = storedLocale;
+      return;
     }
-  }, [i18n]);
+
+    void i18n.changeLanguage(initialLocale);
+    document.documentElement.lang = initialLocale;
+  }, [i18n, initialLocale]);
 
   const value = useMemo<LocaleContextValue>(
     () => ({
@@ -50,6 +59,9 @@ export function I18nProvider({ children }: I18nProviderProps) {
       setLocale(nextLocale) {
         setLocaleState(nextLocale);
         window.localStorage.setItem(localeStorageKey, nextLocale);
+        document.cookie = `${localeCookieName}=${encodeURIComponent(
+          nextLocale,
+        )}; Path=/; Max-Age=31536000; SameSite=Lax`;
         void i18n.changeLanguage(nextLocale);
         document.documentElement.lang = nextLocale;
       },
