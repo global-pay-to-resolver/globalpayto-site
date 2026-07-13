@@ -482,3 +482,14 @@ todo: PR 4 code review follow-up
 summary: Addressed PR 4 review feedback by preserving i18next interpolation placeholders in pseudo-locale output, initializing the client i18n instance from the stored developer fixture locale to avoid a language flash, keeping the developer fixture out of the long-lived server locale cookie, and moving the translated homepage body into a client component while restoring `src/app/page.tsx` as a server component wrapper.
 validation: Ran pnpm check:i18n, pnpm lint, pnpm typecheck, and pnpm build.
 follow-ups: Add a real user-facing locale setting before writing `mypaytag.locale` cookies from the UI.
+
+---
+
+## 2026-07-13-vercel-preview-smoke-and-env
+
+agent: Codex
+branch: codex/mypaytag-site-i18n-sprint-20260708
+todo: Vercel PR 4 deployment smoke and env audit
+summary: Redeployed the successful PR 4 Vercel preview after correcting the branch preview `NEXT_PUBLIC_CUBID_REDIRECT_URI`, smoke-tested protected preview routes through `vercel curl`, audited preview and production Vercel environment variables with redacted output, and corrected the production redirect URI placeholder. Left missing server-only Cubid/API playground secrets unset because no real values are present in Vercel and the candidate backend Supabase project did not have the required functions deployed.
+validation: Vercel redeploy `dpl_1CLfx1du9hDWRWG3zbcWjdvRS9L4` reached Ready. Smoke-tested `/`, `/api-docs`, `/api-playground`, `/developer`, `/enter-paytag`, `/history`, `/auth/callback`, and `/actions/route-selection/demo-action` with authenticated Vercel CLI bypass; all returned 200 MyPayTag HTML with no app error. Verified API playground returns the expected disabled response while live backend secrets remain unset.
+follow-ups: Add real `CUBID_API_KEY`, `CUBID_DAPP_ID`, `MYPAYTAG_RESOLVER_BASE_URL`, and `MYPAYTAG_PLAYGROUND_DAPP_SECRETS_JSON` only after the Cubid dapp credentials and deployed MyPayTag backend function base are available.
