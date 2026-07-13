@@ -275,7 +275,18 @@ const sv = {
 } satisfies TranslationResources;
 
 function pseudoLocalize(value: string) {
-  const expanded = value.replace(/[A-Za-zÅÄÖåäö]/g, (character) => {
+  const placeholders = value.match(/{{\s*[\w.]+\s*}}/g) ?? [];
+  const placeholderToken = "\u0000I18N_PLACEHOLDER_";
+  let protectedValue = value;
+
+  placeholders.forEach((placeholder, index) => {
+    protectedValue = protectedValue.replace(
+      placeholder,
+      `${placeholderToken}${index}\u0000`,
+    );
+  });
+
+  let expanded = protectedValue.replace(/[A-Za-zÅÄÖåäö]/g, (character) => {
     const map: Record<string, string> = {
       A: "Ȧ",
       a: "ȧ",
@@ -290,6 +301,10 @@ function pseudoLocalize(value: string) {
     };
 
     return map[character] ?? character;
+  });
+
+  placeholders.forEach((placeholder, index) => {
+    expanded = expanded.replace(`${placeholderToken}${index}\u0000`, placeholder);
   });
 
   return `[!! ${expanded} ${expanded} !!]`;

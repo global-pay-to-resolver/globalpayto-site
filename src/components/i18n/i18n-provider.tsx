@@ -16,7 +16,6 @@ import {
   type SupportedLocale,
 } from "@/lib/i18n/config";
 import { getClientI18n } from "@/lib/i18n/client";
-import { localeCookieName } from "@/lib/i18n/detection";
 
 interface I18nProviderProps {
   children: ReactNode;
@@ -36,18 +35,9 @@ export function I18nProvider({
   children,
   initialLocale = defaultLocale,
 }: I18nProviderProps) {
-  const i18n = getClientI18n(initialLocale);
-  const [locale, setLocaleState] = useState<SupportedLocale>(() => {
-    if (typeof window === "undefined") {
-      return initialLocale;
-    }
-
-    const storedLocale = window.localStorage.getItem(localeStorageKey);
-
-    return storedLocale && isSupportedLocale(storedLocale)
-      ? storedLocale
-      : initialLocale;
-  });
+  const startingLocale = readStoredFixtureLocale(initialLocale);
+  const i18n = getClientI18n(startingLocale);
+  const [locale, setLocaleState] = useState<SupportedLocale>(startingLocale);
 
   useEffect(() => {
     void i18n.changeLanguage(locale);
@@ -60,9 +50,6 @@ export function I18nProvider({
       setLocale(nextLocale) {
         setLocaleState(nextLocale);
         window.localStorage.setItem(localeStorageKey, nextLocale);
-        document.cookie = `${localeCookieName}=${encodeURIComponent(
-          nextLocale,
-        )}; Path=/; Max-Age=31536000; SameSite=Lax`;
         void i18n.changeLanguage(nextLocale);
         document.documentElement.lang = nextLocale;
       },
@@ -85,4 +72,16 @@ export function useLocale() {
   }
 
   return value;
+}
+
+function readStoredFixtureLocale(fallbackLocale: SupportedLocale) {
+  if (typeof window === "undefined") {
+    return fallbackLocale;
+  }
+
+  const storedLocale = window.localStorage.getItem(localeStorageKey);
+
+  return storedLocale && isSupportedLocale(storedLocale)
+    ? storedLocale
+    : fallbackLocale;
 }

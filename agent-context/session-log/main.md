@@ -471,3 +471,14 @@ todo: deployment follow-up for PR 4
 summary: Diagnosed the failing Vercel deployment as an isolated-checkout dependency resolution issue: production cloned only MyPayTag-site and could not resolve Cubid packages from `../../cubid/...`. Switched deployable Cubid dependencies to published npm versions, removed sibling workspace package entries, added a pnpm override for the published auth-react workspace dependency leak, and replaced the unpublished `@cubid/comms` demo import with a deploy-safe placeholder.
 validation: Used `vercel inspect dpl_4SCw8fWE8WvDhQna4aJMBFBF2HYn --logs` to confirm the failing imports, then ran pnpm lint, pnpm typecheck, and pnpm build locally.
 follow-ups: Re-enable live Cubid comms preference loading after `@cubid/comms` is published as a standalone npm package.
+
+---
+
+## 2026-07-13-pr4-review-fixes
+
+agent: Codex
+branch: codex/mypaytag-site-i18n-sprint-20260708
+todo: PR 4 code review follow-up
+summary: Addressed PR 4 review feedback by preserving i18next interpolation placeholders in pseudo-locale output, initializing the client i18n instance from the stored developer fixture locale to avoid a language flash, keeping the developer fixture out of the long-lived server locale cookie, and moving the translated homepage body into a client component while restoring `src/app/page.tsx` as a server component wrapper.
+validation: Ran pnpm check:i18n, pnpm lint, pnpm typecheck, and pnpm build.
+follow-ups: Add a real user-facing locale setting before writing `mypaytag.locale` cookies from the UI.
