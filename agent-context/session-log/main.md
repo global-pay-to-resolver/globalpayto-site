@@ -460,3 +460,14 @@ todo: mypaytag-site:GPTW-S11-T1 through mypaytag-site:GPTW-S11-T7
 summary: Implemented the typed UI internationalization sprint with i18next/react-i18next runtime wiring, typed namespaces and keys, English and Swedish resources, generated en-XA pseudo-locale resources, first-pass shell UI string extraction, a developer-console locale fixture, Sweden-aware locale defaults, and a CI-safe translation completeness check.
 validation: Ran pnpm lint, pnpm typecheck, pnpm check:i18n, and pnpm build. The i18n check validates English/Swedish resource completeness, orphaned translation keys, pseudo-locale export presence, and extracted shell UI strings staying out of inline JSX.
 follow-ups: Continue extracting deeper long-form marketing, playground, hosted-action, and developer-console copy into the typed namespace resources as those pages receive UI work.
+
+---
+
+## 2026-07-13-vercel-workspace-dependency-fix
+
+agent: Codex
+branch: codex/mypaytag-site-i18n-sprint-20260708
+todo: deployment follow-up for PR 4
+summary: Diagnosed the failing Vercel deployment as an isolated-checkout dependency resolution issue: production cloned only MyPayTag-site and could not resolve Cubid packages from `../../cubid/...`. Switched deployable Cubid dependencies to published npm versions, removed sibling workspace package entries, added a pnpm override for the published auth-react workspace dependency leak, and replaced the unpublished `@cubid/comms` demo import with a deploy-safe placeholder.
+validation: Used `vercel inspect dpl_4SCw8fWE8WvDhQna4aJMBFBF2HYn --logs` to confirm the failing imports, then ran pnpm lint, pnpm typecheck, and pnpm build locally.
+follow-ups: Re-enable live Cubid comms preference loading after `@cubid/comms` is published as a standalone npm package.

@@ -56,7 +56,8 @@ or normal Cubid transaction-signing examples from those projects.
 - `@cubid/core` in a server-only Next.js API route for dapp API-key calls.
 - `@cubid/auth` and `@cubid/auth-react` for Login with Cubid / OIDC PKCE.
 - `@cubid/browser` and `@cubid/react` for hosted ClearPass Verify launchers.
-- `@cubid/comms` for signed-in notification channel and preference metadata.
+- Notification channel and preference metadata are represented as a
+  deploy-safe placeholder until `@cubid/comms` is published on npm.
 - `@cubid/wallet-recovery` and `@cubid/wallet-recovery-react` for hosted,
   user-authorized recoverable-wallet recovery launchers.
 
@@ -156,15 +157,9 @@ Create or configure your dapp API credentials with:
 
 ## Package Source
 
-Most `@cubid/*` packages are published on npm. This checkout is also wired as a
-small pnpm workspace that links the current local SDK packages from:
-
-```txt
-/Users/botmaster/src/cubid/cubid-sdk-v2/packages/*
-```
-
-That keeps the starter aligned with the canonical SDK source while package
-publishing catches up, especially for `@cubid/comms`.
+The deployable site depends on published `@cubid/*` packages from npm. Keep
+local sibling package links out of `pnpm-workspace.yaml`; Vercel clones this
+repository in isolation and cannot resolve `../../cubid/...` workspace paths.
 
 ## Validation
 
