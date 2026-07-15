@@ -14,6 +14,7 @@ import { useMemo, useState } from "react";
 
 import { useMockSession } from "@/components/auth/mock-session-provider";
 import { SignedInOnly } from "@/components/cubid/signed-in-only";
+import { LocaleFixtureControl } from "@/components/i18n/locale-fixture-control";
 
 type DeveloperEnvironment = "testnet" | "mainnet";
 
@@ -132,6 +133,9 @@ export function DeveloperConsole() {
         </section>
 
         <section className="mx-auto grid max-w-7xl gap-5 px-6 py-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+          <div className="lg:col-span-2">
+            <LocaleFixtureControl />
+          </div>
           <div className="rounded-lg border border-[#d9dfd1] bg-white p-5">
             <div className="flex items-center gap-3">
               <KeyRound className="text-[#176b46]" size={22} aria-hidden="true" />

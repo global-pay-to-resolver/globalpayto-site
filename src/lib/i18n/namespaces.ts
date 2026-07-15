@@ -1,0 +1,147 @@
+export const translationNamespaces = [
+  "common",
+  "navigation",
+  "buttons",
+  "settings",
+  "onboarding",
+  "developer",
+  "playground",
+  "hostedAction",
+  "pay",
+  "marketing",
+] as const;
+
+export type TranslationNamespace = (typeof translationNamespaces)[number];
+
+export const translationKeys = {
+  common: [
+    "brandName",
+    "loading",
+    "mockMode",
+    "users",
+    "mainnet",
+    "testnet",
+    "notAvailableYet",
+  ],
+  navigation: [
+    "tracks",
+    "blog",
+    "enterPaytag",
+    "apiDocs",
+    "playground",
+    "reference",
+    "history",
+    "github",
+    "developer",
+    "signedInAs",
+    "loginUser",
+    "loginDeveloper",
+    "loginUserDescription",
+    "loginDeveloperDescription",
+  ],
+  buttons: [
+    "back",
+    "cancel",
+    "chooseTrack",
+    "connect",
+    "continue",
+    "copy",
+    "disconnect",
+    "readApiDocs",
+    "retry",
+    "rotate",
+    "save",
+    "signIn",
+    "signOut",
+    "submit",
+  ],
+  settings: [
+    "localeLabel",
+    "localeEnglish",
+    "localeSwedish",
+    "localePseudo",
+    "localeDetectedSweden",
+    "localeDefaultEnglish",
+  ],
+  onboarding: [
+    "heroEyebrow",
+    "heroTitle",
+    "heroDescription",
+    "networkEyebrow",
+    "networkTitle",
+    "paytagId",
+    "ecosystemStepPayingDapp",
+    "ecosystemStepRoute",
+    "ecosystemStepPayToDapp",
+    "ecosystemStepInstructions",
+  ],
+  developer: [
+    "metadataTitle",
+    "metadataDescription",
+    "appNameLabel",
+    "appUrlLabel",
+    "environmentLabel",
+    "apiKeyTitle",
+    "apiKeyIssued",
+    "localeFixtureTitle",
+    "localeFixtureDescription",
+  ],
+  playground: [
+    "title",
+    "description",
+    "localMockLabel",
+    "realBackendLabel",
+    "quoteTitle",
+    "selectedQuoteTitle",
+  ],
+  hostedAction: [
+    "routeSelectionTitle",
+    "routeSelectionDescription",
+    "expiredTitle",
+    "invalidTitle",
+    "completedTitle",
+    "deniedTitle",
+    "selectDefaultRoute",
+  ],
+  pay: [
+    "enterPaytagTitle",
+    "enterPaytagDescription",
+    "paytagLabel",
+    "amountLabel",
+    "tokenLabel",
+    "directOptionsTitle",
+    "quoteOptionsTitle",
+    "registeredWalletsEyebrow",
+    "registeredWalletsTitle",
+    "registeredWalletsDescription",
+    "mainnetWalletDescription",
+    "emptyWalletDirectory",
+  ],
+  marketing: [
+    "onePaytagTitle",
+    "onePaytagText",
+    "mvpRouteSelectionTitle",
+    "mvpRouteSelectionText",
+    "cubidIdentityTitle",
+    "cubidIdentityText",
+    "solverEyebrow",
+    "solverTitle",
+    "phaseOneAdapter",
+    "phaseTwoAdapter",
+  ],
+} as const satisfies Record<TranslationNamespace, readonly string[]>;
+
+export type TranslationKeyMap = typeof translationKeys;
+
+export type TranslationKey<N extends TranslationNamespace> =
+  TranslationKeyMap[N][number];
+
+export type NamespacedTranslationKey<N extends TranslationNamespace> =
+  `${N}:${TranslationKey<N>}`;
+
+export function namespacedKey<N extends TranslationNamespace>(
+  namespace: N,
+  key: TranslationKey<N>,
+): NamespacedTranslationKey<N> {
+  return `${namespace}:${key}` as NamespacedTranslationKey<N>;
+}
