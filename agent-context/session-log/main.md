@@ -2,6 +2,15 @@
 
 agent: Codex
 branch: codex/5-user-portal-site
+head: pending commit for MyPayTag-site#9
+summary: Implemented MyPayTag-site#9 by replacing the static /history fixture flow with a Cubid-authenticated backend history fetch, a server-side /api/portal/history proxy, typed portal history contracts, grouped question/answer/quote/selected-quote/intent/receipt rendering, exact quote details, pending/unavailable receipt handling, and localized history copy.
+validation: Ran pnpm check:i18n, pnpm typecheck, pnpm lint, pnpm build, and pnpm scan:browser-secrets. Restarted the stale local next start process after it held old Turbopack chunks from the previous build, then confirmed /history returned 200 and captured production-server Playwright screenshots for the missing-config state at desktop and mobile widths under output/playwright/site-9-*.png. Real authenticated history/filter/detail smoke requires real Cubid OIDC config plus a deployed backend portal-history API and is deferred to the staging env/smoke issues.
+follow-ups: Promote Site#9 and Site#8 after validation comments, then continue the sprint dependency tree with staging/Vercel/Supabase env and smoke tasks.
+
+---
+
+agent: Codex
+branch: codex/5-user-portal-site
 head: pending commit for MyPayTag-site#11
 summary: Implemented MyPayTag-site#11 by adding a protected /settings receive-path priority surface, a server-side /api/portal/preferences proxy to the backend portal-preferences function, typed portal preference contracts, settings navigation, and localized settings copy for loading, empty, failure, reorder, and save states.
 validation: Ran pnpm check:i18n, pnpm typecheck, pnpm lint, pnpm build, and pnpm scan:browser-secrets. Captured production-server Playwright screenshots for /settings missing-config state at desktop and mobile widths under output/playwright/site-11-*.png. Real view/reorder/save browser smoke requires real Cubid OIDC config plus a deployed backend portal-preferences API and is deferred to the staging env/smoke issues.
