@@ -55,6 +55,25 @@ const en = {
     signOut: "Sign out",
     submit: "Submit",
   },
+  auth: {
+    checkingTitle: "Checking sign-in",
+    checkingDescription: "Checking your Cubid session before showing this page.",
+    missingConfigTitle: "Cubid sign-in is not configured",
+    missingConfigDescription:
+      "Protected MyPayTag surfaces require browser-safe Cubid OIDC configuration.",
+    missingConfigDetail: "Missing browser-safe config: {{values}}",
+    signInDetail: "Use the Cubid sign-in control to continue.",
+    signedInWithCubid: "Signed in with Cubid",
+    sessionMissingConfig: "Sign in with Cubid needs browser-safe config.",
+    sessionChecking: "Checking Cubid session",
+    callbackTitle: "Cubid callback",
+    callbackMissingDescription:
+      "Add the browser-safe OIDC values from `.env.example` before using the callback route.",
+    callbackCompleteTitle: "Completing Cubid sign-in",
+    callbackLoading: "Reading the Cubid callback...",
+    callbackSuccess: "Cubid sign-in is complete.",
+    callbackReturn: "Return to MyPayTag",
+  },
   settings: {
     localeLabel: "Locale",
     localeEnglish: "English",
@@ -184,6 +203,26 @@ const sv = {
     signIn: "Logga in",
     signOut: "Logga ut",
     submit: "Skicka",
+  },
+  auth: {
+    checkingTitle: "Kontrollerar inloggning",
+    checkingDescription: "Kontrollerar din Cubid-session innan sidan visas.",
+    missingConfigTitle: "Cubid-inloggning är inte konfigurerad",
+    missingConfigDescription:
+      "Skyddade MyPayTag-ytor kräver webbläsarsäker Cubid OIDC-konfiguration.",
+    missingConfigDetail: "Saknar webbläsarsäker konfiguration: {{values}}",
+    signInDetail: "Använd Cubid-inloggningen för att fortsätta.",
+    signedInWithCubid: "Inloggad med Cubid",
+    sessionMissingConfig:
+      "Inloggning med Cubid behöver webbläsarsäker konfiguration.",
+    sessionChecking: "Kontrollerar Cubid-session",
+    callbackTitle: "Cubid-callback",
+    callbackMissingDescription:
+      "Lägg till webbläsarsäkra OIDC-värden från `.env.example` innan callback-rutten används.",
+    callbackCompleteTitle: "Slutför Cubid-inloggning",
+    callbackLoading: "Läser Cubid-callback...",
+    callbackSuccess: "Cubid-inloggningen är klar.",
+    callbackReturn: "Tillbaka till MyPayTag",
   },
   settings: {
     localeLabel: "Språk",

@@ -1,6 +1,15 @@
 # Main Session Log
 
 agent: Codex
+branch: codex/5-user-portal-site
+head: pending commit for MyPayTag-site#10
+summary: Replaced production protected-route gating and header session controls with real Cubid/OIDC auth state, removed the mock localStorage session provider from app layout and source, localized Cubid missing-config/checking/callback states, and kept developer tooling behind Cubid sign-in while still using local fixture data for unfinished developer backend surfaces.
+validation: Ran pnpm check:i18n, pnpm typecheck, pnpm lint, pnpm build, and pnpm scan:browser-secrets. Captured production-server Playwright screenshots for /history and /auth/callback missing-config states at desktop and mobile widths under output/playwright/site-10-*.png.
+follow-ups: Implement backend-backed receive-path settings and history UI in Site#11 and Site#9.
+
+---
+
+agent: Codex
 branch: main
 head: 91003ef
 summary: Added and README-linked a public hosted user-actions architecture doc for authorization, setup, and route-selection pages while keeping private resolver implementation out of the site boundary.
