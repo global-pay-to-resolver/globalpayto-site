@@ -2,6 +2,15 @@
 
 agent: Codex
 branch: codex/5-user-portal-site
+head: pending commit for MyPayTag-site#11
+summary: Implemented MyPayTag-site#11 by adding a protected /settings receive-path priority surface, a server-side /api/portal/preferences proxy to the backend portal-preferences function, typed portal preference contracts, settings navigation, and localized settings copy for loading, empty, failure, reorder, and save states.
+validation: Ran pnpm check:i18n, pnpm typecheck, pnpm lint, pnpm build, and pnpm scan:browser-secrets. Captured production-server Playwright screenshots for /settings missing-config state at desktop and mobile widths under output/playwright/site-11-*.png. Real view/reorder/save browser smoke requires real Cubid OIDC config plus a deployed backend portal-preferences API and is deferred to the staging env/smoke issues.
+follow-ups: Implement backend-backed history UI in Site#9, then run staged real-auth smoke after env is configured.
+
+---
+
+agent: Codex
+branch: codex/5-user-portal-site
 head: pending commit for MyPayTag-site#10
 summary: Replaced production protected-route gating and header session controls with real Cubid/OIDC auth state, removed the mock localStorage session provider from app layout and source, localized Cubid missing-config/checking/callback states, and kept developer tooling behind Cubid sign-in while still using local fixture data for unfinished developer backend surfaces.
 validation: Ran pnpm check:i18n, pnpm typecheck, pnpm lint, pnpm build, and pnpm scan:browser-secrets. Captured production-server Playwright screenshots for /history and /auth/callback missing-config states at desktop and mobile widths under output/playwright/site-10-*.png.

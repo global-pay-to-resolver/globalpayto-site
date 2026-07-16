@@ -37,6 +37,9 @@ export function SiteHeader() {
           <Link className="hover:text-[#176b46]" href="/history">
             {tNav("history")}
           </Link>
+          <Link className="hover:text-[#176b46]" href="/settings">
+            {tNav("settings")}
+          </Link>
           <Link className="hover:text-[#176b46]" href="/developer">
             {tNav("developer")}
           </Link>

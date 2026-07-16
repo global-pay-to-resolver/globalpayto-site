@@ -141,6 +141,12 @@ they return local development fixtures only when
 `MYPAYTAG_PLAYGROUND_MOCK_MODE=true`. Broad solver fanout is a Phase 2 fixture
 and requires `MYPAYTAG_PLAYGROUND_PHASE2_DEMO_MODE=true`.
 
+Authenticated portal settings also use server-only `MYPAYTAG_RESOLVER_BASE_URL`
+through `/api/portal/preferences`. The browser sends the Cubid bearer session
+to the site API route, and the site forwards it to the backend
+`portal-preferences` function without exposing backend service config in client
+bundles.
+
 ## Cubid Console Setup
 
 Create or configure an OIDC client in Cubid with:
