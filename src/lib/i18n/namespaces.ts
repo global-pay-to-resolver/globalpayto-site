@@ -68,6 +68,7 @@ export const translationKeys = {
     "signedInWithCubid",
     "sessionMissingConfig",
     "sessionChecking",
+    "sessionLaunchError",
     "callbackTitle",
     "callbackMissingDescription",
     "callbackCompleteTitle",

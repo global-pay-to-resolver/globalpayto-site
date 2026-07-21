@@ -67,6 +67,8 @@ const en = {
     signedInWithCubid: "Signed in with Cubid",
     sessionMissingConfig: "Sign in with Cubid needs browser-safe config.",
     sessionChecking: "Checking Cubid session",
+    sessionLaunchError:
+      "Cubid sign-in could not start. Check the browser-safe Cubid OIDC configuration and try again.",
     callbackTitle: "Cubid callback",
     callbackMissingDescription:
       "Add the browser-safe OIDC values from `.env.example` before using the callback route.",
@@ -306,6 +308,8 @@ const sv = {
     sessionMissingConfig:
       "Inloggning med Cubid behöver webbläsarsäker konfiguration.",
     sessionChecking: "Kontrollerar Cubid-session",
+    sessionLaunchError:
+      "Cubid-inloggningen kunde inte starta. Kontrollera den webbläsarsäkra Cubid OIDC-konfigurationen och försök igen.",
     callbackTitle: "Cubid-callback",
     callbackMissingDescription:
       "Lägg till webbläsarsäkra OIDC-värden från `.env.example` innan callback-rutten används.",

@@ -2,6 +2,15 @@
 
 agent: Codex
 branch: codex/5-user-portal-site
+head: pending commit for MyPayTag-site#10 PR smoke fix
+summary: Addressed protected-preview smoke feedback by surfacing Cubid sign-in launch failures in the shared session control instead of silently returning to the logged-out state.
+validation: Ran pnpm check:i18n, pnpm typecheck, pnpm lint, pnpm build, and pnpm scan:browser-secrets successfully.
+follow-ups: Re-smoke the PR preview in Chrome after Vercel redeploys, then merge only after PR review and green checks.
+
+---
+
+agent: Codex
+branch: codex/5-user-portal-site
 head: pending commit for MyPayTag-site#9
 summary: Implemented MyPayTag-site#9 by replacing the static /history fixture flow with a Cubid-authenticated backend history fetch, a server-side /api/portal/history proxy, typed portal history contracts, grouped question/answer/quote/selected-quote/intent/receipt rendering, exact quote details, pending/unavailable receipt handling, and localized history copy.
 validation: Ran pnpm check:i18n, pnpm typecheck, pnpm lint, pnpm build, and pnpm scan:browser-secrets. Restarted the stale local next start process after it held old Turbopack chunks from the previous build, then confirmed /history returned 200 and captured production-server Playwright screenshots for the missing-config state at desktop and mobile widths under output/playwright/site-9-*.png. Real authenticated history/filter/detail smoke requires real Cubid OIDC config plus a deployed backend portal-history API and is deferred to the staging env/smoke issues.
