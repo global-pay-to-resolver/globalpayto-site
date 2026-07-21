@@ -14,7 +14,7 @@ interface HistoryPageProps {
 export const metadata = {
   title: "Incoming Transaction History",
   description:
-    "Browser-safe incoming transaction history grouped by paying app, PayToDapp, token, or chain.",
+    "Backend-backed incoming transaction history grouped by paying app, PayToDapp, token, or chain.",
 };
 
 export default async function HistoryPage({ searchParams }: HistoryPageProps) {
@@ -39,7 +39,13 @@ function normalizeFilter(value: string | undefined): IncomingHistoryFilter {
 }
 
 function normalizeType(value: string | undefined): IncomingHistoryType | undefined {
-  if (value === "queries" || value === "intents" || value === "transactions") {
+  if (
+    value === "questions" ||
+    value === "answers" ||
+    value === "quotes" ||
+    value === "intents" ||
+    value === "receipts"
+  ) {
     return value;
   }
 
